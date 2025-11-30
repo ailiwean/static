@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Network Share Data Security Statement</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 960px; margin: 32px auto; padding: 0 16px; line-height: 1.6; }
+    h1, h2 { color: #0a8a4b; }
+    .lang { display: none; border-top: 1px solid #ddd; padding-top: 16px; margin-top: 20px; }
+    ul { padding-left: 20px; }
+    .lang-switch { margin: 12px 0 16px; }
+    .lang-switch label { margin-right: 8px; font-weight: 600; }
+    .lang-switch select { padding: 6px 10px; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const titles = {
+        'en':'Network Share Data Security Statement',
+        'zh-CN':'Network Share 数据安全说明',
+        'ar':'بيان أمان البيانات لـ Network Share',
+        'de':'Network Share Datensicherheits-Erklärung',
+        'es':'Declaración de Seguridad de Datos de Network Share',
+        'fa':'بیانیه امنیت داده Network Share',
+        'fr':'Déclaration de Sécurité des Données Network Share',
+        'hi':'Network Share डेटा सुरक्षा说明',
+        'id':'Pernyataan Keamanan Data Network Share',
+        'ja':'Network Share データセキュリティ声明',
+        'ko':'Network Share 데이터 보안 설명',
+        'ms':'Kenyataan Keselamatan Data Network Share',
+        'pt':'Declaração de Segurança de Dados do Network Share',
+        'ru':'Заявление о безопасности данных Network Share',
+        'sw':'Taarifa ya Usalama wa Data ya Network Share',
+        'th':'คำชี้แจงความปลอดภัยข้อมูล Network Share',
+        'tl':'Pahayag sa Seguridad ng Datos ng Network Share',
+        'tr':'Network Share Veri Güvenliği Bildirimi',
+        'ur':'Network Share ڈیٹا سیکیورٹی بیان',
+        'vi':'Tuyên bố An ninh Dữ liệu Network Share'
+      };
+      const intro = {
+        'en':'How Network Share protects data within the LAN proxy scenario.',
+        'zh-CN':'说明 Network Share 在局域网代理场景下的数据安全措施。',
+        'ar':'كيف نحمي البيانات في سيناريو وكيل LAN.',
+        'de':'Wie Daten im LAN-Proxy-Szenario geschützt werden.',
+        'es':'Cómo protegemos datos en el escenario de proxy LAN.',
+        'fa':'چگونه در سناریوی پروکسی LAN از داده حفاظت می‌شود.',
+        'fr':'Comment les données sont protégées en mode proxy LAN.',
+        'hi':'LAN प्रॉक्सी में डेटा कैसे सुरक्षित है।',
+        'id':'Cara melindungi data di skenario proxy LAN.',
+        'ja':'LAN プロキシ環境でのデータ保護について。',
+        'ko':'LAN 프록시 환경에서의 데이터 보호.',
+        'ms':'Bagaimana data dilindungi dalam proksi LAN.',
+        'pt':'Como os dados são protegidos no proxy LAN.',
+        'ru':'Как защищаются данные в сценарии LAN‑прокси.',
+        'sw':'Jinsi data inalindwa katika proxy ya LAN.',
+        'th':'การปกป้องข้อมูลในพร็อกซี LAN.',
+        'tl':'Paano pinoprotektahan ang data sa LAN proxy.',
+        'tr':'LAN proxy senaryosunda veri nasıl korunur.',
+        'ur':'LAN پراکسی میں ڈیٹا کیسے محفوظ ہے۔',
+        'vi':'Cách bảo vệ dữ liệu trong proxy LAN.'
+      };
+      const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
+      const apply = (lang) => {
+        document.querySelectorAll('.lang').forEach(el => el.style.display='none');
+        const sec=document.querySelector(`[data-lang="${lang}"]`)||document.querySelector('[data-lang="en"]');
+        if(sec) sec.style.display='block';
+        const t=titles[lang]||titles.en;
+        document.title=t;
+        const h1=document.getElementById('title');
+        if(h1) h1.textContent=t;
+        const p=document.getElementById('intro');
+        if(p) p.textContent=intro[lang]||intro.en;
+        const sel=document.getElementById('lang-select');
+        if(sel) sel.value=lang;
+      };
+      const nav=(navigator.language||'en').split('-')[0];
+      const target=map[navigator.language]||map[nav]||'en';
+      apply(target);
+      const sel=document.getElementById('lang-select');
+      if(sel) sel.addEventListener('change',e=>apply(e.target.value));
+    });
+  </script>
+</head>
+<body>
+  <h1 id="title">Network Share Data Security Statement</h1>
+  <div class="lang-switch">
+    <label for="lang-select">Language / 语言：</label>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="zh-CN">中文</option>
+      <option value="ar">العربية</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="fa">فارسی</option>
+      <option value="fr">Français</option>
+      <option value="hi">हिन्दी</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="ms">Bahasa Melayu</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="sw">Kiswahili</option>
+      <option value="th">ไทย</option>
+      <option value="tl">Tagalog</option>
+      <option value="tr">Türkçe</option>
+      <option value="ur">اردو</option>
+      <option value="vi">Tiếng Việt</option>
+    </select>
+  </div>
+  <p id="intro">How Network Share protects data within the LAN proxy scenario.</p>
+
+  <div class="lang" data-lang="en">
+    <h2>Security principles</h2>
+    <ul>
+      <li><strong>Local-only forwarding</strong>: traffic stays in the same LAN/hotspot; no cloud relay.</li>
+      <li><strong>No payload logging</strong>: we do not inspect/store/upload proxied payloads or headers.</li>
+      <li><strong>TLS end-to-end</strong>: HTTPS negotiated between client and destination; we do not terminate TLS.</li>
+      <li><strong>Host VPN aware</strong>: if the host runs its own VPN, traffic may traverse it under host control.</li>
+      <li><strong>Minimal permissions</strong>: network, foreground service/notification, vibration, storage; no contacts/photos/SMS/mic/precise location.</li>
+      <li><strong>Third parties (optional)</strong>: Firebase Crashlytics for crash metadata; Google AdMob for ads—no proxy content sent.</li>
+    </ul>
+    <h2>User controls</h2>
+    <ul>
+      <li>Clear app data or uninstall to remove local cache/config.</li>
+      <li>Disable crash reporting/ads (if available) to stop metadata/ad signals.</li>
+      <li>Use trusted Wi‑Fi, strong hotspot passwords, and keep OS/app updated.</li>
+      <li>Contact: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="zh-CN">
+    <h2>安全原则</h2>
+    <ul>
+      <li><strong>仅本地转发</strong>：流量只在同一局域网/热点内，不经过云中继。</li>
+      <li><strong>不记录内容</strong>：不检查、存储或上传代理报文内容/报文头。</li>
+      <li><strong>TLS 端到端</strong>：HTTPS 由客户端与目标站点直接协商，我们不终止 TLS。</li>
+      <li><strong>主机 VPN 透明</strong>：如主机启用自有 VPN，流量可能在其控制下经过该 VPN。</li>
+      <li><strong>最小权限</strong>：仅网络、前台服务/通知、震动、存储，不访问通讯录/相册/SMS/麦克风/精确位置。</li>
+      <li><strong>第三方（可选）</strong>：Crashlytics（崩溃元数据）、AdMob（广告），不包含代理内容。</li>
+    </ul>
+    <h2>用户可控</h2>
+    <ul>
+      <li>清除应用数据或卸载以删除本地缓存/配置。</li>
+      <li>关闭崩溃上报/广告（如有入口）以停止元数据/广告信号。</li>
+      <li>使用可信 Wi‑Fi、设置强热点密码，保持系统/应用更新。</li>
+      <li>联系：<a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="ar"><h2>العربية (ar)</h2><ul><li>مرور محلي فقط، بلا ريللاي سحابي.</li><li>لا نسجل محتوى الترافيك.</li><li>TLS من端到端 بين العميل والوجهة.</li><li>قد يمر عبر VPN للمضيف إن وجد.</li><li>أذونات دنيا؛ لا جهات اتصال/صور/SMS/ميكروفون/موقع دقيق.</li><li>Crashlytics/AdMob اختياريان، بلا محتوى وكيل.</li><li>امسح البيانات أو أزل التثبيت؛ اتصل: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="de"><h2>Deutsch (de)</h2><ul><li>Nur lokal, kein Cloud-Relay.</li><li>Keine Protokollierung von Nutzdaten.</li><li>TLS Ende-zu-Ende, kein Termination.</li><li>Host-VPN möglich.</li><li>Minimale Berechtigungen; kein Zugriff auf Kontakte/Fotos/SMS/Mic/Ort.</li><li>Crashlytics/AdMob optional, ohne Proxy-Inhalte.</li><li>Daten löschen oder App entfernen; Kontakt: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="es"><h2>Español (es)</h2><ul><li>Sólo local, sin relé en la nube.</li><li>No registramos contenido.</li><li>TLS extremo a extremo.</li><li>Puede usar VPN del host.</li><li>Permisos mínimos; sin contactos/fotos/SMS/mic/ubicación precisa.</li><li>Crashlytics/AdMob opcional sin contenido.</li><li>Borra datos o desinstala; contacto: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="fa"><h2>فارسی (fa)</h2><ul><li>فقط محلی، بدون رله ابری.</li><li>بدون لاگ محتوای ترافیک.</li><li>TLS انتها به انتها.</li><li>امکان عبور از VPN میزبان.</li><li>حداقل دسترسی؛ بدون مخاطبین/عکس/SMS/میکروفن/مکان دقیق.</li><li>Crashlytics/AdMob اختیاری، بدون محتوای پروکسی.</li><li>پاک‌کردن داده یا حذف نصب؛ ایمیل: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="fr"><h2>Français (fr)</h2><ul><li>Local seulement, pas de relais cloud.</li><li>Pas de journal des contenus.</li><li>TLS de bout en bout.</li><li>VPN hôte possible.</li><li>Besoins minimaux; pas de contacts/photos/SMS/mic/localisation précise.</li><li>Crashlytics/AdMob optionnels, sans contenu proxy.</li><li>Effacer données ou désinstaller; contact: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="hi"><h2>हिन्दी (hi)</h2><ul><li>केवल लोकल, कोई क्लाउड रिले नहीं.</li><li>ट्रैफ़िक कंटेंट लॉग नहीं.</li><li>TLS एンド-टू-एंड.</li><li>होस्ट VPN संभव.</li><li>न्यूनतम अनुमति; संपर्क/फोटो/SMS/माइक/लोकेशन नहीं.</li><li>Crashlytics/AdMob वैकल्पिक, बिना कंटेंट.</li><li>डेटा साफ/अनइंस्टॉल; संपर्क: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="id"><h2>Bahasa Indonesia (id)</h2><ul><li>Hanya lokal, tanpa relay cloud.</li><li>Tidak log konten trafik.</li><li>TLS end-to-end.</li><li>Bisa lewat VPN host.</li><li>Izin minimal; tanpa kontak/foto/SMS/mic/lokasi presisi.</li><li>Crashlytics/AdMob opsional tanpa konten.</li><li>Hapus data/uninstall; kontak: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="ja"><h2>日本語 (ja)</h2><ul><li>ローカルのみ、クラウド中継なし。</li><li>トラフィック内容は記録しません。</li><li>TLS はエンドツーエンド。</li><li>ホスト VPN を経由する場合あり。</li><li>最小権限；連絡先/写真/SMS/マイク/精密位置なし。</li><li>Crashlytics/AdMob 任意、内容なし。</li><li>データ消去/アンインストール可；連絡: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="ko"><h2>한국어 (ko)</h2><ul><li>로컬 전용, 클라우드 릴레이 없음.</li><li>트래픽 내용 로그 없음.</li><li>TLS 종단간.</li><li>호스트 VPN 가능.</li><li>최소 권한; 연락처/사진/SMS/마이크/정밀 위치 없음.</li><li>Crashlytics/AdMob 선택, 콘텐츠 없음.</li><li>데이터 삭제/제거; 문의: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="ms"><h2>Bahasa Melayu (ms)</h2><ul><li>Hanya tempatan, tiada relai awan.</li><li>Tiada log kandungan trafik.</li><li>TLS hujung ke hujung.</li><li>Boleh melalui VPN hos.</li><li>Keizinan minimum; tiada kenalan/foto/SMS/mik/ lokasi tepat.</li><li>Crashlytics/AdMob pilihan, tiada kandungan.</li><li>Padam data/nyahpasang; hubungi: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="pt"><h2>Português (pt)</h2><ul><li>Só local, sem relay em nuvem.</li><li>Sem log de conteúdo.</li><li>TLS ponta a ponta.</li><li>Pode usar VPN do host.</li><li>Permissões mínimas; sem contatos/fotos/SMS/mic/localização precisa.</li><li>Crashlytics/AdMob opcionais sem conteúdo.</li><li>Apague dados/desinstale; contato: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="ru"><h2>Русский (ru)</h2><ul><li>Только локально, без облачных релеев.</li><li>Не логируем содержимое трафика.</li><li>TLS end-to-end.</li><li>Возможен VPN хоста.</li><li>Минимальные разрешения; без контактов/фото/SMS/микрофона/точной гео.</li><li>Crashlytics/AdMob опционально, без контента.</li><li>Удаляйте данные/приложение; контакт: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="sw"><h2>Kiswahili (sw)</h2><ul><li>Ndani tu ya kifaa/LAN, hakuna relai ya wingu.</li><li>Hakuna kumbukumbu ya maudhui ya trafiki.</li><li>TLS mwisho hadi mwisho.</li><li>Inaweza kupita VPN ya host.</li><li>Ruhusa ndogo; hakuna anwani/picha/SMS/mic/eneo sahihi.</li><li>Crashlytics/AdMob hiari, bila maudhui.</li><li>Futa data/ondoa; wasiliana: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="th"><h2>ไทย (th)</h2><ul><li>เฉพาะภายใน ไม่ผ่านคลาวด์.</li><li>ไม่บันทึกเนื้อหาทราฟฟิก.</li><li>TLS ปลายทางถึงปลายทาง.</li><li>อาจผ่าน VPN โฮสต์.</li><li>สิทธิ์ขั้นต่ำ; ไม่มีรายชื่อ/รูป/SMS/ไมค์/ตำแหน่งละเอียด.</li><li>Crashlytics/AdMob ตัวเลือก ไม่มีเนื้อหา.</li><li>ลบข้อมูล/ถอนการติดตั้ง; ติดต่อ: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="tl"><h2>Tagalog (tl)</h2><ul><li>Lokal lang, walang cloud relay.</li><li>Walang log ng nilalaman.</li><li>TLS end-to-end.</li><li>Maaaring via VPN ng host.</li><li>Minimal na permiso; walang contacts/photos/SMS/mic/precise location.</li><li>Crashlytics/AdMob opsyonal, walang content.</li><li>Burahin data/uninstall; contact: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="tr"><h2>Türkçe (tr)</h2><ul><li>Yalnızca yerel, bulut rölesi yok.</li><li>Trafik içeriği loglanmaz.</li><li>Uçtan uca TLS.</li><li>Host VPN’den geçebilir.</li><li>Minimum izin; kişi/foto/SMS/mikrofon/konum yok.</li><li>Crashlytics/AdMob isteğe bağlı, içerik yok.</li><li>Veriyi sil/kaldır; iletişim: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="ur"><h2>اردو (ur)</h2><ul><li>صرف مقامی، کلاؤڈ ریلے نہیں.</li><li>ٹریفک مواد لاگ نہیں ہوتا.</li><li>TLS سرے سے سرے تک.</li><li>ہوسٹ VPN سے گزر سکتا ہے.</li><li>کم سے کم اجازت؛ روابط/تصاویر/SMS/مائیک/صحیح مقام نہیں.</li><li>Crashlytics/AdMob اختیاری، مواد نہیں.</li><li>ڈیٹا حذف/ان انسٹال؛ رابطہ: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+  <div class="lang" data-lang="vi"><h2>Tiếng Việt (vi)</h2><ul><li>Chỉ cục bộ, không relay đám mây.</li><li>Không log nội dung lưu lượng.</li><li>TLS đầu-cuối.</li><li>Có thể đi qua VPN của host.</li><li>Quyền tối thiểu; không truy cập danh bạ/ảnh/SMS/mic/vị trí chính xác.</li><li>Crashlytics/AdMob tùy chọn, không gửi nội dung.</li><li>Xóa dữ liệu/gỡ cài; liên hệ: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a></li></ul></div>
+</body>
+</html>
