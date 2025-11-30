@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Network Share User Guide</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 960px; margin: 32px auto; padding: 0 16px; line-height: 1.6; }
+    h1, h2 { color: #0a8a4b; }
+    .lang { display: none; border-top: 1px solid #ddd; padding-top: 16px; margin-top: 20px; }
+    ul { padding-left: 20px; }
+    .lang-switch { margin: 12px 0 16px; }
+    .lang-switch label { margin-right: 8px; font-weight: 600; }
+    .lang-switch select { padding: 6px 10px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0c1117; color: #e4e6eb; }
+    h1, h2 { color: #7ce694; }
+    a { color: #8cd4ff; }
+    .meta { color: #b0b3b8; }
+    .lang { border-top-color: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.2); }
+    .lang-switch select { background: #161b22; color: #e4e6eb; border: 1px solid rgba(255,255,255,0.2); }
+  }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const titles = {
+        'en':'Network Share User Guide',
+        'zh-CN':'Network Share 使用手册',
+        'ar':'دليل استخدام Network Share',
+        'de':'Network Share Benutzerhandbuch',
+        'es':'Guía de Uso de Network Share',
+        'fa':'راهنمای استفاده Network Share',
+        'fr':'Guide d’utilisation Network Share',
+        'hi':'Network Share उपयोग指南',
+        'id':'Panduan Pengguna Network Share',
+        'ja':'Network Share ユーザーガイド',
+        'ko':'Network Share 사용 안내',
+        'ms':'Panduan Pengguna Network Share',
+        'pt':'Guia do Usuário Network Share',
+        'ru':'Руководство пользователя Network Share',
+        'sw':'Mwongozo wa Mtumiaji wa Network Share',
+        'th':'คู่มือการใช้ Network Share',
+        'tl':'Gabay sa Paggamit ng Network Share',
+        'tr':'Network Share Kullanım Kılavuzu',
+        'ur':'Network Share استعمال گائیڈ',
+        'vi':'Hướng dẫn sử dụng Network Share'
+      };
+      const intro = {
+        'en':'Use Network Share as a LAN proxy gateway; clients must manually set host IP + port (no auto-discovery/encryption).',
+        'zh-CN':'将本机作为局域网代理网关，客户端需手动填写主机 IP 和端口（无自动发现/加密）。',
+        'ar':'استخدم الجهاز كوكيل LAN؛ على العميل إدخال IP+منفذ يدويًا (بدون اكتشاف/تشفير تلقائي).',
+        'de':'Nutze das Gerät als LAN-Proxy; Clients müssen Host-IP+Port manuell setzen (kein Auto-Discovery/Verschlüsselung).',
+        'es':'Usa el equipo como proxy LAN; los clientes configuran IP+puerto manualmente (sin auto-descubrimiento/cifrado).',
+        'fa':'گوشی را در LAN به‌عنوان پروکسی استفاده کنید؛ کلاینت باید IP+پورت را دستی وارد کند (بدون کشف/رمزگذاری خودکار).',
+        'fr':'Utilisez l’appareil comme proxy LAN; clients saisissent IP+port manuellement (pas de découverte/chiffrement auto).',
+        'hi':'LAN प्रॉक्सी के रूप में उपयोग; क्लाइंट IP+पोर्ट मैन्युअल सेट करें (कोई ऑटो-डिस्कवरी/एन्क्रिप्शन नहीं).',
+        'id':'Gunakan sebagai proxy LAN; klien isi IP+port manual (tanpa auto-discovery/enkripsi).',
+        'ja':'本機をLANプロキシとして利用。クライアントは手動でIP+ポート設定（自動検出/暗号化なし）。',
+        'ko':'LAN 프록시로 사용; 클라이언트가 IP+포트를 수동 설정 (자동검색/암호화 없음).',
+        'ms':'Guna sebagai proksi LAN; klien isi IP+port secara manual (tiada auto-cari/penyulitan).',
+        'pt':'Use como proxy LAN; cliente define IP+porta manual (sem descoberta/criptografia automática).',
+        'ru':'Используйте как LAN-прокси; клиенты вручную вводят IP+порт (без автообнаружения/шифрования).',
+        'sw':'Tumia kama proksi ya LAN; mteja aweke IP+port kwa mkono (hakuna ugunduzi/usimbaji kiotomatiki).',
+        'th':'ใช้เป็นพร็อกซี LAN; ไคลเอนต์ตั้ง IP+พอร์ตเอง (ไม่มีค้นหา/เข้ารหัสอัตโนมัติ).',
+        'tl':'Gamitin bilang LAN proxy; mano ang IP+port (walang auto-discovery/encryption).',
+        'tr':'LAN proxy olarak kullan; istemci IP+portu elle girmeli (otomatik keşif/şifreleme yok).',
+        'ur':'LAN پراکسی کے طور پر؛ کلائنٹ IP+پورٹ ہاتھ سے ڈالیں (کوئی خودکار تلاش/اینکرپشن نہیں).',
+        'vi':'Dùng làm proxy LAN; client tự nhập IP+port (không auto-discovery/mã hóa).'
+      };
+      const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
+      const apply = (lang) => {
+        document.querySelectorAll('.lang').forEach(el => el.style.display='none');
+        const sec=document.querySelector(`[data-lang="${lang}"]`)||document.querySelector('[data-lang="en"]');
+        if(sec) sec.style.display='block';
+        const t=titles[lang]||titles.en;
+        document.title=t;
+        const h1=document.getElementById('title');
+        if(h1) h1.textContent=t;
+        const p=document.getElementById('intro');
+        if(p) p.textContent=intro[lang]||intro.en;
+        const sel=document.getElementById('lang-select');
+        if(sel) sel.value=lang;
+      };
+      const nav=(navigator.language||'en').split('-')[0];
+      const target=map[navigator.language]||map[nav]||'en';
+      apply(target);
+      const sel=document.getElementById('lang-select');
+      if(sel) sel.addEventListener('change',e=>apply(e.target.value));
+    });
+  </script>
+</head>
+<body>
+  <h1 id="title">Network Share User Guide</h1>
+  <div class="lang-switch">
+    <label for="lang-select">Language / 语言：</label>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="zh-CN">中文</option>
+      <option value="ar">العربية</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="fa">فارسی</option>
+      <option value="fr">Français</option>
+      <option value="hi">हिन्दी</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="ms">Bahasa Melayu</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="sw">Kiswahili</option>
+      <option value="th">ไทย</option>
+      <option value="tl">Tagalog</option>
+      <option value="tr">Türkçe</option>
+      <option value="ur">اردو</option>
+      <option value="vi">Tiếng Việt</option>
+    </select>
+  </div>
+  <p id="intro">Use Network Share as a LAN proxy gateway; clients must manually set host IP + port (no auto-discovery/encryption).</p>
+
+  <div class="lang" data-lang="en">
+    <h2>Purpose</h2>
+    <p>Use this device as a LAN proxy gateway on the same Wi‑Fi/hotspot; other devices forward traffic via this host (can stack with host VPN). Auto-discovery/encryption removed; clients must fill host IP and port manually.</p>
+    <h2>Host steps</h2>
+    <ol>
+      <li>Open the app, pick proxy mode (recommend “Auto-detect”) and port (default 1080). Current version forces full traffic via this proxy.</li>
+      <li>Ensure host and clients are on the same LAN; port not occupied.</li>
+      <li>Tap “Start Gateway” and keep the foreground service alive.</li>
+    </ol>
+    <h2>Client setup (manual IP + port)</h2>
+    <ul>
+      <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = this device IP, port = app port. Or set HTTP/HTTPS in apps; Auto-detect mode typically works with HTTP/HTTPS/SOCKS5.</li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → current network → Configure Proxy = Manual; server = host IP, port = app port (HTTP/HTTPS).</li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = host IP, port = app port (HTTP/HTTPS); apps that support SOCKS5 can set SOCKS5.</li>
+      <li><strong>macOS</strong>: System Settings → Network → current interface → Details → Proxies; check HTTP/HTTPS (or SOCKS5), server = host IP, port = app port.</li>
+      <li><strong>Other devices</strong>: fill host IP + port in HTTP/HTTPS/SOCKS5 proxy settings supported by the device/app.</li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="zh-CN">
+    <h2>作用</h2>
+    <p>同一 Wi‑Fi/热点下，将本机作为代理网关，其他设备通过本机转发流量（可叠加本机 VPN）。已移除自动发现/加密，需手动填写主机 IP 和端口。</p>
+    <h2>主机端步骤</h2>
+    <ol>
+      <li>打开 App，选代理模式（推荐“自动识别”）和端口（默认 1080），当前版本全量经本机代理。</li>
+      <li>确认主机与客户端同局域网，端口未被占用。</li>
+      <li>点击“启动网关”，保持前台服务运行。</li>
+    </ol>
+    <h2>客户端配置（手动 IP + 端口）</h2>
+    <ul>
+      <li><strong>Android</strong>：Wi‑Fi 详情→代理=手动，主机名填本机 IP，端口填 App 端口；或在支持代理的应用中填写 HTTP/HTTPS（自动识别通常兼容 HTTP/HTTPS/SOCKS5）。</li>
+      <li><strong>iOS</strong>：设置→Wi‑Fi→当前网络→配置代理=手动，服务器填本机 IP，端口填 App 端口（HTTP/HTTPS）。</li>
+      <li><strong>Windows</strong>：设置→网络和 Internet→代理→手动代理，地址=本机 IP，端口=App 端口（HTTP/HTTPS）；支持 SOCKS5 的应用可直接填 SOCKS5。</li>
+      <li><strong>macOS</strong>：系统设置→网络→当前接口→详情→代理，勾选 HTTP/HTTPS（或 SOCKS5），服务器=本机 IP，端口=App 端口。</li>
+      <li><strong>其他设备</strong>：在支持的 HTTP/HTTPS/SOCKS5 代理入口手动填本机 IP + 端口。</li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="ar"><h2>العربية (ar)</h2><p>استخدم الجهاز كوكيل LAN؛ على العميل إدخال IP+منفذ يدويًا. (لا اكتشاف/تشفير تلقائي)</p><ul><li>افتح التطبيق، اختر الوضع (يفضل تلقائي) والمنفذ (افتراضي 1080)، كل الترافيك عبر الوكيل.</li><li>تأكد من نفس الشبكة والمنفذ شاغر، شغّل البوابة.</li><li>إعداد العميل: Android/iOS/Windows/macOS—أدخل IP المضيف والمنفذ في إعدادات HTTP/HTTPS أو SOCKS5.</li><li>حافظ على التطبيق قيد الخدمة الأمامية.</li></ul></div>
+  <div class="lang" data-lang="de"><h2>Deutsch (de)</h2><p>LAN-Proxy; Clients tragen Host-IP+Port manuell ein (kein Auto-Discovery/Verschlüsselung).</p><ul><li>App öffnen, Modus Auto, Port 1080, gesamter Traffic über Proxy.</li><li>Gleiches WLAN, Port frei, Gateway starten.</li><li>Clients: Android/iOS/Windows/macOS in Proxy-Feldern IP+Port (HTTP/HTTPS/SOCKS5).</li><li>App im Vordergrund halten.</li></ul></div>
+  <div class="lang" data-lang="es"><h2>Español (es)</h2><p>Proxy LAN; cliente pone IP+puerto manual (sin auto-descubrimiento/encriptado).</p><ul><li>Abrir app, modo Auto, puerto 1080, todo el tráfico pasa por el proxy.</li><li>Misma LAN, puerto libre, iniciar gateway.</li><li>Clientes: Android/iOS/Windows/macOS rellenan IP+puerto en HTTP/HTTPS/SOCKS5.</li><li>Mantener servicio en primer plano.</li></ul></div>
+  <div class="lang" data-lang="fa"><h2>فارسی (fa)</h2><p>پروکسی LAN؛ کلاینت باید IP+پورت را دستی وارد کند (بدون کشف/رمزگذاری خودکار).</p><ul><li>اپ را باز کنید، حالت خودکار، پورت 1080، کل ترافیک از پروکسی.</li><li>همان LAN، پورت آزاد؛ دروازه را روشن کنید.</li><li>کلاینت‌ها: Android/iOS/Windows/macOS در تنظیمات HTTP/HTTPS/SOCKS5 پر کنند.</li><li>سرویس پیش‌زمینه را فعال نگه دارید.</li></ul></div>
+  <div class="lang" data-lang="fr"><h2>Français (fr)</h2><p>Proxy LAN; IP+port à saisir manuellement (pas d’auto-découverte/chiffrement).</p><ul><li>Ouvrir l’app, mode Auto, port 1080, tout le trafic via le proxy.</li><li>Même LAN, port libre, démarrer la passerelle.</li><li>Clients: Android/iOS/Windows/macOS saisissent IP+port en HTTP/HTTPS/SOCKS5.</li><li>Laisser le service au premier plan.</li></ul></div>
+  <div class="lang" data-lang="hi"><h2>हिन्दी (hi)</h2><p>LAN प्रॉक्सी; क्लाइंट IP+पोर्ट हाथ से भरें (कोई ऑटो-खोज/एन्क्रिप्शन नहीं).</p><ul><li>ऐप खोलें, ऑटो मोड, पोर्ट 1080, पूरा ट्रैफ़िक प्रॉक्सी से.</li><li>एक ही LAN, पोर्ट खाली; गेटवे शुरू करें।</li><li>क्लाइंट: Android/iOS/Windows/macOS में HTTP/HTTPS/SOCKS5 पर IP+पोर्ट भरें।</li><li>फोरग्राउंड सेवा चालू रखें।</li></ul></div>
+  <div class="lang" data-lang="id"><h2>Bahasa Indonesia (id)</h2><p>Proxy LAN; klien isi IP+port manual (tanpa auto-discovery/enkripsi).</p><ul><li>Buka app, mode Otomatis, port 1080, semua trafik lewat proxy.</li><li>Satu LAN, port kosong; start gateway.</li><li>Klien: Android/iOS/Windows/macOS isi IP+port di HTTP/HTTPS/SOCKS5.</li><li>Jaga layanan foreground.</li></ul></div>
+  <div class="lang" data-lang="ja"><h2>日本語 (ja)</h2><p>LAN プロキシ。クライアントは IP+ポートを手動入力（自動検出/暗号化なし）。</p><ul><li>アプリ起動、Auto、ポート1080、全トラフィックをプロキシ。</li><li>同一LAN、ポート空き確認しゲートウェイ開始。</li><li>クライアント: Android/iOS/Windows/macOS で HTTP/HTTPS/SOCKS5 に IP+ポート設定。</li><li>前面サービス維持。</li></ul></div>
+  <div class="lang" data-lang="ko"><h2>한국어 (ko)</h2><p>LAN 프록시; 클라이언트가 IP+포트를 수동 입력(자동검색/암호화 없음).</p><ul><li>앱 실행, 자동 모드, 포트 1080, 전체 트래픽 프록시.</li><li>같은 LAN, 포트 비움; 게이트웨이 시작.</li><li>클라이언트: Android/iOS/Windows/macOS HTTP/HTTPS/SOCKS5에 IP+포트 입력.</li><li>포그라운드 유지.</li></ul></div>
+  <div class="lang" data-lang="ms"><h2>Bahasa Melayu (ms)</h2><p>Proksi LAN; klien isi IP+port secara manual (tiada auto-cari/penyulitan).</p><ul><li>Buka app, mod Auto, port 1080, semua trafik melalui proksi.</li><li>Satu LAN, port lapang; mula gerbang.</li><li>Klien: Android/iOS/Windows/macOS isi IP+port dalam HTTP/HTTPS/SOCKS5.</li><li>Kekalkan servis hadapan.</li></ul></div>
+  <div class="lang" data-lang="pt"><h2>Português (pt)</h2><p>Proxy LAN; cliente define IP+porta manual (sem descoberta/criptografia automática).</p><ul><li>Abrir app, modo Auto, porta 1080, todo tráfego via proxy.</li><li>Mesma LAN, porta livre; iniciar gateway.</li><li>Clientes: Android/iOS/Windows/macOS colocam IP+porta em HTTP/HTTPS/SOCKS5.</li><li>Manter serviço em primeiro plano.</li></ul></div>
+  <div class="lang" data-lang="ru"><h2>Русский (ru)</h2><p>LAN‑прокси; клиенты вводят IP+порт вручную (без автообнаружения/шифрования).</p><ul><li>Запустите приложение, режим Auto, порт 1080, весь трафик через прокси.</li><li>Одна LAN, порт свободен; стартуйте шлюз.</li><li>Клиенты: Android/iOS/Windows/macOS — в настройках HTTP/HTTPS/SOCKS5 указать IP+порт.</li><li>Держите foreground-сервис активным.</li></ul></div>
+  <div class="lang" data-lang="sw"><h2>Kiswahili (sw)</h2><p>Proxy ya LAN; mteja aweke IP+port kwa mkono (hakuna ugunduzi/usimbaji kiotomatiki).</p><ul><li>Fungua app, mode Auto, port 1080, trafiki yote kupitia proxy.</li><li>LAN moja, port wazi; anzisha gateway.</li><li>Wateja: Android/iOS/Windows/macOS weka IP+port kwenye HTTP/HTTPS/SOCKS5.</li><li>Acha huduma ya foreground iendelee.</li></ul></div>
+  <div class="lang" data-lang="th"><h2>ไทย (th)</h2><p>พร็อกซี LAN; ไคลเอนต์ใส่ IP+พอร์ตเอง (ไม่มีค้นหา/เข้ารหัสอัตโนมัติ).</p><ul><li>เปิดแอป โหมดอัตโนมัติ พอร์ต 1080 ทราฟฟิกทั้งหมดผ่านพร็อกซี.</li><li>อยู่ LAN เดียวกัน พอร์ตว่าง เริ่มเกตเวย์.</li><li>ลูกข่าย: Android/iOS/Windows/macOS ตั้ง IP+พอร์ตใน HTTP/HTTPS/SOCKS5.</li><li>คงบริการ foreground.</li></ul></div>
+  <div class="lang" data-lang="tl"><h2>Tagalog (tl)</h2><p>LAN proxy; mano ang IP+port (walang auto-discovery/encryption).</p><ul><li>Buksan app, Auto mode, port 1080, lahat ng trapiko sa proxy.</li><li>Isang LAN, port libre; i-start ang gateway.</li><li>Clients: Android/iOS/Windows/macOS ilagay IP+port sa HTTP/HTTPS/SOCKS5.</li><li>Panatilihing buhay ang foreground service.</li></ul></div>
+  <div class="lang" data-lang="tr"><h2>Türkçe (tr)</h2><p>LAN proxy; istemci IP+portu elle girer (otomatik keşif/şifreleme yok).</p><ul><li>Uygulamayı aç, Otomatik mod, 1080 portu, tüm trafik proxy’den.</li><li>Aynı LAN, boş port; gateway’i başlat.</li><li>İstemciler: Android/iOS/Windows/macOS’ta HTTP/HTTPS/SOCKS5’e IP+port gir.</li><li>Ön plan servisini çalışır tut.</li></ul></div>
+  <div class="lang" data-lang="ur"><h2>اردو (ur)</h2><p>LAN پراکسی؛ کلائنٹ IP+پورٹ ہاتھ سے ڈالیں (کوئی خودکار تلاش/انکرپشن نہیں).</p><ul><li>ایپ کھولیں، آٹو موڈ، پورٹ 1080، سارا ٹریفک پراکسی سے۔</li><li>ایک ہی LAN، پورٹ خالی؛ گیٹ وے شروع کریں۔</li><li>کلائنٹس: Android/iOS/Windows/macOS میں HTTP/HTTPS/SOCKS5 پر IP+پورٹ درج کریں۔</li><li>فورگراؤنڈ سروس چلتی رکھیں۔</li></ul></div>
+  <div class="lang" data-lang="vi"><h2>Tiếng Việt (vi)</h2><p>Proxy LAN; client tự nhập IP+port (không auto-discovery/mã hóa).</p><ul><li>Mở app, chế độ Tự động, cổng 1080, toàn bộ lưu lượng qua proxy.</li><li>Cùng LAN, cổng trống; khởi chạy gateway.</li><li>Client: Android/iOS/Windows/macOS điền IP+port ở HTTP/HTTPS/SOCKS5.</li><li>Giữ dịch vụ foreground hoạt động.</li></ul></div>
+</body>
+</html>
