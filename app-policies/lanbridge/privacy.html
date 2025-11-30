@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Network Share Privacy Policy</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 960px; margin: 32px auto; padding: 0 16px; line-height: 1.6; }
+    h1, h2 { color: #0a8a4b; }
+    .lang { display: none; border-top: 1px solid #ddd; padding-top: 16px; margin-top: 24px; }
+    ul { padding-left: 20px; }
+    .meta { color: #555; }
+    .lang-switch { margin: 12px 0 16px; }
+    .lang-switch label { margin-right: 8px; font-weight: 600; }
+    .lang-switch select { padding: 6px 10px; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const map = {
+        'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'
+      };
+      const titles = {
+        'en':'Network Share Privacy Policy',
+        'zh-CN':'Network Share 隐私政策',
+        'ar':'سياسة الخصوصية لـ Network Share',
+        'de':'Network Share Datenschutzerklärung',
+        'es':'Política de Privacidad de Network Share',
+        'fa':'سیاست حریم خصوصی Network Share',
+        'fr':'Politique de Confidentialité Network Share',
+        'hi':'Network Share गोपनीयता नीति',
+        'id':'Kebijakan Privasi Network Share',
+        'ja':'Network Share プライバシーポリシー',
+        'ko':'Network Share 개인정보처리방침',
+        'ms':'Dasar Privasi Network Share',
+        'pt':'Política de Privacidade Network Share',
+        'ru':'Политика конфиденциальности Network Share',
+        'sw':'Sera ya Faragha ya Network Share',
+        'th':'นโยบายความเป็นส่วนตัว Network Share',
+        'tl':'Patakaran sa Privacy ng Network Share',
+        'tr':'Network Share Gizlilik Politikası',
+        'ur':'Network Share رازداری پالیسی',
+        'vi':'Chính sách Quyền riêng tư Network Share'
+      };
+      const introTexts = {
+        'en':'This policy is aligned with Google Play requirements. Network Share is a LAN-only proxy gateway; traffic is not relayed via our servers.',
+        'zh-CN':'本政策符合 Google Play 要求。Network Share 仅在局域网内转发流量，不经过我们的服务器。',
+        'ar':'هذه السياسة متوافقة مع متطلبات Google Play. يعمل Network Share كوكيل LAN فقط؛ لا يتم ترحيل الحركة عبر خوادمنا.',
+        'de':'Diese Richtlinie entspricht den Google-Play-Anforderungen. Network Share arbeitet nur im LAN, ohne Weiterleitung über unsere Server.',
+        'es':'Esta política cumple con los requisitos de Google Play. Network Share es solo un proxy LAN; el tráfico no pasa por nuestros servidores.',
+        'fa':'این خط‌مشی مطابق الزامات گوگل‌پلی است. Network Share فقط در شبکه محلی کار می‌کند و ترافیک از سرورهای ما عبور نمی‌کند.',
+        'fr':'Cette politique respecte les exigences de Google Play. Network Share fonctionne uniquement en LAN, sans relais via nos serveurs.',
+        'hi':'यह नीति Google Play आवश्यकताओं के अनुरूप है। Network Share केवल LAN में ट्रैफ़िक अग्रेषित करता है, हमारे सर्वर से नहीं गुजरता।',
+        'id':'Kebijakan ini sesuai persyaratan Google Play. Network Share hanya memproksi dalam LAN; trafik tidak melewati server kami.',
+        'ja':'本ポリシーは Google Play 要件に準拠しています。Network Share は LAN 内のみで転送し、当社サーバー経由ではありません。',
+        'ko':'이 정책은 Google Play 요구사항에 부합합니다. Network Share는 LAN 내에서만 트래픽을 전달하며 서버를 거치지 않습니다.',
+        'ms':'Dasar ini selaras dengan keperluan Google Play. Network Share hanya memproksi dalam LAN; trafik tidak melalui pelayan kami.',
+        'pt':'Esta política atende aos requisitos do Google Play. O Network Share funciona apenas na LAN; o tráfego não passa por nossos servidores.',
+        'ru':'Эта политика соответствует требованиям Google Play. Network Share работает только в LAN, трафик не проходит через наши серверы.',
+        'sw':'Sera hii inakidhi mahitaji ya Google Play. Network Share ni proxy ya LAN pekee; trafiki hupita ndani ya LAN bila seva zetu.',
+        'th':'นโยบายนี้สอดคล้องกับข้อกำหนด Google Play. Network Share ใช้งานภายใน LAN เท่านั้น ไม่ผ่านเซิร์ฟเวอร์ของเรา',
+        'tl':'Ang patakarang ito ay naaayon sa Google Play. Network Share ay LAN-only proxy; hindi dumaraan sa aming servers.',
+        'tr':'Bu politika Google Play gereksinimlerine uygundur. Network Share yalnızca LAN’da çalışır, trafik sunucularımızdan geçmez.',
+        'ur':'یہ پالیسی گوگل پلے تقاضوں کے مطابق ہے۔ Network Share صرف LAN میں ٹریفک فارورڈ کرتا ہے، ہمارے سرور سے نہیں گزرتا۔',
+        'vi':'Chính sách này đáp ứng yêu cầu Google Play. Network Share chỉ chuyển tiếp trong LAN, không qua máy chủ của chúng tôi.'
+      };
+
+      const applyLang = (lang) => {
+        document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+        const sec = document.querySelector(`[data-lang="${lang}"]`) || document.querySelector('[data-lang="en"]');
+        if (sec) sec.style.display = 'block';
+        const titleText = titles[lang] || titles['en'];
+        document.title = titleText;
+        const h1 = document.getElementById('title');
+        if (h1) h1.textContent = titleText;
+        const intro = document.getElementById('intro');
+        if (intro) intro.textContent = introTexts[lang] || introTexts['en'];
+        const select = document.getElementById('lang-select');
+        if (select) select.value = lang;
+      };
+
+      const nav = (navigator.language || 'en').split('-')[0];
+      const target = map[navigator.language] || map[nav] || 'en';
+      applyLang(target);
+
+      const select = document.getElementById('lang-select');
+      if (select) {
+        select.addEventListener('change', (e) => applyLang(e.target.value));
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1 id="title">Network Share Privacy Policy</h1>
+  <p class="meta" id="updated">Last Updated: 2025-11-30</p>
+
+  <div class="lang-switch">
+    <label for="lang-select">Language / 语言：</label>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="zh-CN">中文</option>
+      <option value="ar">العربية</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="fa">فارسی</option>
+      <option value="fr">Français</option>
+      <option value="hi">हिन्दी</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="ms">Bahasa Melayu</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="sw">Kiswahili</option>
+      <option value="th">ไทย</option>
+      <option value="tl">Tagalog</option>
+      <option value="tr">Türkçe</option>
+      <option value="ur">اردو</option>
+      <option value="vi">Tiếng Việt</option>
+    </select>
+  </div>
+
+  <p id="intro">This policy is aligned with Google Play requirements. Network Share is a LAN-only proxy gateway; traffic is not relayed via our servers.</p>
+
+  <div class="lang" data-lang="en">
+    <h2>English (en)</h2>
+    <ul>
+      <li><strong>Service scope</strong>: LAN proxy/forwarding for devices on the same Wi‑Fi/hotspot. No cloud relay. If the host uses a VPN, traffic may traverse that VPN.</li>
+      <li><strong>Data we collect/process</strong>:
+        <ul>
+          <li>Proxy traffic: relayed locally only; we do not inspect, store, or upload payloads/headers.</li>
+          <li>Local data: configuration, traffic counters, UI state cached on-device.</li>
+          <li>Diagnostics (optional): crash/exception metadata via <em>Firebase Crashlytics</em> (Google). No proxy payloads.</li>
+          <li>Ads (optional): <em>Google AdMob</em> may collect device IDs, coarse location, ad events per Google policies.</li>
+        </ul>
+      </li>
+      <li><strong>Permissions (purpose)</strong>: network (proxy), foreground service/notification (keep gateway alive), vibration (UI feedback), storage (local cache). We do NOT access contacts, photos, SMS, microphone, or precise location.</li>
+      <li><strong>Sharing & processors</strong>: only Crashlytics/AdMob when enabled; no selling/renting data. Third-party handling follows their privacy terms.</li>
+      <li><strong>Retention</strong>: local cache until you clear or uninstall. Third-party retention per Google policies.</li>
+      <li><strong>Your choices</strong>: disable ads/crash reporting where available, clear cache, revoke permissions, or uninstall to stop all processing.</li>
+      <li><strong>Security</strong>: traffic stays in LAN; HTTPS is between client and destination. Use trusted networks.</li>
+      <li><strong>Children</strong>: not directed to children; no knowing collection from minors.</li>
+      <li><strong>Changes</strong>: updates may be announced in-app; continued use = acceptance.</li>
+      <li><strong>Contact</strong>: wenyuanshuai@gmail.com</li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="zh-CN">
+    <h2>中文 (zh-CN)</h2>
+    <ul>
+      <li><strong>服务范围</strong>：仅同一 Wi‑Fi/热点下提供局域网代理/转发，无云端中继；主机如启用 VPN，流量经本机 VPN 转发。</li>
+      <li><strong>收集/处理的数据</strong>：
+        <ul>
+          <li>代理流量：仅本地转发，不检查、不存储、不上传内容/报文头。</li>
+          <li>本地数据：配置、流量计数、界面缓存存于本机。</li>
+          <li>诊断（可选）：崩溃/异常元数据通过 <em>Firebase Crashlytics</em>（Google）发送，不含代理内容。</li>
+          <li>广告（可选）：如启用 <em>AdMob</em>，可能收集设备标识、粗略位置、广告事件，遵循 Google 政策。</li>
+        </ul>
+      </li>
+      <li><strong>权限用途</strong>：网络（代理）、前台服务/通知（保持常驻）、震动（交互反馈）、存储（本地缓存）。不访问通讯录、相册、短信、麦克风、精确位置。</li>
+      <li><strong>共享/处理方</strong>：仅 Crashlytics、AdMob（开启时）。不出售或出租数据；第三方处理遵循其隐私政策。</li>
+      <li><strong>保留</strong>：本地缓存保留至清除或卸载；第三方数据保留遵循 Google 政策。</li>
+      <li><strong>选择</strong>：可关闭广告/崩溃上报（如有入口）、清除本地缓存、撤回权限，或卸载以停止处理。</li>
+      <li><strong>安全</strong>：流量留在局域网，端到端加密由客户端与目标站点协商；请在可信网络使用。</li>
+      <li><strong>未成年人</strong>：不面向未成年人，不主动收集未成年人数据。</li>
+      <li><strong>变更</strong>：重大变更会在应用内提示，继续使用视为接受。</li>
+      <li><strong>联系</strong>：wenyuanshuai@gmail.com</li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="ar"><h2>العربية (ar)</h2><ul><li>خدمة LAN فقط (قد تمر عبر VPN للمضيف)، بلا سحابة.</li><li>تمرير محلي دون فحص/تخزين المحتوى؛ Crashlytics/AdMob اختياريان (Google)؛ تخزين محلي للإعدادات/الإحصاءات.</li><li>الأذونات: الشبكة، خدمة أمامية/إشعارات، الاهتزاز، التخزين؛ لا وصول لجهات الاتصال/الصور/SMS/الميكروفون/الموقع الدقيق.</li><li>المشاركة: فقط Crashlytics/AdMob؛ لا بيع للبيانات.</li><li>الاحتفاظ: الكاش المحلي حتى الحذف/إلغاء التثبيت؛ الطرف الثالث حسب سياسات Google.</li><li>الاختيارات: إيقاف الإعلانات/التقارير، مسح الكاش أو إزالة التطبيق.</li><li>الأمان: المرور داخل LAN؛ HTTPS بين العميل والوجهة.</li><li>الأطفال: غير موجه للأطفال.</li><li>التغييرات: سيتم الإخطار؛ الاستخدام استمرار يعني القبول.</li><li>الاتصال: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="de"><h2>Deutsch (de)</h2><ul><li>LAN-Proxy (ggf. über VPN des Hosts), keine Cloud.</li><li>Lokale Weiterleitung, keine Inhaltsspeicherung; Crashlytics/AdMob optional (Google); lokaler Cache Konfig/Traffic.</li><li>Berechtigungen: Netzwerk, Foreground-Service/Benachrichtigung, Vibration, Speicher; kein Zugriff auf Kontakte/Fotos/SMS.</li><li>Weitergabe: nur Crashlytics/AdMob; kein Verkauf.</li><li>Aufbewahrung: lokal bis Löschung/Deinstallation; Dritte nach Google-Policy.</li><li>Optionen: Ads/Reports deaktivieren, Cache löschen oder App entfernen.</li><li>Sicherheit: Traffic im LAN; HTTPS Client–Ziel.</li><li>Kinder: nicht für Kinder.</li><li>Änderungen: In-App-Benachrichtigung; Nutzung = Zustimmung.</li><li>Kontakt: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="es"><h2>Español (es)</h2><ul><li>Proxy solo LAN (puede usar VPN del host), sin nube.</li><li>Reenvío local sin guardar contenido; Crashlytics/AdMob opcional (Google); caché local de config/tráfico.</li><li>Permisos: red, servicio en primer plano/notificación, vibración, almacenamiento; sin contactos/fotos/SMS.</li><li>Compartir: solo Crashlytics/AdMob; no venta.</li><li>Retención: local hasta borrar/desinstalar; terceros según Google.</li><li>Opciones: desactivar anuncios/reportes, limpiar caché o desinstalar.</li><li>Seguridad: tráfico en LAN; HTTPS cliente–destino.</li><li>Menores: no dirigido a menores.</li><li>Cambios: se avisará en la app; uso continuo implica aceptación.</li><li>Contacto: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="fa"><h2>فارسی (fa)</h2><ul><li>پروکسی فقط LAN، بدون کلود (ممکن است از VPN میزبان عبور کند).</li><li>ارسال محلی؛ Crashlytics/AdMob اختیاری (Google)؛ کش محلی تنظیمات/ترافیک.</li><li>مجوزها: شبکه، سرویس پیش‌زمینه/اعلان، لرزش، ذخیره‌سازی؛ بدون دسترسی به مخاطبین/عکس/SMS.</li><li>اشتراک: فقط Crashlytics/AdMob؛ بدون فروش.</li><li>نگهداری: محلی تا حذف/لغو نصب؛ طرف سوم طبق سیاست گوگل.</li><li>انتخاب: غیرفعال تبلیغ/گزارش، پاک کردن کش یا حذف برنامه.</li><li>امنیت: ترافیک در LAN؛ HTTPS بین کاربر و مقصد.</li><li>کودکان: هدف‌گذاری نشده.</li><li>تغییرات: اطلاع در برنامه؛ استفاده = پذیرش.</li><li>تماس: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="fr"><h2>Français (fr)</h2><ul><li>Proxy LAN (peut passer par le VPN hôte), pas de cloud.</li><li>Relais local; Crashlytics/AdMob optionnels (Google); cache local config/traffic.</li><li>Autorisations: réseau, service au premier plan/notifications, vibration, stockage; pas d’accès contacts/photos/SMS.</li><li>Partage: uniquement Crashlytics/AdMob.</li><li>Conservation: locale jusqu’à suppression/désinstallation; tiers selon Google.</li><li>Choix: désactiver pubs/rapports, vider le cache ou désinstaller.</li><li>Sécurité: trafic reste dans le LAN; HTTPS client–cible.</li><li>Enfants: non destiné aux enfants.</li><li>Changements: annoncés dans l’app; usage = acceptation.</li><li>Contact: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="hi"><h2>हिन्दी (hi)</h2><ul><li>केवल LAN प्रॉक्सी (होस्ट VPN), क्लाउड नहीं।</li><li>स्थानीय फ़ॉरवर्डिंग; Crashlytics/AdMob वैकल्पिक (Google); लोकल कैश कॉन्फ़िग/ट्रैफ़िक।</li><li>अनुमतियाँ: नेटवर्क, फोरग्राउंड सेवा/सूचना, वाइब्रेशन, स्टोरेज; संपर्क/फ़ोटो/SMS नहीं।</li><li>साझा: केवल Crashlytics/AdMob; बिक्री नहीं।</li><li>रिटेंशन: लोकल जब तक हटाएँ; थर्ड पार्टी Google नीति।</li><li>चयन: विज्ञापन/रिपोर्ट बंद, कैश साफ या अनइंस्टॉल।</li><li>सुरक्षा: ट्रैफ़िक LAN में; HTTPS क्लाइंट–गंतव्य।</li><li>बच्चे: लक्षित नहीं।</li><li>बदलाव: ऐप में सूचित; उपयोग = सहमति।</li><li>संपर्क: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="id"><h2>Bahasa Indonesia (id)</h2><ul><li>Proxy LAN (bisa lewat VPN host), tanpa cloud.</li><li>Penerusan lokal; Crashlytics/AdMob opsional (Google); cache lokal config/lalu lintas.</li><li>Izin: jaringan, layanan foreground/notifikasi, getar, penyimpanan; tanpa kontak/foto/SMS.</li><li>Berbagi: hanya Crashlytics/AdMob.</li><li>Retensi: lokal hingga dihapus; pihak ketiga sesuai Google.</li><li>Pilihan: matikan iklan/laporan, bersihkan cache, atau uninstall.</li><li>Keamanan: trafik tetap di LAN; HTTPS klien–tujuan.</li><li>Anak: tidak ditujukan untuk anak.</li><li>Perubahan: diberitahu di app; lanjut pakai = setuju.</li><li>Kontak: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ja"><h2>日本語 (ja)</h2><ul><li>LAN プロキシのみ（ホスト VPN の可能性）、クラウドなし。</li><li>ローカル転送; Crashlytics/AdMob 任意 (Google); ローカルキャッシュ設定/トラフィック。</li><li>権限: ネットワーク、前景サービス/通知、バイブ、ストレージ; 連絡先/写真/SMS なし。</li><li>共有: Crashlytics/AdMob のみ。</li><li>保持: ローカル保持; 第三者は Google 方針。</li><li>選択: 広告/レポート無効、キャッシュ削除またはアンインストール。</li><li>安全: トラフィックは LAN 内; HTTPS はクライアント–宛先。</li><li>子供: 対象外。</li><li>変更: アプリ内通知; 継続利用=同意。</li><li>連絡: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ko"><h2>한국어 (ko)</h2><ul><li>LAN 전용 프록시(호스트 VPN 가능), 클라우드 없음.</li><li>로컬 전달; Crashlytics/AdMob 선택(구글); 로컬 캐시 설정/트래픽.</li><li>권한: 네트워크, 포그라운드 서비스/알림, 진동, 저장소; 연락처/사진/SMS 없음.</li><li>공유: Crashlytics/AdMob만.</li><li>보존: 로컬 유지; 3자는 구글 정책.</li><li>선택: 광고/리포트 끄기, 캐시 삭제 또는 제거.</li><li>보안: 트래픽 LAN 내; HTTPS 클라이언트–목적지.</li><li>아동: 대상 아님.</li><li>변경: 앱 알림; 사용 지속=동의.</li><li>문의: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ms"><h2>Bahasa Melayu (ms)</h2><ul><li>Proxy LAN (mungkin melalui VPN hos), tiada awan.</li><li>Penghantaran tempatan; Crashlytics/AdMob pilihan (Google); cache tempatan config/traffic.</li><li>Kebenaran: rangkaian, perkhidmatan latar depan/notifikasi, getaran, storan; tiada akses kenalan/foto/SMS.</li><li>Perkongsian: hanya Crashlytics/AdMob.</li><li>Pengekalan: tempatan hingga dipadam; pihak ketiga ikut Google.</li><li>Pilihan: matikan iklan/laporan, kosongkan cache atau nyahpasang.</li><li>Keselamatan: trafik kekal dalam LAN; HTTPS klien–destinasi.</li><li>Kanak-kanak: bukan untuk kanak-kanak.</li><li>Perubahan: dimaklumkan; kuasa penggunaan = persetujuan.</li><li>Hubungi: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="pt"><h2>Português (pt/pt-BR)</h2><ul><li>Proxy apenas LAN (pode usar VPN do host), sem nuvem.</li><li>Encaminhamento local; Crashlytics/AdMob opcionais (Google); cache local config/tráfego.</li><li>Permissões: rede, serviço em primeiro plano/notificação, vibração, armazenamento; sem contatos/fotos/SMS.</li><li>Compartilhamento: só Crashlytics/AdMob.</li><li>Retenção: local até apagar/desinstalar; terceiros conforme Google.</li><li>Opções: desativar anúncios/relatórios, limpar cache ou desinstalar.</li><li>Segurança: tráfego fica na LAN; HTTPS cliente–destino.</li><li>Crianças: não direcionado a crianças.</li><li>Mudanças: avisadas no app; uso contínuo = aceitação.</li><li>Contato: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ru"><h2>Русский (ru)</h2><ul><li>LAN‑прокси (возможно через VPN хоста), без облака.</li><li>Локальная переадресация; Crashlytics/AdMob опционально (Google); локальный кеш конфиг/трафика.</li><li>Разрешения: сеть, foreground/уведомления, вибрация, хранилище; без доступа к контактам/фото/SMS.</li><li>Обмен: только Crashlytics/AdMob.</li><li>Хранение: локально до удаления; третьи лица по политикам Google.</li><li>Выбор: отключить рекламу/отчёты, очистить кеш или удалить.</li><li>Безопасность: трафик в LAN; HTTPS клиент–цель.</li><li>Дети: не для детей.</li><li>Изменения: уведомление в приложении; использование = согласие.</li><li>Контакт: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="sw"><h2>Kiswahili (sw)</h2><ul><li>Proxy ya LAN (inaweza kutumia VPN ya host), hakuna wingu.</li><li>Uhamishaji ndani; Crashlytics/AdMob hiari (Google); kache ya ndani mipangilio/traffic.</li><li>Ruhusa: mtandao, huduma ya mbele/notisi, mtetemo, hifadhi; hakuna anwani/picha/SMS.</li><li>Kushiriki: Crashlytics/AdMob tu.</li><li>Uhifadhi: ndani hadi uondoe; wahusika wengine kulingana na Google.</li><li>Chaguo: zima matangazo/taarifa, safisha kache au ondoa app.</li><li>Usalama: trafiki hubaki LAN; HTTPS mteja–lengo.</li><li>Watoto: si kwa watoto.</li><li>Mabadiliko: yatajulishwa; kuendelea = kukubali.</li><li>Mawasiliano: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="th"><h2>ไทย (th)</h2><ul><li>บริการ: พร็อกซี LAN (อาจผ่าน VPN โฮสต์) ไม่มีคลาวด์</li><li>ส่งต่อภายใน; Crashlytics/AdMob ตัวเลือก (Google); แคชภายในการตั้งค่า/ทราฟฟิก</li><li>สิทธิ์: เครือข่าย, บริการหน้าจอ/แจ้งเตือน, สั่น, จัดเก็บ; ไม่แตะรายชื่อ/รูป/SMS</li><li>การแบ่งปัน: เฉพาะ Crashlytics/AdMob</li><li>การเก็บรักษา: แคชภายใน; บุคคลที่สามตาม Google</li><li>ตัวเลือก: ปิดโฆษณา/รายงาน, ล้างแคช หรือถอนติดตั้ง</li><li>ความปลอดภัย: ทราฟฟิกอยู่ใน LAN; HTTPS ระหว่างไคลเอนต์–ปลายทาง</li><li>เด็ก: ไม่ได้มุ่งที่เด็ก</li><li>เปลี่ยนแปลง: แจ้งในแอป; ใช้ต่อ = ยอมรับ</li><li>ติดต่อ: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="tl"><h2>Tagalog (tl)</h2><ul><li>Serbisyo: LAN proxy (maaaring dumaan sa VPN ng host), walang cloud.</li><li>Data: lokal na forwarding; Crashlytics/AdMob opsyonal (Google); lokal na cache ng config/traffic.</li><li>Pahintulot: network, foreground service/notification, vibration, storage; walang contacts/photos/SMS.</li><li>Pagbabahagi: Crashlytics/AdMob lang.</li><li>Retensyon: lokal hanggang burahin/uninstall; third-party ayon sa Google.</li><li>Opsyon: patayin ads/reports, linisin cache, o uninstall.</li><li>Seguridad: trapiko nasa LAN; HTTPS client–destinasyon.</li><li>Mga bata: hindi para sa bata.</li><li>Pagbabago: iaanunsyo sa app; paggamit = pagsang-ayon.</li><li>Contact: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="tr"><h2>Türkçe (tr)</h2><ul><li>Hizmet: LAN proxy (host VPN üzerinden geçebilir), bulut yok.</li><li>Veri: Yerel iletim; Crashlytics/AdMob isteğe bağlı (Google); yerel önbellek ayar/trafik.</li><li>İzinler: Ağ, ön plan/haberdar, titreşim, depolama; kişi/foto/SMS erişimi yok.</li><li>Paylaşım: Sadece Crashlytics/AdMob.</li><li>Saklama: Yerelde silinene kadar; üçüncü taraf Google’a göre.</li><li>Seçim: Reklam/rapor kapat, önbelleği temizle veya kaldır.</li><li>Güvenlik: Trafik LAN’de; HTTPS istemci–hedef.</li><li>Çocuklar: Çocuklara yönelik değil.</li><li>Değişiklik: Uygulamada bildirilir; kullanım = kabul.</li><li>İletişim: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ur"><h2>اردو (ur)</h2><ul><li>سروس: صرف LAN پراکسی (ہوسٹ VPN سے گزر سکتی ہے)، کوئی کلاؤڈ نہیں۔</li><li>ڈیٹا: مقامی فارورڈ، مواد محفوظ نہیں؛ Crashlytics/AdMob اختیاری (Google)؛ مقامی کیش سیٹنگز/ٹریفک۔</li><li>اجازتیں: نیٹ ورک، foreground/نوٹیفکیشن، وائبریشن، اسٹوریج؛ رابطے/فوٹو/SMS نہیں۔</li><li>شیئرنگ: صرف Crashlytics/AdMob۔</li><li>محفوظ: مقامی جب تک حذف/ان انسٹال؛ تھرڈ پارٹی Google پالیسی کے مطابق۔</li><li>اختیار: اشتہار/رپورٹ بند، کیش صاف یا ان انسٹال کریں۔</li><li>سیکیورٹی: ٹریفک LAN میں؛ HTTPS کلائنٹ–منزل۔</li><li>بچے: بچوں کے لیے نہیں۔</li><li>تبدیلیاں: ایپ میں اطلاع؛ استعمال = قبولیت۔</li><li>رابطہ: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="vi"><h2>Tiếng Việt (vi)</h2><ul><li>Dịch vụ: chỉ proxy LAN (có thể qua VPN host), không cloud.</li><li>Dữ liệu: chuyển tiếp cục bộ, không lưu nội dung; Crashlytics/AdMob tùy chọn (Google); bộ nhớ đệm cục bộ cấu hình/lưu lượng.</li><li>Quyền: mạng, dịch vụ nền trước/thông báo, rung, lưu trữ; không truy cập danh bạ/ảnh/SMS.</li><li>Chia sẻ: chỉ Crashlytics/AdMob; không bán dữ liệu.</li><li>Lưu giữ: cục bộ đến khi xóa/gỡ; bên thứ ba theo Google.</li><li>Lựa chọn: tắt quảng cáo/báo cáo, xóa cache, hoặc gỡ cài đặt.</li><li>Bảo mật: lưu lượng ở LAN; HTTPS giữa client–đích.</li><li>Trẻ em: không nhắm tới trẻ em.</li><li>Thay đổi: thông báo trong ứng dụng; dùng tiếp = chấp nhận.</li><li>Liên hệ: wenyuanshuai@gmail.com</li></ul></div>
+</body>
+</html>

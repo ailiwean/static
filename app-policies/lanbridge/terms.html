@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Network Share Terms of Service</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 960px; margin: 32px auto; padding: 0 16px; line-height: 1.6; }
+    h1, h2 { color: #0a8a4b; }
+    .lang { display: none; border-top: 1px solid #ddd; padding-top: 16px; margin-top: 24px; }
+    ul { padding-left: 20px; }
+    .meta { color: #555; }
+    .lang-switch { margin: 12px 0 16px; }
+    .lang-switch label { margin-right: 8px; font-weight: 600; }
+    .lang-switch select { padding: 6px 10px; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
+      const titles = {
+        'en':'Network Share Terms of Service',
+        'zh-CN':'Network Share 用户协议',
+        'ar':'شروط خدمة Network Share',
+        'de':'Network Share Nutzungsbedingungen',
+        'es':'Términos de Servicio de Network Share',
+        'fa':'شرایط خدمات Network Share',
+        'fr':'Conditions d’Utilisation Network Share',
+        'hi':'Network Share सेवा की शर्तें',
+        'id':'Ketentuan Layanan Network Share',
+        'ja':'Network Share 利用規約',
+        'ko':'Network Share 이용 약관',
+        'ms':'Terma Perkhidmatan Network Share',
+        'pt':'Termos de Serviço Network Share',
+        'ru':'Условия использования Network Share',
+        'sw':'Masharti ya Huduma ya Network Share',
+        'th':'ข้อตกลงการใช้บริการ Network Share',
+        'tl':'Mga Tuntunin ng Serbisyo ng Network Share',
+        'tr':'Network Share Hizmet Şartları',
+        'ur':'Network Share استعمال کی شرائط',
+        'vi':'Điều khoản Dịch vụ Network Share'
+      };
+      const introTexts = {
+        'en':'By installing or using Network Share you agree to these terms. The app is a LAN-only proxy gateway; traffic may traverse your own VPN.',
+        'zh-CN':'安装或使用即表示同意本协议。Network Share 仅在局域网内转发流量，可能经过本机 VPN。',
+        'ar':'باستخدام التطبيق تقبل هذه الشروط. Network Share يعمل ضمن LAN فقط وقد يمر عبر VPN الخاص بك.',
+        'de':'Durch Nutzung stimmen Sie zu. Network Share ist ein LAN-Proxy und kann über Ihr VPN gehen.',
+        'es':'Al usar la app aceptas estos términos. Network Share es solo proxy LAN y puede usar tu VPN.',
+        'fa':'با نصب/استفاده موافقت می‌کنید. Network Share فقط در LAN کار می‌کند و شاید از VPN شما عبور کند.',
+        'fr':'En utilisant, vous acceptez ces conditions. Network Share est un proxy LAN, peut passer par votre VPN.',
+        'hi':'इंस्टॉल/उपयोग से आप सहमत हैं। Network Share केवल LAN में, संभवतः आपके VPN से।',
+        'id':'Dengan memakai, Anda setuju. Network Share hanya LAN, bisa lewat VPN Anda.',
+        'ja':'利用で同意となります。Network Share は LAN 内のみで転送し、端末の VPN を通る場合があります。',
+        'ko':'설치/사용 시 동의. Network Share는 LAN용이며 기기 VPN을 통과할 수 있습니다.',
+        'ms':'Dengan guna, anda setuju. Network Share hanya LAN, mungkin melalui VPN anda.',
+        'pt':'Ao usar, você concorda. Network Share é só LAN e pode usar sua VPN.',
+        'ru':'Используя, вы соглашаетесь. Network Share только в LAN, может идти через ваш VPN.',
+        'sw':'Kwa kutumia unakubali. Network Share ni LAN pekee, inaweza kutumia VPN yako.',
+        'th':'การใช้คือการยอมรับข้อตกลง Network Share ทำงานใน LAN อาจผ่าน VPN ของคุณ',
+        'tl':'Sa paggamit, pumapayag ka. Network Share ay LAN-only, maaaring dumaan sa VPN mo.',
+        'tr':'Kullanarak kabul edersiniz. Network Share LAN içindir, VPN’nizden geçebilir.',
+        'ur':'استعمال سے آپ راضی ہیں۔ Network Share صرف LAN میں، ممکنہ طور پر آپ کے VPN سے۔',
+        'vi':'Dùng app là bạn đồng ý. Network Share chỉ LAN, có thể đi qua VPN của bạn.'
+      };
+
+      const applyLang = (lang) => {
+        document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+        const sec = document.querySelector(`[data-lang="${lang}"]`) || document.querySelector('[data-lang="en"]');
+        if (sec) sec.style.display = 'block';
+        const titleText = titles[lang] || titles['en'];
+        document.title = titleText;
+        const h1 = document.getElementById('title');
+        if (h1) h1.textContent = titleText;
+        const intro = document.getElementById('intro');
+        if (intro) intro.textContent = introTexts[lang] || introTexts['en'];
+        const select = document.getElementById('lang-select');
+        if (select) select.value = lang;
+      };
+
+      const nav=(navigator.language||'en').split('-')[0];
+      const target=map[navigator.language]||map[nav]||'en';
+      applyLang(target);
+
+      const select = document.getElementById('lang-select');
+      if (select) {
+        select.addEventListener('change', (e) => applyLang(e.target.value));
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1 id="title">Network Share Terms of Service</h1>
+  <p class="meta" id="updated">Last Updated: 2025-11-30</p>
+
+  <div class="lang-switch">
+    <label for="lang-select">Language / 语言：</label>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="zh-CN">中文</option>
+      <option value="ar">العربية</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="fa">فارسی</option>
+      <option value="fr">Français</option>
+      <option value="hi">हिन्दी</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="ms">Bahasa Melayu</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="sw">Kiswahili</option>
+      <option value="th">ไทย</option>
+      <option value="tl">Tagalog</option>
+      <option value="tr">Türkçe</option>
+      <option value="ur">اردو</option>
+      <option value="vi">Tiếng Việt</option>
+    </select>
+  </div>
+
+  <p id="intro">By installing or using Network Share you agree to these terms. The app is a LAN-only proxy gateway; traffic may traverse your own VPN.</p>
+
+  <div class="lang" data-lang="en">
+    <h2>English (en)</h2>
+    <ul>
+      <li><strong>Service</strong>: LAN proxy/forwarding for devices on the same Wi‑Fi/hotspot. No cloud relay. Traffic may go through the host’s VPN if enabled.</li>
+      <li><strong>License</strong>: personal, non-transferable, revocable. We retain all rights.</li>
+      <li><strong>User obligations</strong>: use lawfully; obtain consent to proxy others’ traffic; no infringement, malware, abuse, or network disruption.</li>
+      <li><strong>Prohibited</strong>: reverse engineering, bypassing security, unauthorized resale/hosting, excessive load/DoS, intercepting traffic you are not authorized to handle.</li>
+      <li><strong>Third parties</strong>: optional Crashlytics (crash reporting) and AdMob (ads) under their terms/privacy.</li>
+      <li><strong>Data & privacy</strong>: see Privacy Policy; we do not inspect/store proxied payloads; diagnostics/ads follow Google policies.</li>
+      <li><strong>Availability & updates</strong>: provided “as is”; no guarantee of uptime/compatibility. Features may change or be withdrawn.</li>
+      <li><strong>Liability</strong>: to the maximum extent allowed, we are not liable for data loss, connectivity/TLS/VPN/third-party issues. Use at your own risk.</li>
+      <li><strong>Indemnity</strong>: you will indemnify us for claims arising from unlawful/unauthorized use.</li>
+      <li><strong>Termination</strong>: we may suspend/terminate for violations or legal reasons; you may uninstall anytime.</li>
+      <li><strong>Disputes/Governing law</strong>: subject to your mandatory local consumer rights; otherwise seek amicable resolution first.</li>
+      <li><strong>Contact</strong>: wenyuanshuai@gmail.com</li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="zh-CN">
+    <h2>中文 (zh-CN)</h2>
+    <ul>
+      <li><strong>服务</strong>：仅提供局域网代理/转发，无云端中继；如主机使用 VPN，流量经本机 VPN 转发。</li>
+      <li><strong>许可</strong>：授予个人、可撤销、不可转让的使用权，所有权归我们。</li>
+      <li><strong>用户义务</strong>：合法合规使用；获得被代理设备用户同意；不得侵权、滥用、传播恶意软件或破坏网络。</li>
+      <li><strong>禁止</strong>：逆向/破解、绕过安全、未经授权转售/托管、高负载/DoS、截取未经授权的流量。</li>
+      <li><strong>第三方</strong>：可选 Crashlytics（崩溃上报）与 AdMob（广告），受其条款/隐私约束。</li>
+      <li><strong>数据与隐私</strong>：见隐私政策；不检查/存储代理内容；诊断/广告遵循 Google 政策。</li>
+      <li><strong>可用性</strong>：按“现状”提供，不保证持续可用或兼容；功能可能变更/下线。</li>
+      <li><strong>责任</strong>：在法律允许范围内，对数据丢失、连接/TLS/VPN/第三方问题不承担责任，使用风险自负。</li>
+      <li><strong>赔偿</strong>：因您违法/违规使用产生的索赔由您承担并赔偿我们。</li>
+      <li><strong>终止</strong>：如违规或因法律/合规需要我们可暂停/终止；您可随时卸载。</li>
+      <li><strong>争议/法律</strong>：尊重当地强制性消费者权利；争议优先友好协商。</li>
+      <li><strong>联系</strong>：wenyuanshuai@gmail.com</li>
+    </ul>
+  </div>
+
+  <div class="lang" data-lang="ar"><h2>العربية (ar)</h2><ul><li>خدمة LAN (قد تمر عبر VPN للمضيف)، بلا سحابة.</li><li>ترخيص شخصي قابل للإلغاء.</li><li>الالتزامات: استخدام قانوني، موافقة المستخدمين، لا إساءة/DoS/هندسة عكسية.</li><li>محظور: تجاوز الأمان، إعادة بيع غير مصرح، تحميل مفرط.</li><li>أطراف ثالثة: Crashlytics/AdMob اختياري.</li><li>البيانات/الخصوصية: انظر سياسة الخصوصية؛ لا نفحص المحتوى.</li><li>التوافر: “كما هو”؛ قد تتغير الميزات.</li><li>المسؤولية: محدودة قدر الإمكان قانوناً.</li><li>إنهاء: في حالة الانتهاك؛ يمكنك الإزالة.</li><li>حل النزاعات: احترام الحقوق المحلية؛ التسوية الودية أولاً.</li><li>الاتصال: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="de"><h2>Deutsch (de)</h2><ul><li>Dienst: LAN-Proxy (ggf. über VPN des Hosts), keine Cloud.</li><li>Lizenz: persönlich, widerruflich.</li><li>Pflichten: rechtmäßige Nutzung, Zustimmung der Nutzer, kein Missbrauch/DoS/Reverse Engineering.</li><li>Verboten: Sicherheitsumgehung, unerlaubtes Resale/Hosting, Überlast.</li><li>Dritte: Crashlytics/AdMob optional.</li><li>Datenschutz: siehe Privacy Policy.</li><li>Verfügbarkeit: „wie besehen“, Funktionen können sich ändern.</li><li>Haftung: gesetzlich zulässige Begrenzung.</li><li>Kündigung: bei Verstoß; Deinstallation jederzeit.</li><li>Streit: lokale Rechte wahren; gütliche Einigung anstreben.</li><li>Kontakt: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="es"><h2>Español (es)</h2><ul><li>Servicio: proxy LAN (puede usar VPN del host), sin nube.</li><li>Licencia personal revocable.</li><li>Obligaciones: uso legal, consentimiento, sin abuso/DoS/ingeniería inversa.</li><li>Prohibido: eludir seguridad, reventa/hosting sin permiso.</li><li>Terceros: Crashlytics/AdMob opcional.</li><li>Privacidad: ver Política.</li><li>Disponibilidad: “tal cual”; funciones pueden cambiar.</li><li>Responsabilidad: limitada según ley.</li><li>Terminación: por incumplimiento; puede desinstalar.</li><li>Disputas: respeta derechos locales; resolver amistosamente.</li><li>Contacto: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="fa"><h2>فارسی (fa)</h2><ul><li>خدمت: پروکسی LAN (ممکن است از VPN میزبان عبور کند)، بدون کلود.</li><li>مجوز شخصی قابل فسخ.</li><li>تعهدات: استفاده قانونی، رضایت کاربران، بدون سوءاستفاده/DoS/مهندسی معکوس.</li><li>ممنوع: دور زدن امنیت، میزبانی/فروش غیرمجاز.</li><li>سوم: Crashlytics/AdMob اختیاری.</li><li>حریم خصوصی: طبق سیاست.</li><li>دسترس: "همان‌گونه"؛ امکان تغییر ویژگی‌ها.</li><li>مسئولیت: حداکثر حد قانونی.</li><li>خاتمه: در صورت نقض؛ حذف ممکن است.</li><li>اختلاف: حقوق محلی؛ حل دوستانه.</li><li>تماس: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="fr"><h2>Français (fr)</h2><ul><li>Service: proxy LAN (VPN hôte possible), sans cloud.</li><li>Licence personnelle, révocable.</li><li>Obligations: usage légal, consentement, pas d’abus/DoS/ingénierie inverse.</li><li>Interdit: contournement sécurité, revente/hosting non autorisé.</li><li>Tiers: Crashlytics/AdMob optionnels.</li><li>Vie privée: voir Politique.</li><li>Disponibilité: « en l’état », fonctions peuvent changer.</li><li>Responsabilité: limitée légalement.</li><li>Résiliation: en cas de violation; désinstallation possible.</li><li>Litiges: droits locaux; règlement amiable.</li><li>Contact: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="hi"><h2>हिन्दी (hi)</h2><ul><li>सेवा: LAN प्रॉक्सी (होस्ट VPN), क्लाउड नहीं।</li><li>लाइसेंस: व्यक्तिगत, वापसीयोग्य।</li><li>कर्तव्य: कानूनी उपयोग, सहमति, कोई दुरुपयोग/DoS/रिवर्स इंजीनियरिंग नहीं।</li><li>निषेध: सुरक्षा चकमा, अनधिकृत रीसैल/होस्टिंग।</li><li>तीसरे: Crashlytics/AdMob वैकल्पिक।</li><li>गोपनीयता: नीति देखें।</li><li>उपलब्धता: "जैसा है"; फीचर बदल सकते हैं।</li><li>दायित्व: कानूनी सीमा तक।</li><li>समापन: उल्लंघन पर; अनइंस्टॉल संभव।</li><li>विवाद: स्थानीय अधिकार; मैत्रीपूर्ण समाधान।</li><li>संपर्क: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="id"><h2>Bahasa Indonesia (id)</h2><ul><li>Layanan: proxy LAN (bisa lewat VPN host), tanpa cloud.</li><li>Lisensi pribadi, dapat dicabut.</li><li>Kewajiban: gunakan legal, ada persetujuan, tanpa penyalahgunaan/DoS/reverse engineering.</li><li>Dilarang: melewati keamanan, resale/hosting tanpa izin.</li><li>Pihak ketiga: Crashlytics/AdMob opsional.</li><li>Privasi: lihat Kebijakan.</li><li>Ketersediaan: "apa adanya"; fitur dapat berubah.</li><li>Tanggung jawab: batas sesuai hukum.</li><li>Terminasi: jika melanggar; bisa uninstall.</li><li>Sengketa: hak lokal; selesaikan damai.</li><li>Kontak: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ja"><h2>日本語 (ja)</h2><ul><li>サービス: LAN プロキシ（ホスト VPN の可能性）、クラウドなし。</li><li>ライセンス: 個人・取消可能。</li><li>義務: 合法利用・同意取得・不正/DoS/リバース禁止。</li><li>禁止: セキュリティ回避、無許可の再販/ホスティング。</li><li>第三者: Crashlytics/AdMob 任意。</li><li>プライバシー: ポリシー参照。</li><li>可用性: 「現状のまま」、機能変更の可能性。</li><li>責任: 法の範囲で限定。</li><li>終了: 違反時; アンインストール可。</li><li>紛争: ローカル権利尊重; 友好解決。</li><li>連絡: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ko"><h2>한국어 (ko)</h2><ul><li>서비스: LAN 프록시(호스트 VPN 가능), 클라우드 없음.</li><li>라이선스: 개인, 철회 가능.</li><li>의무: 합법 사용, 동의, 남용/DoS/리버스 금지.</li><li>금지: 보안 우회, 무단 재판매/호스팅.</li><li>제3자: Crashlytics/AdMob 선택.</li><li>프라이버시: 정책 참조.</li><li>가용성: "있는 그대로", 기능 변경 가능.</li><li>책임: 법적 한도 내.</li><li>종료: 위반 시; 삭제 가능.</li><li>분쟁: 현지 권리 존중; 우호적 해결.</li><li>문의: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ms"><h2>Bahasa Melayu (ms)</h2><ul><li>Perkhidmatan: proksi LAN (mungkin melalui VPN hos), tiada awan.</li><li>Lesen peribadi boleh ditarik balik.</li><li>Tanggungjawab: guna sah, dengan kebenaran, tiada penyalahgunaan/DoS/kejuruteraan songsang.</li><li>Dilarang: elak keselamatan, jual/hos tanpa izin.</li><li>Pihak ketiga: Crashlytics/AdMob pilihan.</li><li>Privasi: rujuk Polisi.</li><li>Ketersediaan: "apa adanya"; ciri boleh berubah.</li><li>Liabiliti: had undang-undang.</li><li>Penamatan: jika melanggar; boleh nyahpasang.</li><li>Pertikaian: hak tempatan; selesaikan secara baik.</li><li>Hubungi: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="pt"><h2>Português (pt/pt-BR)</h2><ul><li>Serviço: proxy apenas LAN (pode usar VPN do host), sem nuvem.</li><li>Licença pessoal, revogável.</li><li>Obrigações: uso legal, consentimento, sem abuso/DoS/engenharia reversa.</li><li>Proibido: burlar segurança, revenda/hosting sem autorização.</li><li>Terceiros: Crashlytics/AdMob opcionais.</li><li>Privacidade: veja a Política.</li><li>Disponibilidade: "no estado", funções podem mudar.</li><li>Responsabilidade: limitada pela lei.</li><li>Rescisão: em caso de violação; pode desinstalar.</li><li>Disputas: respeita direitos locais; resolver amigavelmente.</li><li>Contato: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ru"><h2>Русский (ru)</h2><ul><li>Сервис: LAN‑прокси (возможно через VPN хоста), без облака.</li><li>Лицензия: личная, отзывная.</li><li>Обязанности: законное использование, согласие, без злоупотреблений/DoS/реверса.</li><li>Запрещено: обход безопасности, несанкционированный ресейл/хостинг.</li><li>Третьи лица: Crashlytics/AdMob опционально.</li><li>Конфиденциальность: см. Политику.</li><li>Доступность: "как есть"; функции могут изменяться.</li><li>Ответственность: в пределах закона.</li><li>Прекращение: при нарушении; можно удалить.</li><li>Споры: уважать местные права; мирное урегулирование.</li><li>Контакт: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="sw"><h2>Kiswahili (sw)</h2><ul><li>Huduma: proxy ya LAN (inaweza kutumia VPN ya host), hakuna wingu.</li><li>Leseni binafsi, inaweza kuondolewa.</li><li>Wajibu: tumia kisheria, ruhusa, hakuna uharibifu/DoS/uchambuzi wa nyuma.</li><li>Marufuku: kuzuia usalama, kuuza/kuhost bila ruhusa.</li><li>Watu wengine: Crashlytics/AdMob hiari.</li><li>Faragha: angalia sera.</li><li>Upatikanaji: "kama ilivyo"; vipengele vinaweza kubadilika.</li><li>Uwajibikaji: uliopunguzwa kisheria.</li><li>Kumaliza: ukienda kinyume; unaweza kuondoa.</li><li>Migogoro: haki za ndani; suluhisha kwa amani.</li><li>Mawasiliano: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="th"><h2>ไทย (th)</h2><ul><li>บริการ: พร็อกซี LAN (อาจผ่าน VPN โฮสต์) ไม่มีคลาวด์</li><li>สิทธิ์ใช้งานส่วนบุคคล เพิกถอนได้</li><li>ข้อกำหนด: ใช้ถูกกฎหมาย, มีความยินยอม, ห้ามละเมิด/DoS/รีเวิร์ส</li><li>ห้าม: เลี่ยงความปลอดภัย, ขาย/โฮสต์ไม่ได้รับอนุญาต</li><li>บุคคลที่สาม: Crashlytics/AdMob ตัวเลือก</li><li>ความเป็นส่วนตัว: ดูนโยบาย</li><li>ความพร้อม: "ตามสภาพ", ฟีเจอร์เปลี่ยนได้</li><li>ความรับผิด: จำกัดตามกฎหมาย</li><li>การยุติ: หากละเมิด; ผู้ใช้ถอนได้</li><li>ข้อพิพาท: เคารพสิทธิ์ท้องถิ่น; เจรจาเป็นมิตร</li><li>ติดต่อ: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="tl"><h2>Tagalog (tl)</h2><ul><li>Serbisyo: LAN proxy (maaaring dumaan sa VPN ng host), walang cloud.</li><li>Lisensya: personal, maaaring bawiin.</li><li>Obligasyon: legal na gamit, pahintulot, walang abuso/DoS/reverse.</li><li>Ipinagbabawal: pag-iwas sa seguridad, resale/hosting nang walang pahintulot.</li><li>Ikatlo: Crashlytics/AdMob opsyonal.</li><li>Privacy: tingnan ang Patakaran.</li><li>Availability: "as is", maaaring magbago.</li><li>Panagot: limitadong ayon sa batas.</li><li>Pagwawakas: kung lumabag; maaaring i-uninstall.</li><li>Alitan: igalang lokal; ayusin nang maayos.</li><li>Contact: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="tr"><h2>Türkçe (tr)</h2><ul><li>Hizmet: LAN proxy (host VPN üzerinden geçebilir), bulut yok.</li><li>Lisans: kişisel, iptal edilebilir.</li><li>Yükümlülük: yasal kullanım, izin, kötüye kullanım/DoS/tersine mühendislik yok.</li><li>Yasak: güvenlik atlatma, izinsiz satış/hosting.</li><li>Üçüncü taraf: Crashlytics/AdMob opsiyonel.</li><li>Gizlilik: Politika'ya bakın.</li><li>Erişilebilirlik: "olduğu gibi", özellikler değişebilir.</li><li>Sorumluluk: yasal sınırlar dahilinde.</li><li>Fesih: ihlalde; kaldırabilirsiniz.</li><li>Uyuşmazlık: yerel haklara saygı; dostane çözüm.</li><li>İletişim: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="ur"><h2>اردو (ur)</h2><ul><li>سروس: صرف LAN پراکسی (ہوسٹ VPN سے گزر سکتی ہے)، کوئی کلاؤڈ نہیں۔</li><li>لائسنس: ذاتی، قابل تنسیخ۔</li><li>ذمہ داریاں: قانونی استعمال، اجازت، کوئی غلط استعمال/DoS/ریورس انجینئرنگ نہیں۔</li><li>ممنوع: سیکیورٹی بائی پاس، غیر مجاز ریسل/ہوسٹنگ۔</li><li>تیسرے: Crashlytics/AdMob اختیاری۔</li><li>پرائیویسی: پالیسی دیکھیں۔</li><li>دستیابی: "جیسا ہے"؛ خصوصیات بدل سکتی ہیں۔</li><li>ذمہ داری: قانونی حد تک محدود۔</li><li>خاتمہ: خلاف ورزی پر؛ آپ ان انسٹال کر سکتے ہیں۔</li><li>تنازعہ: مقامی حقوق کا احترام؛ دوستانہ حل۔</li><li>رابطہ: wenyuanshuai@gmail.com</li></ul></div>
+  <div class="lang" data-lang="vi"><h2>Tiếng Việt (vi)</h2><ul><li>Dịch vụ: proxy LAN (có thể qua VPN host), không cloud.</li><li>Giấy phép cá nhân, có thể thu hồi.</li><li>Nghĩa vụ: dùng hợp pháp, có đồng ý, không lạm dụng/DoS/đảo ngược.</li><li>Cấm: né an ninh, bán/host trái phép.</li><li>Bên thứ ba: Crashlytics/AdMob tùy chọn.</li><li>Riêng tư: xem Chính sách.</li><li>Sẵn sàng: "nguyên trạng", tính năng có thể đổi.</li><li>Trách nhiệm: giới hạn theo luật.</li><li>Chấm dứt: khi vi phạm; bạn có thể gỡ.</li><li>Tranh chấp: tôn trọng quyền địa phương; giải quyết thân thiện.</li><li>Liên hệ: wenyuanshuai@gmail.com</li></ul></div>
+</body>
+</html>
