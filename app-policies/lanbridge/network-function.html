@@ -12,7 +12,16 @@
     .lang-switch { margin: 12px 0 16px; }
     .lang-switch label { margin-right: 8px; font-weight: 600; }
     .lang-switch select { padding: 6px 10px; }
-  </style>
+    @media (prefers-color-scheme: dark) {
+    body { background: #0c1117; color: #e4e6eb; }
+    h1, h2 { color: #7ce694; }
+    a { color: #8cd4ff; }
+    .meta { color: #b0b3b8; }
+    .lang { border-top-color: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.2); }
+    .lang-switch select { background: #161b22; color: #e4e6eb; border: 1px solid rgba(255,255,255,0.2); }
+  }
+
+</style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const titles = {
