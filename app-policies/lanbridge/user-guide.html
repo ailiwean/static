@@ -12,6 +12,7 @@
     .lang-switch { margin: 12px 0 16px; }
     .lang-switch label { margin-right: 8px; font-weight: 600; }
     .lang-switch select { padding: 6px 10px; }
+    .guide-image img { max-width: 100%; height: auto; margin: 8px 0 12px; border: 1px solid #ddd; border-radius: 8px; }
   @media (prefers-color-scheme: dark) {
     body { background: #0c1117; color: #e4e6eb; }
     h1, h2 { color: #7ce694; }
@@ -19,6 +20,7 @@
     .meta { color: #b0b3b8; }
     .lang { border-top-color: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.2); }
     .lang-switch select { background: #161b22; color: #e4e6eb; border: 1px solid rgba(255,255,255,0.2); }
+    .guide-image img { border-color: rgba(255,255,255,0.2); }
   }
   </style>
   <script>
@@ -46,26 +48,26 @@
         'vi':'Hướng dẫn sử dụng Network Share'
       };
       const intro = {
-        'en':'Use Network Share as a LAN proxy gateway; clients must manually set host IP + port (no auto-discovery/encryption).',
-        'zh-CN':'将本机作为局域网代理网关，客户端需手动填写主机 IP 和端口（无自动发现/加密）。',
-        'ar':'استخدم الجهاز كوكيل LAN؛ على العميل إدخال IP+منفذ يدويًا (بدون اكتشاف/تشفير تلقائي).',
-        'de':'Nutze das Gerät als LAN-Proxy; Clients müssen Host-IP+Port manuell setzen (kein Auto-Discovery/Verschlüsselung).',
-        'es':'Usa el equipo como proxy LAN; los clientes configuran IP+puerto manualmente (sin auto-descubrimiento/cifrado).',
-        'fa':'گوشی را در LAN به‌عنوان پروکسی استفاده کنید؛ کلاینت باید IP+پورت را دستی وارد کند (بدون کشف/رمزگذاری خودکار).',
-        'fr':'Utilisez l’appareil comme proxy LAN; clients saisissent IP+port manuellement (pas de découverte/chiffrement auto).',
-        'hi':'LAN प्रॉक्सी के रूप में उपयोग; क्लाइंट IP+पोर्ट मैन्युअल सेट करें (कोई ऑटो-डिस्कवरी/एन्क्रिप्शन नहीं).',
-        'id':'Gunakan sebagai proxy LAN; klien isi IP+port manual (tanpa auto-discovery/enkripsi).',
-        'ja':'本機をLANプロキシとして利用。クライアントは手動でIP+ポート設定（自動検出/暗号化なし）。',
-        'ko':'LAN 프록시로 사용; 클라이언트가 IP+포트를 수동 설정 (자동검색/암호화 없음).',
-        'ms':'Guna sebagai proksi LAN; klien isi IP+port secara manual (tiada auto-cari/penyulitan).',
-        'pt':'Use como proxy LAN; cliente define IP+porta manual (sem descoberta/criptografia automática).',
-        'ru':'Используйте как LAN-прокси; клиенты вручную вводят IP+порт (без автообнаружения/шифрования).',
-        'sw':'Tumia kama proksi ya LAN; mteja aweke IP+port kwa mkono (hakuna ugunduzi/usimbaji kiotomatiki).',
-        'th':'ใช้เป็นพร็อกซี LAN; ไคลเอนต์ตั้ง IP+พอร์ตเอง (ไม่มีค้นหา/เข้ารหัสอัตโนมัติ).',
-        'tl':'Gamitin bilang LAN proxy; mano ang IP+port (walang auto-discovery/encryption).',
-        'tr':'LAN proxy olarak kullan; istemci IP+portu elle girmeli (otomatik keşif/şifreleme yok).',
-        'ur':'LAN پراکسی کے طور پر؛ کلائنٹ IP+پورٹ ہاتھ سے ڈالیں (کوئی خودکار تلاش/اینکرپشن نہیں).',
-        'vi':'Dùng làm proxy LAN; client tự nhập IP+port (không auto-discovery/mã hóa).'
+        'en':'Use Network Share as a LAN proxy gateway; clients must manually set host IP + port.',
+        'zh-CN':'将本机作为局域网代理网关，客户端需手动填写主机 IP 和端口。',
+        'ar':'استخدم الجهاز كبوابة وكيل LAN؛ على العميل إدخال IP+منفذ يدويًا.',
+        'de':'Nutze das Gerät als LAN-Proxy; Clients müssen Host-IP+Port manuell setzen.',
+        'es':'Usa el equipo como proxy LAN; los clientes configuran IP+puerto manualmente.',
+        'fa':'گوشی را در LAN به‌عنوان پروکسی استفاده کنید؛ کلاینت باید IP+پورت را دستی وارد کند.',
+        'fr':'Utilisez l’appareil comme proxy LAN; clients saisissent IP+port manuellement.',
+        'hi':'LAN प्रॉक्सी के रूप में उपयोग; क्लाइंट IP+पोर्ट मैन्युअल सेट करें.',
+        'id':'Gunakan sebagai proxy LAN; klien isi IP+port manual.',
+        'ja':'本機をLANプロキシとして利用。クライアントは手動でIP+ポート設定。',
+        'ko':'LAN 프록시로 사용; 클라이언트가 IP+포트를 수동 설정.',
+        'ms':'Guna sebagai proksi LAN; klien isi IP+port secara manual.',
+        'pt':'Use como proxy LAN; cliente define IP+porta manual.',
+        'ru':'Используйте как LAN-прокси; клиенты вручную вводят IP+порт.',
+        'sw':'Tumia kama proksi ya LAN; mteja aweke IP+port kwa mkono.',
+        'th':'ใช้เป็นพร็อกซี LAN; ไคลเอนต์ตั้ง IP+พอร์ตเอง.',
+        'tl':'Gamitin bilang LAN proxy; mano ang IP+port.',
+        'tr':'LAN proxy olarak kullan; istemci IP+portu elle girmeli.',
+        'ur':'LAN پراکسی کے طور پر؛ کلائنٹ IP+پورٹ ہاتھ سے ڈالیں.',
+        'vi':'Dùng làm proxy LAN; client tự nhập IP+port.'
       };
       const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
       const apply = (lang) => {
@@ -116,49 +118,71 @@
       <option value="vi">Tiếng Việt</option>
     </select>
   </div>
-  <p id="intro">Use Network Share as a LAN proxy gateway; clients must manually set host IP + port (no auto-discovery/encryption).</p>
+  <p id="intro">Use Network Share as a LAN proxy gateway; clients must manually set host IP + port.</p>
 
   <div class="lang" data-lang="en">
     <h2>Purpose</h2>
-    <p>Use this device as a LAN proxy gateway on the same Wi‑Fi/hotspot; other devices forward traffic via this host (can stack with host VPN). Auto-discovery/encryption removed; clients must fill host IP and port manually.</p>
+    <p>Use this device as a LAN proxy gateway on the same Wi‑Fi/hotspot; other devices forward traffic via this host (can stack with host VPN).</p>
     <h2>Host steps</h2>
     <ol>
-      <li>Open the app, pick proxy mode (recommend “Auto-detect”) and port (default 1080). Current version forces full traffic via this proxy.</li>
+      <li>Open the app, pick proxy mode (recommend “Auto-detect”) and port (default 1080).</li>
       <li>Ensure host and clients are on the same LAN; port not occupied.</li>
       <li>Tap “Start Gateway” and keep the foreground service alive.</li>
     </ol>
     <h2>Client setup (manual IP + port)</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = this device IP, port = app port. Or set HTTP/HTTPS in apps; Auto-detect mode typically works with HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → current network → Configure Proxy = Manual; server = host IP, port = app port (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = host IP, port = app port (HTTP/HTTPS); apps that support SOCKS5 can set SOCKS5.</li>
-      <li><strong>macOS</strong>: System Settings → Network → current interface → Details → Proxies; check HTTP/HTTPS (or SOCKS5), server = host IP, port = app port.</li>
+      <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = this device IP, port = app port. Or set HTTP/HTTPS in apps.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android proxy setup"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → current network → Configure Proxy = Manual; server = host IP, port = app port (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS proxy setup"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = host IP, port = app port (HTTP/HTTPS); proxy bypass = localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows proxy setup"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → current interface → Details → Proxies; check HTTP/HTTPS (or SOCKS5), server = host IP, port = app port.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS proxy setup"></div>
+      </li>
       <li><strong>Other devices</strong>: fill host IP + port in HTTP/HTTPS/SOCKS5 proxy settings supported by the device/app.</li>
     </ul>
+    <h2>Enhanced mode</h2>
+    <p>Some VPNs block inbound connections from other LAN devices, so they cannot reach the proxy service on this host and VPN sharing fails. Enhanced mode adds a companion device and moves the proxy service to that device. This host (with VPN) connects out to the companion device, brings the data back, and then performs requests locally.</p>
+    <p>If other LAN devices still cannot access the proxy after correct settings, enable Enhanced mode. The companion device can also set up a proxy like other clients to use the VPN from the main device.</p>
   </div>
 
   <div class="lang" data-lang="zh-CN">
     <h2>作用</h2>
-    <p>同一 Wi‑Fi/热点下，将本机作为代理网关，其他设备通过本机转发流量（可叠加本机 VPN）。已移除自动发现/加密，需手动填写主机 IP 和端口。</p>
+    <p>同一 Wi‑Fi/热点下，将本机作为代理网关，其他设备通过本机转发流量（可叠加本机 VPN）。</p>
     <h2>主机端步骤</h2>
     <ol>
-      <li>打开 App，选代理模式（推荐“自动识别”）和端口（默认 1080），当前版本全量经本机代理。</li>
+      <li>打开 App，选代理模式（推荐“自动识别”）和端口（默认 1080）。</li>
       <li>确认主机与客户端同局域网，端口未被占用。</li>
       <li>点击“启动网关”，保持前台服务运行。</li>
     </ol>
     <h2>客户端配置（手动 IP + 端口）</h2>
     <ul>
-      <li><strong>Android</strong>：Wi‑Fi 详情→代理=手动，主机名填本机 IP，端口填 App 端口；或在支持代理的应用中填写 HTTP/HTTPS（自动识别通常兼容 HTTP/HTTPS/SOCKS5）。</li>
-      <li><strong>iOS</strong>：设置→Wi‑Fi→当前网络→配置代理=手动，服务器填本机 IP，端口填 App 端口（HTTP/HTTPS）。</li>
-      <li><strong>Windows</strong>：设置→网络和 Internet→代理→手动代理，地址=本机 IP，端口=App 端口（HTTP/HTTPS）；支持 SOCKS5 的应用可直接填 SOCKS5。</li>
-      <li><strong>macOS</strong>：系统设置→网络→当前接口→详情→代理，勾选 HTTP/HTTPS（或 SOCKS5），服务器=本机 IP，端口=App 端口。</li>
+      <li><strong>Android</strong>：Wi‑Fi 详情→代理=手动，主机名填本机 IP，端口填 App 端口；或在支持代理的应用中填写 HTTP/HTTPS。
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android 代理设置示意图"></div>
+      </li>
+      <li><strong>iOS</strong>：设置→Wi‑Fi→当前网络→配置代理=手动，服务器填本机 IP，端口填 App 端口（HTTP/HTTPS）。
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS 代理设置示意图"></div>
+      </li>
+      <li><strong>Windows</strong>：设置→网络和 Internet→代理→手动代理，地址=本机 IP，端口=App 端口（HTTP/HTTPS）。<br>代理忽略项：localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*。
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows 代理设置示意图"></div>
+      </li>
+      <li><strong>macOS</strong>：系统设置→网络→当前接口→详情→代理，勾选 HTTP/HTTPS（或 SOCKS5），服务器=本机 IP，端口=App 端口。
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS 代理设置示意图"></div>
+      </li>
       <li><strong>其他设备</strong>：在支持的 HTTP/HTTPS/SOCKS5 代理入口手动填本机 IP + 端口。</li>
     </ul>
+    <h2>增强模式</h2>
+    <p>部分 VPN 会阻止局域网内其他设备入站到本机，导致无法访问代理服务，从而 VPN 分享失效。增强模式通过增加一个协同设备，将代理服务转移到协同设备上。本机（运行 VPN 的设备）出站访问协同设备，带回数据后再由本机发起请求。</p>
+    <p>若在正确配置后其他局域网设备仍无法访问代理，请开启增强模式。协同设备也可以像其他设备一样配置代理，使用主设备的 VPN。</p>
   </div>
 
   <div class="lang" data-lang="ar">
     <h2>الغرض</h2>
-    <p>استخدم الجهاز كبوابة وكيل داخل نفس شبكة Wi‑Fi/نقطة الاتصال؛ تُمرَّر حركة الأجهزة الأخرى عبر هذا المضيف (يمكن تكديس VPN المضيف). تمت إزالة الاكتشاف التلقائي/التشفير؛ يجب على العميل إدخال IP المضيف والمنفذ يدويًا.</p>
+    <p>استخدم الجهاز كبوابة وكيل داخل نفس شبكة Wi‑Fi/نقطة الاتصال؛ تُمرَّر حركة الأجهزة الأخرى عبر هذا المضيف (يمكن تكديس VPN المضيف).</p>
     <h2>خطوات المضيف</h2>
     <ol>
       <li>افتح التطبيق، واختر وضع الوكيل (يُنصح بـ “اكتشاف تلقائي”) والمنفذ (الافتراضي 1080). الإصدار الحالي يوجّه كل الحركة عبر الوكيل.</li>
@@ -167,17 +191,28 @@
     </ol>
     <h2>إعداد العميل (IP + منفذ يدوي)</h2>
     <ul>
-      <li><strong>Android</strong>: تفاصيل Wi‑Fi → الوكيل = يدوي؛ الخادم = IP لهذا الجهاز، المنفذ = منفذ التطبيق. أو املأ HTTP/HTTPS في التطبيقات؛ وضع الاكتشاف التلقائي يدعم عادة HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: الإعدادات → Wi‑Fi → الشبكة الحالية → تكوين الوكيل = يدوي؛ الخادم = IP المضيف، المنفذ = منفذ التطبيق (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: الإعدادات → الشبكة والإنترنت → الوكيل → يدوي؛ العنوان = IP المضيف، المنفذ = منفذ التطبيق (HTTP/HTTPS)؛ التطبيقات التي تدعم SOCKS5 يمكنها ضبط SOCKS5.</li>
-      <li><strong>macOS</strong>: إعدادات النظام → الشبكة → الواجهة الحالية → التفاصيل → الوكلاء؛ فعّل HTTP/HTTPS (أو SOCKS5)، الخادم = IP المضيف، المنفذ = منفذ التطبيق.</li>
+      <li><strong>Android</strong>: تفاصيل Wi‑Fi → الوكيل = يدوي؛ الخادم = IP لهذا الجهاز، المنفذ = منفذ التطبيق. أو املأ HTTP/HTTPS في التطبيقات.
+        <div class="guide-image"><img src="img/guide_android.png" alt="إعداد وكيل Android"></div>
+      </li>
+      <li><strong>iOS</strong>: الإعدادات → Wi‑Fi → الشبكة الحالية → تكوين الوكيل = يدوي؛ الخادم = IP المضيف، المنفذ = منفذ التطبيق (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="إعداد وكيل iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: الإعدادات → الشبكة والإنترنت → الوكيل → يدوي؛ العنوان = IP المضيف، المنفذ = منفذ التطبيق (HTTP/HTTPS)؛ قائمة التجاهل: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="إعداد وكيل Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: إعدادات النظام → الشبكة → الواجهة الحالية → التفاصيل → الوكلاء؛ فعّل HTTP/HTTPS (أو SOCKS5)، الخادم = IP المضيف، المنفذ = منفذ التطبيق.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="إعداد وكيل macOS"></div>
+      </li>
       <li><strong>أجهزة أخرى</strong>: أدخل IP المضيف + المنفذ في إعدادات وكيل HTTP/HTTPS/SOCKS5 المدعومة.</li>
     </ul>
+    <h2>الوضع المعزز</h2>
+    <p>تمنع بعض شبكات VPN الاتصالات الواردة من أجهزة LAN الأخرى، لذلك لا يمكنها الوصول إلى خدمة الوكيل على هذا المضيف وتفشل مشاركة VPN. يضيف الوضع المعزز جهازًا مساعدًا وينقل خدمة الوكيل إليه. يتصل هذا المضيف (مع VPN) بالخارج بجهاز المساعدة، يعيد البيانات ثم ينفّذ الطلبات محليًا.</p>
+    <p>إذا لم تتمكن أجهزة LAN الأخرى من الوصول إلى الوكيل بعد الإعداد الصحيح، فعّل الوضع المعزز. يمكن للجهاز المساعد إعداد الوكيل مثل باقي الأجهزة لاستخدام VPN على الجهاز الرئيسي.</p>
   </div>
 
   <div class="lang" data-lang="de">
     <h2>Zweck</h2>
-    <p>Nutze dieses Gerät im selben Wi‑Fi/Hotspot als LAN‑Proxy-Gateway; andere Geräte leiten den Verkehr über diesen Host (VPN des Hosts kann gestapelt werden). Auto-Discovery/Verschlüsselung wurden entfernt; Clients müssen Host-IP und Port manuell eintragen.</p>
+    <p>Nutze dieses Gerät im selben Wi‑Fi/Hotspot als LAN‑Proxy-Gateway; andere Geräte leiten den Verkehr über diesen Host (VPN des Hosts kann gestapelt werden).</p>
     <h2>Schritte auf dem Host</h2>
     <ol>
       <li>App öffnen, Proxy-Modus wählen (empfohlen „Automatisch erkennen“) und Port wählen (Standard 1080). Aktuelle Version routet den gesamten Verkehr über den Proxy.</li>
@@ -186,17 +221,28 @@
     </ol>
     <h2>Client-Konfiguration (manuelle IP + Port)</h2>
     <ul>
-      <li><strong>Android</strong>: WLAN-Details → Proxy = Manuell; Host = IP dieses Geräts, Port = App-Port. Oder HTTP/HTTPS in Apps eintragen; Auto-Erkennung funktioniert meist mit HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Einstellungen → WLAN → aktuelles Netzwerk → Proxy konfigurieren = Manuell; Server = Host-IP, Port = App-Port (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Einstellungen → Netzwerk & Internet → Proxy → Manuell; Adresse = Host-IP, Port = App-Port (HTTP/HTTPS); Apps mit SOCKS5-Unterstützung können SOCKS5 setzen.</li>
-      <li><strong>macOS</strong>: Systemeinstellungen → Netzwerk → aktuelle Schnittstelle → Details → Proxys; HTTP/HTTPS (oder SOCKS5) markieren, Server = Host-IP, Port = App-Port.</li>
+      <li><strong>Android</strong>: WLAN-Details → Proxy = Manuell; Host = IP dieses Geräts, Port = App-Port. Oder HTTP/HTTPS in Apps eintragen.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android-Proxy-Einrichtung"></div>
+      </li>
+      <li><strong>iOS</strong>: Einstellungen → WLAN → aktuelles Netzwerk → Proxy konfigurieren = Manuell; Server = Host-IP, Port = App-Port (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS-Proxy-Einrichtung"></div>
+      </li>
+      <li><strong>Windows</strong>: Einstellungen → Netzwerk & Internet → Proxy → Manuell; Adresse = Host-IP, Port = App-Port (HTTP/HTTPS); Proxy-Ausnahmen: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows-Proxy-Einrichtung"></div>
+      </li>
+      <li><strong>macOS</strong>: Systemeinstellungen → Netzwerk → aktuelle Schnittstelle → Details → Proxys; HTTP/HTTPS (oder SOCKS5) markieren, Server = Host-IP, Port = App-Port.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS-Proxy-Einrichtung"></div>
+      </li>
       <li><strong>Andere Geräte</strong>: Host-IP + Port in den HTTP/HTTPS/SOCKS5-Proxyfeldern des Geräts/der App eintragen.</li>
     </ul>
+    <h2>Erweiterter Modus</h2>
+    <p>Einige VPNs blockieren eingehende Verbindungen von anderen LAN‑Geräten, sodass diese den Proxy‑Dienst auf diesem Host nicht erreichen und das VPN‑Sharing fehlschlägt. Der erweiterte Modus fügt ein Begleitgerät hinzu und verlagert den Proxy‑Dienst dorthin. Dieser Host (mit VPN) verbindet sich ausgehend mit dem Begleitgerät, bringt die Daten zurück und führt die Anfragen lokal aus.</p>
+    <p>Wenn andere LAN‑Geräte trotz korrekter Einstellungen nicht auf den Proxy zugreifen können, aktiviere den erweiterten Modus. Das Begleitgerät kann wie andere Clients einen Proxy einrichten, um das VPN des Hauptgeräts zu nutzen.</p>
   </div>
 
   <div class="lang" data-lang="es">
     <h2>Propósito</h2>
-    <p>Usa este dispositivo como puerta de enlace proxy en la misma red Wi‑Fi/punto de acceso; los demás equipos envían su tráfico a través de este host (puede combinarse con la VPN del host). Se eliminó el autodescubrimiento/cifrado; el cliente debe ingresar manualmente la IP y el puerto del host.</p>
+    <p>Usa este dispositivo como puerta de enlace proxy en la misma red Wi‑Fi/punto de acceso; los demás equipos envían su tráfico a través de este host (puede combinarse con la VPN del host).</p>
     <h2>Pasos en el host</h2>
     <ol>
       <li>Abre la app, elige el modo de proxy (se recomienda “Detección automática”) y el puerto (predeterminado 1080). La versión actual dirige todo el tráfico por el proxy.</li>
@@ -205,17 +251,28 @@
     </ol>
     <h2>Configuración del cliente (IP + puerto manual)</h2>
     <ul>
-      <li><strong>Android</strong>: Detalles de Wi‑Fi → Proxy = Manual; host = IP de este dispositivo, puerto = puerto de la app. O configura HTTP/HTTPS en las apps; la detección automática suele funcionar con HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Ajustes → Wi‑Fi → red actual → Configurar proxy = Manual; servidor = IP del host, puerto = puerto de la app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Configuración → Red e Internet → Proxy → Manual; dirección = IP del host, puerto = puerto de la app (HTTP/HTTPS); las apps que soporten SOCKS5 pueden usar SOCKS5.</li>
-      <li><strong>macOS</strong>: Ajustes del sistema → Red → interfaz actual → Detalles → Proxies; marca HTTP/HTTPS (o SOCKS5), servidor = IP del host, puerto = puerto de la app.</li>
+      <li><strong>Android</strong>: Detalles de Wi‑Fi → Proxy = Manual; host = IP de este dispositivo, puerto = puerto de la app. O configura HTTP/HTTPS en las apps.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Configuración de proxy en Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Ajustes → Wi‑Fi → red actual → Configurar proxy = Manual; servidor = IP del host, puerto = puerto de la app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Configuración de proxy en iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Configuración → Red e Internet → Proxy → Manual; dirección = IP del host, puerto = puerto de la app (HTTP/HTTPS); excepciones del proxy: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Configuración de proxy en Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: Ajustes del sistema → Red → interfaz actual → Detalles → Proxies; marca HTTP/HTTPS (o SOCKS5), servidor = IP del host, puerto = puerto de la app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Configuración de proxy en macOS"></div>
+      </li>
       <li><strong>Otros dispositivos</strong>: introduce IP del host + puerto en los ajustes de proxy HTTP/HTTPS/SOCKS5 que el equipo o la app admitan.</li>
     </ul>
+    <h2>Modo mejorado</h2>
+    <p>Algunas VPN bloquean las conexiones entrantes de otros dispositivos de la LAN, por lo que no pueden acceder al servicio de proxy en este host y el uso compartido de VPN falla. El modo mejorado añade un dispositivo colaborador y traslada allí el servicio de proxy. Este host (con VPN) se conecta hacia afuera al dispositivo colaborador, trae los datos y luego realiza las solicitudes localmente.</p>
+    <p>Si otros dispositivos de la LAN aún no pueden acceder al proxy con la configuración correcta, activa el modo mejorado. El dispositivo colaborador puede configurar el proxy como los demás equipos para usar la VPN del dispositivo principal.</p>
   </div>
 
   <div class="lang" data-lang="fa">
     <h2>هدف</h2>
-    <p>از این دستگاه در همان شبکه Wi‑Fi/هات‌اسپات به‌عنوان درگاه پروکسی LAN استفاده کنید؛ ترافیک سایر دستگاه‌ها از این میزبان عبور می‌کند (می‌توان آن را با VPN میزبان ترکیب کرد). کشف خودکار/رمزگذاری حذف شده است؛ کلاینت باید IP میزبان و پورت را دستی وارد کند.</p>
+    <p>از این دستگاه در همان شبکه Wi‑Fi/هات‌اسپات به‌عنوان درگاه پروکسی LAN استفاده کنید؛ ترافیک سایر دستگاه‌ها از این میزبان عبور می‌کند (می‌توان آن را با VPN میزبان ترکیب کرد).</p>
     <h2>مراحل میزبان</h2>
     <ol>
       <li>اپ را باز کنید، حالت پروکسی (پیشنهاد «تشخیص خودکار») و پورت (پیش‌فرض 1080) را برگزینید. نسخه فعلی تمام ترافیک را از طریق پروکسی هدایت می‌کند.</li>
@@ -224,17 +281,28 @@
     </ol>
     <h2>پیکربندی کلاینت (IP + پورت دستی)</h2>
     <ul>
-      <li><strong>Android</strong>: جزئیات Wi‑Fi → پروکسی = دستی؛ سرور = IP این دستگاه، پورت = پورت اپ. یا در اپ‌های پشتیبان، HTTP/HTTPS را پر کنید؛ حالت تشخیص خودکار معمولاً با HTTP/HTTPS/SOCKS5 کار می‌کند.</li>
-      <li><strong>iOS</strong>: تنظیمات → Wi‑Fi → شبکه فعلی → پیکربندی پروکسی = دستی؛ سرور = IP میزبان، پورت = پورت اپ (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: تنظیمات → شبکه و اینترنت → پروکسی → دستی؛ آدرس = IP میزبان، پورت = پورت اپ (HTTP/HTTPS)؛ اپ‌های دارای SOCKS5 می‌توانند SOCKS5 را تنظیم کنند.</li>
-      <li><strong>macOS</strong>: تنظیمات سیستم → شبکه → رابط فعلی → جزئیات → پروکسی‌ها؛ HTTP/HTTPS (یا SOCKS5) را تیک بزنید، سرور = IP میزبان، پورت = پورت اپ.</li>
+      <li><strong>Android</strong>: جزئیات Wi‑Fi → پروکسی = دستی؛ سرور = IP این دستگاه، پورت = پورت اپ. یا در اپ‌های پشتیبان، HTTP/HTTPS را پر کنید.
+        <div class="guide-image"><img src="img/guide_android.png" alt="تنظیم پراکسی Android"></div>
+      </li>
+      <li><strong>iOS</strong>: تنظیمات → Wi‑Fi → شبکه فعلی → پیکربندی پروکسی = دستی؛ سرور = IP میزبان، پورت = پورت اپ (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="تنظیم پراکسی iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: تنظیمات → شبکه و اینترنت → پروکسی → دستی؛ آدرس = IP میزبان، پورت = پورت اپ (HTTP/HTTPS)؛ فهرست استثنا: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="تنظیم پراکسی Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: تنظیمات سیستم → شبکه → رابط فعلی → جزئیات → پروکسی‌ها؛ HTTP/HTTPS (یا SOCKS5) را تیک بزنید، سرور = IP میزبان، پورت = پورت اپ.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="تنظیم پراکسی macOS"></div>
+      </li>
       <li><strong>دستگاه‌های دیگر</strong>: در تنظیمات پروکسی HTTP/HTTPS/SOCKS5 پشتیبانی‌شده، IP میزبان + پورت را وارد کنید.</li>
     </ul>
+    <h2>حالت تقویت‌شده</h2>
+    <p>برخی VPNها اتصال‌های ورودی از دستگاه‌های دیگر در LAN را مسدود می‌کنند، بنابراین دستگاه‌ها نمی‌توانند به سرویس پراکسی روی این میزبان دسترسی پیدا کنند و اشتراک VPN از کار می‌افتد. حالت تقویت‌شده یک دستگاه همکار اضافه می‌کند و سرویس پراکسی را به آن منتقل می‌کند. این میزبان (با VPN) به‌صورت خروجی به دستگاه همکار متصل می‌شود، داده را برمی‌گرداند و سپس درخواست‌ها را محلی انجام می‌دهد.</p>
+    <p>اگر دستگاه‌های دیگر LAN با وجود تنظیمات صحیح هنوز به پراکسی دسترسی ندارند، حالت تقویت‌شده را فعال کنید. دستگاه همکار می‌تواند مانند سایر دستگاه‌ها پراکسی را تنظیم کند و از VPN دستگاه اصلی استفاده کند.</p>
   </div>
 
   <div class="lang" data-lang="fr">
     <h2>Objet</h2>
-    <p>Utilisez cet appareil comme passerelle proxy LAN sur le même Wi‑Fi/point d’accès ; les autres appareils font transiter leur trafic via cet hôte (VPN du serveur hôte possible). La découverte automatique/chiffrement a été retirée ; le client doit saisir manuellement l’IP et le port de l’hôte.</p>
+    <p>Utilisez cet appareil comme passerelle proxy LAN sur le même Wi‑Fi/point d’accès ; les autres appareils font transiter leur trafic via cet hôte (VPN du serveur hôte possible).</p>
     <h2>Étapes côté hôte</h2>
     <ol>
       <li>Ouvrez l’app, choisissez le mode proxy (recommandé « Détection auto ») et le port (1080 par défaut). La version actuelle force tout le trafic via ce proxy.</li>
@@ -243,17 +311,28 @@
     </ol>
     <h2>Configuration client (IP + port manuels)</h2>
     <ul>
-      <li><strong>Android</strong> : Détails Wi‑Fi → Proxy = Manuel ; hôte = IP de cet appareil, port = port de l’app. Ou renseignez HTTP/HTTPS dans les apps ; le mode Détection auto fonctionne généralement avec HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong> : Réglages → Wi‑Fi → réseau actuel → Configurer le proxy = Manuel ; serveur = IP hôte, port = port de l’app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong> : Paramètres → Réseau et Internet → Proxy → Manuel ; adresse = IP hôte, port = port de l’app (HTTP/HTTPS) ; les apps compatibles peuvent régler SOCKS5.</li>
-      <li><strong>macOS</strong> : Réglages Système → Réseau → interface actuelle → Détails → Proxys ; cochez HTTP/HTTPS (ou SOCKS5), serveur = IP hôte, port = port de l’app.</li>
+      <li><strong>Android</strong> : Détails Wi‑Fi → Proxy = Manuel ; hôte = IP de cet appareil, port = port de l’app. Ou renseignez HTTP/HTTPS dans les apps.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Configuration proxy Android"></div>
+      </li>
+      <li><strong>iOS</strong> : Réglages → Wi‑Fi → réseau actuel → Configurer le proxy = Manuel ; serveur = IP hôte, port = port de l’app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Configuration proxy iOS"></div>
+      </li>
+      <li><strong>Windows</strong> : Paramètres → Réseau et Internet → Proxy → Manuel ; adresse = IP hôte, port = port de l’app (HTTP/HTTPS) ; exceptions proxy : localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Configuration proxy Windows"></div>
+      </li>
+      <li><strong>macOS</strong> : Réglages Système → Réseau → interface actuelle → Détails → Proxys ; cochez HTTP/HTTPS (ou SOCKS5), serveur = IP hôte, port = port de l’app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Configuration proxy macOS"></div>
+      </li>
       <li><strong>Autres appareils</strong> : renseignez IP hôte + port dans les paramètres proxy HTTP/HTTPS/SOCKS5 pris en charge.</li>
     </ul>
+    <h2>Mode renforcé</h2>
+    <p>Certains VPN bloquent les connexions entrantes des autres appareils du LAN, ce qui empêche d’atteindre le service proxy sur cet hôte et fait échouer le partage VPN. Le mode renforcé ajoute un appareil compagnon et déplace le service proxy dessus. Cet hôte (avec VPN) se connecte en sortie à l’appareil compagnon, récupère les données puis effectue les requêtes localement.</p>
+    <p>Si les autres appareils du LAN ne peuvent toujours pas accéder au proxy malgré une configuration correcte, activez le mode renforcé. L’appareil compagnon peut configurer le proxy comme les autres clients afin d’utiliser le VPN de l’appareil principal.</p>
   </div>
 
   <div class="lang" data-lang="hi">
     <h2>उद्देश्य</h2>
-    <p>उसी Wi‑Fi/हॉटस्पॉट में इस डिवाइस को LAN प्रॉक्सी गेटवे बनाएं; अन्य डिवाइस का ट्रैफ़िक इस होस्ट से होकर गुजरता है (होस्ट VPN को जोड़ सकते हैं)। ऑटो-डिस्कवरी/एन्क्रिप्शन हटा दिया गया है; क्लाइंट को होस्ट IP और पोर्ट मैन्युअल भरना होगा।</p>
+    <p>उसी Wi‑Fi/हॉटस्पॉट में इस डिवाइस को LAN प्रॉक्सी गेटवे बनाएं; अन्य डिवाइस का ट्रैफ़िक इस होस्ट से होकर गुजरता है (होस्ट VPN को जोड़ सकते हैं)।</p>
     <h2>होस्ट के चरण</h2>
     <ol>
       <li>ऐप खोलें, प्रॉक्सी मोड चुनें (अनुशंसित “ऑटो-डिटेक्ट”) और पोर्ट चुनें (डिफ़ॉल्ट 1080)। वर्तमान संस्करण पूरा ट्रैफ़िक प्रॉक्सी से भेजता है।</li>
@@ -262,17 +341,28 @@
     </ol>
     <h2>क्लाइंट सेटअप (मैन्युअल IP + पोर्ट)</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi विवरण → Proxy = Manual; होस्ट = इस डिवाइस का IP, पोर्ट = ऐप पोर्ट। या ऐप में HTTP/HTTPS भरें; ऑटो-डिटेक्ट मोड आम तौर पर HTTP/HTTPS/SOCKS5 के साथ काम करता है।</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → वर्तमान नेटवर्क → Configure Proxy = Manual; सर्वर = होस्ट IP, पोर्ट = ऐप पोर्ट (HTTP/HTTPS)।</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; पता = होस्ट IP, पोर्ट = ऐप पोर्ट (HTTP/HTTPS); SOCKS5 सपोर्ट करने वाले ऐप्स में सीधे SOCKS5 सेट करें।</li>
-      <li><strong>macOS</strong>: System Settings → Network → वर्तमान इंटरफ़ेस → Details → Proxies; HTTP/HTTPS (या SOCKS5) चुनें, सर्वर = होस्ट IP, पोर्ट = ऐप पोर्ट।</li>
+      <li><strong>Android</strong>: Wi‑Fi विवरण → Proxy = Manual; होस्ट = इस डिवाइस का IP, पोर्ट = ऐप पोर्ट। या ऐप में HTTP/HTTPS भरें।
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android प्रॉक्सी सेटअप"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → वर्तमान नेटवर्क → Configure Proxy = Manual; सर्वर = होस्ट IP, पोर्ट = ऐप पोर्ट (HTTP/HTTPS)।
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS प्रॉक्सी सेटअप"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; पता = होस्ट IP, पोर्ट = ऐप पोर्ट (HTTP/HTTPS); प्रॉक्सी बहिष्करण: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows प्रॉक्सी सेटअप"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → वर्तमान इंटरफ़ेस → Details → Proxies; HTTP/HTTPS (या SOCKS5) चुनें, सर्वर = होस्ट IP, पोर्ट = ऐप पोर्ट।
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS प्रॉक्सी सेटअप"></div>
+      </li>
       <li><strong>अन्य डिवाइस</strong>: समर्थित HTTP/HTTPS/SOCKS5 प्रॉक्सी सेटिंग में होस्ट IP + पोर्ट भरें।</li>
     </ul>
+    <h2>एन्हांस्ड मोड</h2>
+    <p>कुछ VPN अन्य LAN डिवाइसों से आने वाले इनबाउंड कनेक्शन को ब्लॉक करते हैं, इसलिए वे इस होस्ट पर चल रहे प्रॉक्सी सर्विस तक नहीं पहुंच पाते और VPN शेयरिंग विफल हो जाती है। एन्हांस्ड मोड एक सहयोगी डिवाइस जोड़ता है और प्रॉक्सी सर्विस को उस डिवाइस पर शिफ्ट करता है। यह होस्ट (VPN के साथ) उस सहयोगी डिवाइस से आउटबाउंड कनेक्शन करता है, डेटा वापस लाता है और फिर लोकल रूप से अनुरोध करता है।</p>
+    <p>यदि सही सेटिंग्स के बाद भी अन्य LAN डिवाइस प्रॉक्सी तक नहीं पहुंच पा रहे हों, तो एन्हांस्ड मोड चालू करें। सहयोगी डिवाइस अन्य डिवाइस की तरह प्रॉक्सी सेट करके मुख्य डिवाइस का VPN उपयोग कर सकता है।</p>
   </div>
 
   <div class="lang" data-lang="id">
     <h2>Tujuan</h2>
-    <p>Gunakan perangkat ini sebagai gateway proxy LAN pada Wi‑Fi/hotspot yang sama; perangkat lain meneruskan trafik lewat host ini (bisa ditumpuk dengan VPN host). Fitur auto-discovery/enkripsi dihapus; klien harus mengisi IP host dan port secara manual.</p>
+    <p>Gunakan perangkat ini sebagai gateway proxy LAN pada Wi‑Fi/hotspot yang sama; perangkat lain meneruskan trafik lewat host ini (bisa ditumpuk dengan VPN host).</p>
     <h2>Langkah di host</h2>
     <ol>
       <li>Buka app, pilih mode proxy (disarankan “Deteksi otomatis”) dan port (default 1080). Versi sekarang memaksa seluruh trafik lewat proxy.</li>
@@ -281,17 +371,28 @@
     </ol>
     <h2>Pengaturan klien (IP + port manual)</h2>
     <ul>
-      <li><strong>Android</strong>: Detail Wi‑Fi → Proxy = Manual; host = IP perangkat ini, port = port app. Atau isi HTTP/HTTPS di aplikasi; mode deteksi otomatis umumnya bekerja dengan HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → jaringan saat ini → Configure Proxy = Manual; server = IP host, port = port app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP host, port = port app (HTTP/HTTPS); aplikasi yang mendukung SOCKS5 bisa mengatur SOCKS5.</li>
-      <li><strong>macOS</strong>: System Settings → Network → antarmuka saat ini → Details → Proxies; centang HTTP/HTTPS (atau SOCKS5), server = IP host, port = port app.</li>
+      <li><strong>Android</strong>: Detail Wi‑Fi → Proxy = Manual; host = IP perangkat ini, port = port app. Atau isi HTTP/HTTPS di aplikasi.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Pengaturan proxy Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → jaringan saat ini → Configure Proxy = Manual; server = IP host, port = port app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Pengaturan proxy iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP host, port = port app (HTTP/HTTPS); pengecualian proxy: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Pengaturan proxy Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → antarmuka saat ini → Details → Proxies; centang HTTP/HTTPS (atau SOCKS5), server = IP host, port = port app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Pengaturan proxy macOS"></div>
+      </li>
       <li><strong>Perangkat lain</strong>: isi IP host + port di pengaturan proxy HTTP/HTTPS/SOCKS5 yang didukung.</li>
     </ul>
+    <h2>Mode diperkuat</h2>
+    <p>Beberapa VPN memblokir koneksi masuk dari perangkat LAN lain sehingga perangkat tidak dapat menjangkau layanan proxy di host ini dan berbagi VPN gagal. Mode diperkuat menambahkan perangkat pendamping dan memindahkan layanan proxy ke perangkat tersebut. Host ini (dengan VPN) menghubungi perangkat pendamping secara keluar, membawa kembali data, lalu menjalankan permintaan secara lokal.</p>
+    <p>Jika perangkat LAN lain tetap tidak bisa mengakses proxy setelah pengaturan benar, aktifkan Mode diperkuat. Perangkat pendamping bisa mengatur proxy seperti perangkat lain untuk menggunakan VPN dari perangkat utama.</p>
   </div>
 
   <div class="lang" data-lang="ja">
     <h2>目的</h2>
-    <p>同一の Wi‑Fi/ホットスポット内で本機を LAN プロキシ・ゲートウェイとして使用し、他のデバイスの通信を本機経由で転送します（ホストの VPN と併用可）。自動検出/暗号化は削除されているため、クライアントはホスト IP とポートを手動入力する必要があります。</p>
+    <p>同一の Wi‑Fi/ホットスポット内で本機を LAN プロキシ・ゲートウェイとして使用し、他のデバイスの通信を本機経由で転送します（ホストの VPN と併用可）。</p>
     <h2>ホストの手順</h2>
     <ol>
       <li>アプリを開き、プロキシモード（推奨「自動識別」）とポート（デフォルト 1080）を選択します。現行バージョンはすべてのトラフィックをプロキシ経由にします。</li>
@@ -300,17 +401,28 @@
     </ol>
     <h2>クライアント設定（手動 IP + ポート）</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi 詳細 → プロキシ = 手動；ホスト = 本機の IP、ポート = アプリのポート。あるいはアプリの HTTP/HTTPS に設定。自動識別モードは通常 HTTP/HTTPS/SOCKS5 に対応します。</li>
-      <li><strong>iOS</strong>: 設定 → Wi‑Fi → 使用中のネットワーク → プロキシを構成 = 手動；サーバ = ホスト IP、ポート = アプリのポート（HTTP/HTTPS）。</li>
-      <li><strong>Windows</strong>: 設定 → ネットワークとインターネット → プロキシ → 手動プロキシ；アドレス = ホスト IP、ポート = アプリのポート（HTTP/HTTPS）。SOCKS5 対応アプリは SOCKS5 を設定可。</li>
-      <li><strong>macOS</strong>: システム設定 → ネットワーク → 使用中のインターフェース → 詳細 → プロキシ；HTTP/HTTPS（または SOCKS5）をチェック、サーバ = ホスト IP、ポート = アプリのポート。</li>
+      <li><strong>Android</strong>: Wi‑Fi 詳細 → プロキシ = 手動；ホスト = 本機の IP、ポート = アプリのポート。あるいはアプリの HTTP/HTTPS に設定。
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android プロキシ設定"></div>
+      </li>
+      <li><strong>iOS</strong>: 設定 → Wi‑Fi → 使用中のネットワーク → プロキシを構成 = 手動；サーバ = ホスト IP、ポート = アプリのポート（HTTP/HTTPS）。
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS プロキシ設定"></div>
+      </li>
+      <li><strong>Windows</strong>: 設定 → ネットワークとインターネット → プロキシ → 手動プロキシ；アドレス = ホスト IP、ポート = アプリのポート（HTTP/HTTPS）。プロキシ除外: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*。
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows プロキシ設定"></div>
+      </li>
+      <li><strong>macOS</strong>: システム設定 → ネットワーク → 使用中のインターフェース → 詳細 → プロキシ；HTTP/HTTPS（または SOCKS5）をチェック、サーバ = ホスト IP、ポート = アプリのポート。
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS プロキシ設定"></div>
+      </li>
       <li><strong>その他のデバイス</strong>: デバイス/アプリの HTTP/HTTPS/SOCKS5 プロキシ欄にホスト IP とポートを入力します。</li>
     </ul>
+    <h2>強化モード</h2>
+    <p>一部の VPN は他の LAN デバイスからの着信接続を遮断するため、このホスト上のプロキシサービスに到達できず、VPN 共有が失敗します。強化モードでは協同デバイスを追加し、プロキシサービスをそのデバイスへ移します。本機（VPN 使用中）は協同デバイスへアウトバウンド接続し、データを持ち帰ってから本機でリクエストを実行します。</p>
+    <p>正しく設定しても他の LAN デバイスがプロキシに接続できない場合は、強化モードを有効にしてください。協同デバイスも他の機器と同様にプロキシを設定し、メイン端末の VPN を利用できます。</p>
   </div>
 
   <div class="lang" data-lang="ko">
     <h2>목적</h2>
-    <p>동일한 Wi‑Fi/핫스팟에서 이 기기를 LAN 프록시 게이트웨이로 사용하여 다른 장치의 트래픽을 이 호스트로 전달합니다(호스트 VPN과 함께 사용 가능). 자동 검색/암호화 기능은 제거되었으며, 클라이언트가 호스트 IP와 포트를 수동으로 입력해야 합니다.</p>
+    <p>동일한 Wi‑Fi/핫스팟에서 이 기기를 LAN 프록시 게이트웨이로 사용하여 다른 장치의 트래픽을 이 호스트로 전달합니다(호스트 VPN과 함께 사용 가능).</p>
     <h2>호스트 단계</h2>
     <ol>
       <li>앱을 열어 프록시 모드(“자동 감지” 권장)와 포트(기본 1080)를 선택합니다. 현재 버전은 전체 트래픽을 프록시로 보냅니다.</li>
@@ -319,17 +431,28 @@
     </ol>
     <h2>클라이언트 설정(수동 IP + 포트)</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi 세부정보 → 프록시 = 수동; 호스트 = 이 기기 IP, 포트 = 앱 포트. 또는 앱의 HTTP/HTTPS 항목에 입력; 자동 감지 모드는 일반적으로 HTTP/HTTPS/SOCKS5와 호환됩니다.</li>
-      <li><strong>iOS</strong>: 설정 → Wi‑Fi → 현재 네트워크 → 프록시 구성 = 수동; 서버 = 호스트 IP, 포트 = 앱 포트(HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: 설정 → 네트워크 및 인터넷 → 프록시 → 수동; 주소 = 호스트 IP, 포트 = 앱 포트(HTTP/HTTPS). SOCKS5를 지원하는 앱은 SOCKS5를 설정합니다.</li>
-      <li><strong>macOS</strong>: 시스템 설정 → 네트워크 → 현재 인터페이스 → 세부사항 → 프록시; HTTP/HTTPS(또는 SOCKS5) 선택, 서버 = 호스트 IP, 포트 = 앱 포트.</li>
+      <li><strong>Android</strong>: Wi‑Fi 세부정보 → 프록시 = 수동; 호스트 = 이 기기 IP, 포트 = 앱 포트. 또는 앱의 HTTP/HTTPS 항목에 입력.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android 프록시 설정"></div>
+      </li>
+      <li><strong>iOS</strong>: 설정 → Wi‑Fi → 현재 네트워크 → 프록시 구성 = 수동; 서버 = 호스트 IP, 포트 = 앱 포트(HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS 프록시 설정"></div>
+      </li>
+      <li><strong>Windows</strong>: 설정 → 네트워크 및 인터넷 → 프록시 → 수동; 주소 = 호스트 IP, 포트 = 앱 포트(HTTP/HTTPS). 프록시 제외: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows 프록시 설정"></div>
+      </li>
+      <li><strong>macOS</strong>: 시스템 설정 → 네트워크 → 현재 인터페이스 → 세부사항 → 프록시; HTTP/HTTPS(또는 SOCKS5) 선택, 서버 = 호스트 IP, 포트 = 앱 포트.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS 프록시 설정"></div>
+      </li>
       <li><strong>기타 장치</strong>: 기기/앱에서 지원하는 HTTP/HTTPS/SOCKS5 프록시 설정에 호스트 IP + 포트를 입력합니다.</li>
     </ul>
+    <h2>향상 모드</h2>
+    <p>일부 VPN은 다른 LAN 기기에서 들어오는 인바운드 연결을 차단해 이 호스트의 프록시 서비스에 접근하지 못하고 VPN 공유가 실패합니다. 향상 모드는 협력 기기를 추가해 프록시 서비스를 그 기기로 옮깁니다. 이 호스트(VPN 사용 중)가 협력 기기로 아웃바운드 연결해 데이터를 가져온 뒤 로컬에서 요청을 수행합니다.</p>
+    <p>정상적으로 설정했는데도 다른 LAN 기기가 프록시에 접속하지 못하면 향상 모드를 켜세요. 협력 기기도 다른 장치처럼 프록시를 설정해 메인 장치의 VPN을 사용할 수 있습니다.</p>
   </div>
 
   <div class="lang" data-lang="ms">
     <h2>Tujuan</h2>
-    <p>Gunakan peranti ini sebagai gerbang proksi LAN pada Wi‑Fi/hotspot yang sama; trafik peranti lain dihantar melalui hos ini (boleh digabung dengan VPN hos). Auto-carikan/penyulitan telah dibuang; klien mesti isi IP hos dan port secara manual.</p>
+    <p>Gunakan peranti ini sebagai gerbang proksi LAN pada Wi‑Fi/hotspot yang sama; trafik peranti lain dihantar melalui hos ini (boleh digabung dengan VPN hos).</p>
     <h2>Langkah hos</h2>
     <ol>
       <li>Buka app, pilih mod proksi (disyorkan “Auto-detect”) dan port (lalai 1080). Versi semasa memaksa semua trafik melalui proksi.</li>
@@ -338,17 +461,28 @@
     </ol>
     <h2>Konfigurasi klien (IP + port manual)</h2>
     <ul>
-      <li><strong>Android</strong>: Butiran Wi‑Fi → Proksi = Manual; hos = IP peranti ini, port = port app. Atau isikan HTTP/HTTPS dalam app; mod auto-detect biasanya berfungsi dengan HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → rangkaian semasa → Configure Proxy = Manual; server = IP hos, port = port app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; alamat = IP hos, port = port app (HTTP/HTTPS); app yang menyokong SOCKS5 boleh menetapkan SOCKS5.</li>
-      <li><strong>macOS</strong>: System Settings → Network → antara muka semasa → Details → Proxies; tandakan HTTP/HTTPS (atau SOCKS5), server = IP hos, port = port app.</li>
+      <li><strong>Android</strong>: Butiran Wi‑Fi → Proksi = Manual; hos = IP peranti ini, port = port app. Atau isikan HTTP/HTTPS dalam app.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Tetapan proksi Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → rangkaian semasa → Configure Proxy = Manual; server = IP hos, port = port app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Tetapan proksi iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; alamat = IP hos, port = port app (HTTP/HTTPS); pengecualian proksi: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Tetapan proksi Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → antara muka semasa → Details → Proxies; tandakan HTTP/HTTPS (atau SOCKS5), server = IP hos, port = port app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Tetapan proksi macOS"></div>
+      </li>
       <li><strong>Peranti lain</strong>: isi IP hos + port dalam tetapan proksi HTTP/HTTPS/SOCKS5 yang disokong.</li>
     </ul>
+    <h2>Mod dipertingkat</h2>
+    <p>Sesetengah VPN menyekat sambungan masuk daripada peranti LAN lain, jadi peranti tidak dapat mengakses perkhidmatan proksi pada hos ini dan perkongsian VPN gagal. Mod dipertingkat menambah peranti rakan dan memindahkan perkhidmatan proksi ke peranti tersebut. Hos ini (dengan VPN) membuat sambungan keluar ke peranti rakan, membawa data balik, kemudian membuat permintaan secara tempatan.</p>
+    <p>Jika peranti LAN lain masih tidak dapat mengakses proksi selepas tetapan betul, aktifkan Mod dipertingkat. Peranti rakan boleh menetapkan proksi seperti peranti lain untuk menggunakan VPN peranti utama.</p>
   </div>
 
   <div class="lang" data-lang="pt">
     <h2>Objetivo</h2>
-    <p>Use este dispositivo na mesma rede Wi‑Fi/ponto de acesso como gateway proxy LAN; outros dispositivos enviam o tráfego por este host (pode ser combinado com a VPN do host). A descoberta automática/criptografia foi removida; o cliente deve inserir manualmente o IP e a porta do host.</p>
+    <p>Use este dispositivo na mesma rede Wi‑Fi/ponto de acesso como gateway proxy LAN; outros dispositivos enviam o tráfego por este host (pode ser combinado com a VPN do host).</p>
     <h2>Passos no host</h2>
     <ol>
       <li>Abra o app, escolha o modo de proxy (recomendado “Detecção automática”) e a porta (padrão 1080). A versão atual força todo o tráfego pelo proxy.</li>
@@ -357,17 +491,28 @@
     </ol>
     <h2>Configuração do cliente (IP + porta manual)</h2>
     <ul>
-      <li><strong>Android</strong>: Detalhes do Wi‑Fi → Proxy = Manual; host = IP deste dispositivo, porta = porta do app. Ou preencha HTTP/HTTPS nos apps; o modo de detecção automática geralmente funciona com HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Ajustes → Wi‑Fi → rede atual → Configurar Proxy = Manual; servidor = IP do host, porta = porta do app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Configurações → Rede e Internet → Proxy → Manual; endereço = IP do host, porta = porta do app (HTTP/HTTPS); apps que suportam SOCKS5 podem definir SOCKS5.</li>
-      <li><strong>macOS</strong>: Ajustes do Sistema → Rede → interface atual → Detalhes → Proxies; marque HTTP/HTTPS (ou SOCKS5), servidor = IP do host, porta = porta do app.</li>
+      <li><strong>Android</strong>: Detalhes do Wi‑Fi → Proxy = Manual; host = IP deste dispositivo, porta = porta do app. Ou preencha HTTP/HTTPS nos apps.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Configuração de proxy no Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Ajustes → Wi‑Fi → rede atual → Configurar Proxy = Manual; servidor = IP do host, porta = porta do app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Configuração de proxy no iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Configurações → Rede e Internet → Proxy → Manual; endereço = IP do host, porta = porta do app (HTTP/HTTPS); exceções de proxy: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Configuração de proxy no Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: Ajustes do Sistema → Rede → interface atual → Detalhes → Proxies; marque HTTP/HTTPS (ou SOCKS5), servidor = IP do host, porta = porta do app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Configuração de proxy no macOS"></div>
+      </li>
       <li><strong>Outros dispositivos</strong>: preencha IP do host + porta nas configurações de proxy HTTP/HTTPS/SOCKS5 suportadas.</li>
     </ul>
+    <h2>Modo aprimorado</h2>
+    <p>Algumas VPNs bloqueiam conexões de entrada de outros dispositivos da LAN, então eles não conseguem acessar o serviço de proxy neste host e o compartilhamento de VPN falha. O modo aprimorado adiciona um dispositivo auxiliar e move o serviço de proxy para esse dispositivo. Este host (com VPN) se conecta de saída ao dispositivo auxiliar, traz os dados de volta e então executa as requisições localmente.</p>
+    <p>Se outros dispositivos da LAN ainda não conseguirem acessar o proxy após a configuração correta, ative o modo aprimorado. O dispositivo auxiliar pode configurar o proxy como os demais dispositivos para usar a VPN do dispositivo principal.</p>
   </div>
 
   <div class="lang" data-lang="ru">
     <h2>Назначение</h2>
-    <p>Используйте это устройство в той же сети Wi‑Fi/точке доступа как шлюз LAN‑прокси; трафик других устройств проходит через этот хост (можно комбинировать с VPN хоста). Автообнаружение/шифрование отключены; клиент должен вручную вводить IP и порт хоста.</p>
+    <p>Используйте это устройство в той же сети Wi‑Fi/точке доступа как шлюз LAN‑прокси; трафик других устройств проходит через этот хост (можно комбинировать с VPN хоста).</p>
     <h2>Шаги на хосте</h2>
     <ol>
       <li>Откройте приложение, выберите режим прокси (рекомендуется «Автоопределение») и порт (по умолчанию 1080). Текущая версия направляет весь трафик через прокси.</li>
@@ -376,17 +521,28 @@
     </ol>
     <h2>Настройка клиента (ручные IP + порт)</h2>
     <ul>
-      <li><strong>Android</strong>: сведения о Wi‑Fi → Прокси = Вручную; хост = IP этого устройства, порт = порт приложения. Или заполните HTTP/HTTPS в приложениях; режим автоопределения обычно работает с HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Настройки → Wi‑Fi → текущая сеть → Настроить прокси = Вручную; сервер = IP хоста, порт = порт приложения (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Настройки → Сеть и Интернет → Прокси → Вручную; адрес = IP хоста, порт = порт приложения (HTTP/HTTPS); приложения с поддержкой SOCKS5 могут задать SOCKS5.</li>
-      <li><strong>macOS</strong>: Настройки системы → Сеть → текущий интерфейс → Подробнее → Прокси; отметьте HTTP/HTTPS (или SOCKS5), сервер = IP хоста, порт = порт приложения.</li>
+      <li><strong>Android</strong>: сведения о Wi‑Fi → Прокси = Вручную; хост = IP этого устройства, порт = порт приложения. Или заполните HTTP/HTTPS в приложениях.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Настройка прокси на Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Настройки → Wi‑Fi → текущая сеть → Настроить прокси = Вручную; сервер = IP хоста, порт = порт приложения (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Настройка прокси на iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Настройки → Сеть и Интернет → Прокси → Вручную; адрес = IP хоста, порт = порт приложения (HTTP/HTTPS); исключения прокси: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Настройка прокси на Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: Настройки системы → Сеть → текущий интерфейс → Подробнее → Прокси; отметьте HTTP/HTTPS (или SOCKS5), сервер = IP хоста, порт = порт приложения.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Настройка прокси на macOS"></div>
+      </li>
       <li><strong>Другие устройства</strong>: в полях прокси HTTP/HTTPS/SOCKS5 устройства/приложения укажите IP хоста + порт.</li>
     </ul>
+    <h2>Усиленный режим</h2>
+    <p>Некоторые VPN блокируют входящие подключения от других устройств в LAN, поэтому они не могут достучаться до прокси‑сервиса на этом хосте и общий доступ к VPN не работает. Усиленный режим добавляет устройство‑партнёр и переносит на него прокси‑сервис. Этот хост (с VPN) исходящим подключением обращается к устройству‑партнёру, забирает данные и затем выполняет запросы локально.</p>
+    <p>Если другие устройства LAN всё равно не могут получить доступ к прокси при корректных настройках, включите усиленный режим. Устройство‑партнёр может настроить прокси как другие устройства и использовать VPN основного устройства.</p>
   </div>
 
   <div class="lang" data-lang="sw">
     <h2>Kusudi</h2>
-    <p>Tumia kifaa hiki kama lango la proksi la LAN katika Wi‑Fi/hotspot ile ile; trafiki ya vifaa vingine hupitia kwa host huyu (inaweza kuunganishwa na VPN ya host). Ugunduzi/usalama otomatiki umeondolewa; mteja lazima aingize IP na bandari ya host kwa mkono.</p>
+    <p>Tumia kifaa hiki kama lango la proksi la LAN katika Wi‑Fi/hotspot ile ile; trafiki ya vifaa vingine hupitia kwa host huyu (inaweza kuunganishwa na VPN ya host).</p>
     <h2>Hatua za host</h2>
     <ol>
       <li>Fungua app, chagua hali ya proksi (inapendekezwa “Utambuzi otomatiki”) na bandari (chaguo-msingi 1080). Toleo la sasa hupitisha trafiki yote kupitia proksi.</li>
@@ -395,17 +551,28 @@
     </ol>
     <h2>Usanidi wa mteja (IP + bandari ya mkono)</h2>
     <ul>
-      <li><strong>Android</strong>: Maelezo ya Wi‑Fi → Proksi = Manual; host = IP ya kifaa hiki, bandari = bandari ya app. Au jaza HTTP/HTTPS ndani ya app; hali ya utambuzi otomatiki kawaida hufanya kazi na HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → mtandao wa sasa → Configure Proxy = Manual; seva = IP ya host, bandari = bandari ya app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; anwani = IP ya host, bandari = bandari ya app (HTTP/HTTPS); programu zenye SOCKS5 zinaweza kuweka SOCKS5.</li>
-      <li><strong>macOS</strong>: System Settings → Network → kiolesura cha sasa → Details → Proxies; tiki HTTP/HTTPS (au SOCKS5), seva = IP ya host, bandari = bandari ya app.</li>
+      <li><strong>Android</strong>: Maelezo ya Wi‑Fi → Proksi = Manual; host = IP ya kifaa hiki, bandari = bandari ya app. Au jaza HTTP/HTTPS ndani ya app.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Mipangilio ya proksi Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → mtandao wa sasa → Configure Proxy = Manual; seva = IP ya host, bandari = bandari ya app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Mipangilio ya proksi iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; anwani = IP ya host, bandari = bandari ya app (HTTP/HTTPS); orodha ya kuacha: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Mipangilio ya proksi Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → kiolesura cha sasa → Details → Proxies; tiki HTTP/HTTPS (au SOCKS5), seva = IP ya host, bandari = bandari ya app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Mipangilio ya proksi macOS"></div>
+      </li>
       <li><strong>Vifaa vingine</strong>: ingiza IP ya host + bandari kwenye mipangilio ya proksi ya HTTP/HTTPS/SOCKS5 inayotolewa.</li>
     </ul>
+    <h2>Hali iliyoimarishwa</h2>
+    <p>Baadhi ya VPN huzuia miunganisho inayoingia kutoka kwa vifaa vingine vya LAN, hivyo haviwezi kufikia huduma ya proksi kwenye host hii na ushiriki wa VPN hushindikana. Hali iliyoimarishwa huongeza kifaa mshirika na kuhamisha huduma ya proksi kwenda kwenye kifaa hicho. Host hii (yenye VPN) huunganishwa kwa njia ya kutoka kwenda kwenye kifaa mshirika, hurejesha data kisha hufanya maombi ndani ya kifaa.</p>
+    <p>Ikiwa vifaa vingine vya LAN bado haviwezi kufikia proksi baada ya mipangilio sahihi, washa Hali iliyoimarishwa. Kifaa mshirika kinaweza kusanidi proksi kama vifaa vingine ili kutumia VPN ya kifaa kikuu.</p>
   </div>
 
   <div class="lang" data-lang="th">
     <h2>วัตถุประสงค์</h2>
-    <p>ใช้เครื่องนี้เป็นเกตเวย์พร็อกซี LAN ในเครือข่าย Wi‑Fi/ฮอตสปอตเดียวกัน เพื่อให้อุปกรณ์อื่นส่งทราฟฟิกผ่านโฮสต์นี้ (ใช้ร่วมกับ VPN ของโฮสต์ได้) ฟังก์ชันค้นหา/เข้ารหัสอัตโนมัติถูกนำออกไปแล้ว; ไคลเอนต์ต้องกรอก IP และพอร์ตของโฮสต์เอง</p>
+    <p>ใช้เครื่องนี้เป็นเกตเวย์พร็อกซี LAN ในเครือข่าย Wi‑Fi/ฮอตสปอตเดียวกัน เพื่อให้อุปกรณ์อื่นส่งทราฟฟิกผ่านโฮสต์นี้ (ใช้ร่วมกับ VPN ของโฮสต์ได้)</p>
     <h2>ขั้นตอนฝั่งโฮสต์</h2>
     <ol>
       <li>เปิดแอป เลือกโหมดพร็อกซี (แนะนำ “ตรวจหาอัตโนมัติ”) และพอร์ต (ค่าเริ่มต้น 1080) เวอร์ชันปัจจุบันบังคับให้ทราฟฟิกทั้งหมดผ่านพร็อกซี</li>
@@ -414,17 +581,28 @@
     </ol>
     <h2>การตั้งค่าไคลเอนต์ (กรอก IP + พอร์ตเอง)</h2>
     <ul>
-      <li><strong>Android</strong>: รายละเอียด Wi‑Fi → Proxy = Manual; โฮสต์ = IP ของเครื่องนี้, พอร์ต = พอร์ตในแอป หรือกรอก HTTP/HTTPS ในแอป โหมดตรวจหาอัตโนมัติโดยมากใช้ได้กับ HTTP/HTTPS/SOCKS5</li>
-      <li><strong>iOS</strong>: การตั้งค่า → Wi‑Fi → เครือข่ายปัจจุบัน → ตั้งค่าพร็อกซี = Manual; เซิร์ฟเวอร์ = IP โฮสต์, พอร์ต = พอร์ตในแอป (HTTP/HTTPS)</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP โฮสต์, port = พอร์ตแอป (HTTP/HTTPS); แอปที่รองรับ SOCKS5 สามารถตั้ง SOCKS5 ได้</li>
-      <li><strong>macOS</strong>: System Settings → Network → อินเทอร์เฟซปัจจุบัน → Details → Proxies; ติ๊ก HTTP/HTTPS (หรือ SOCKS5), server = IP โฮสต์, port = พอร์ตแอป</li>
+      <li><strong>Android</strong>: รายละเอียด Wi‑Fi → Proxy = Manual; โฮสต์ = IP ของเครื่องนี้, พอร์ต = พอร์ตในแอป หรือกรอก HTTP/HTTPS ในแอป
+        <div class="guide-image"><img src="img/guide_android.png" alt="การตั้งค่าพร็อกซีบน Android"></div>
+      </li>
+      <li><strong>iOS</strong>: การตั้งค่า → Wi‑Fi → เครือข่ายปัจจุบัน → ตั้งค่าพร็อกซี = Manual; เซิร์ฟเวอร์ = IP โฮสต์, พอร์ต = พอร์ตในแอป (HTTP/HTTPS)
+        <div class="guide-image"><img src="img/guide_ios.png" alt="การตั้งค่าพร็อกซีบน iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP โฮสต์, port = พอร์ตแอป (HTTP/HTTPS); รายการละเว้นพร็อกซี: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="การตั้งค่าพร็อกซีบน Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → อินเทอร์เฟซปัจจุบัน → Details → Proxies; ติ๊ก HTTP/HTTPS (หรือ SOCKS5), server = IP โฮสต์, port = พอร์ตแอป
+        <div class="guide-image"><img src="img/guide_mac.png" alt="การตั้งค่าพร็อกซีบน macOS"></div>
+      </li>
       <li><strong>อุปกรณ์อื่น</strong>: กรอก IP โฮสต์ + พอร์ตในช่องตั้งค่าพร็อกซี HTTP/HTTPS/SOCKS5 ที่อุปกรณ์/แอปมีให้</li>
     </ul>
+    <h2>โหมดเสริม</h2>
+    <p>VPN บางตัวบล็อกการเชื่อมต่อขาเข้าจากอุปกรณ์ LAN อื่น ทำให้อุปกรณ์เหล่านั้นเข้าถึงบริการพร็อกซีบนโฮสต์นี้ไม่ได้และการแชร์ VPN ล้มเหลว โหมดเสริมจะเพิ่มอุปกรณ์ประสานและย้ายบริการพร็อกซีไปที่อุปกรณ์นั้น โฮสต์นี้ (ที่ใช้ VPN) จะเชื่อมต่อออกไปยังอุปกรณ์ประสาน รับข้อมูลกลับมา แล้วจึงทำคำขอภายในเครื่อง</p>
+    <p>หากอุปกรณ์ LAN อื่นยังเข้าถึงพร็อกซีไม่ได้แม้ตั้งค่าถูกต้อง ให้เปิดโหมดเสริม อุปกรณ์ประสานสามารถตั้งค่าพร็อกซีเหมือนอุปกรณ์อื่นเพื่อใช้ VPN จากอุปกรณ์หลักได้</p>
   </div>
 
   <div class="lang" data-lang="tl">
     <h2>Layunin</h2>
-    <p>Gamitin ang aparatong ito bilang LAN proxy gateway sa parehong Wi‑Fi/hotspot; dumaraan ang trapiko ng ibang device sa host na ito (puwedeng isabay sa VPN ng host). Inalis ang auto-discovery/encryption; kailangang ilagay ng kliyente nang manu-mano ang IP at port ng host.</p>
+    <p>Gamitin ang aparatong ito bilang LAN proxy gateway sa parehong Wi‑Fi/hotspot; dumaraan ang trapiko ng ibang device sa host na ito (puwedeng isabay sa VPN ng host).</p>
     <h2>Mga hakbang ng host</h2>
     <ol>
       <li>Buksan ang app, piliin ang mode ng proxy (inirerekomenda ang “Auto-detect”) at ang port (default 1080). Sa kasalukuyang bersyon, lahat ng trapiko ay dumadaan sa proxy.</li>
@@ -433,17 +611,28 @@
     </ol>
     <h2>Setup ng kliyente (manu-manong IP + port)</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = IP ng aparatong ito, port = port ng app. O punan ang HTTP/HTTPS sa mga app; karaniwang gumagana ang Auto-detect mode sa HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → kasalukuyang network → Configure Proxy = Manual; server = IP ng host, port = port ng app (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP ng host, port = port ng app (HTTP/HTTPS); maaaring i-set ang SOCKS5 sa mga app na sumusuporta rito.</li>
-      <li><strong>macOS</strong>: System Settings → Network → kasalukuyang interface → Details → Proxies; piliin ang HTTP/HTTPS (o SOCKS5), server = IP ng host, port = port ng app.</li>
+      <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = IP ng aparatong ito, port = port ng app. O punan ang HTTP/HTTPS sa mga app.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Pag-configure ng proxy sa Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → kasalukuyang network → Configure Proxy = Manual; server = IP ng host, port = port ng app (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Pag-configure ng proxy sa iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP ng host, port = port ng app (HTTP/HTTPS); proxy bypass: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Pag-configure ng proxy sa Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → kasalukuyang interface → Details → Proxies; piliin ang HTTP/HTTPS (o SOCKS5), server = IP ng host, port = port ng app.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Pag-configure ng proxy sa macOS"></div>
+      </li>
       <li><strong>Ibang device</strong>: ilagay ang IP ng host + port sa mga setting ng HTTP/HTTPS/SOCKS5 proxy na sinusuportahan ng device/app.</li>
     </ul>
+    <h2>Pinalakas na mode</h2>
+    <p>May ilang VPN na humaharang sa inbound na koneksyon mula sa ibang LAN device, kaya hindi nila maabot ang proxy service sa host na ito at pumapalya ang VPN sharing. Ang pinalakas na mode ay nagdaragdag ng katuwang na device at inililipat ang proxy service doon. Kumokonekta palabas ang host na ito (may VPN) sa katuwang na device, dinadala pabalik ang data, at saka gumagawa ng request nang lokal.</p>
+    <p>Kung hindi pa rin ma-access ng ibang LAN device ang proxy kahit tama ang settings, i-enable ang pinalakas na mode. Ang katuwang na device ay puwedeng mag-configure ng proxy tulad ng ibang device para magamit ang VPN ng pangunahing device.</p>
   </div>
 
   <div class="lang" data-lang="tr">
     <h2>Amaç</h2>
-    <p>Aynı Wi‑Fi/erişim noktasında bu cihazı LAN proxy geçidi olarak kullanın; diğer cihazların trafiği bu host üzerinden gider (host VPN’iyle birlikte kullanılabilir). Otomatik keşif/şifreleme kaldırıldı; istemci host IP’si ve portu elle girmelidir.</p>
+    <p>Aynı Wi‑Fi/erişim noktasında bu cihazı LAN proxy geçidi olarak kullanın; diğer cihazların trafiği bu host üzerinden gider (host VPN’iyle birlikte kullanılabilir).</p>
     <h2>Host adımları</h2>
     <ol>
       <li>Uygulamayı açın, proxy modunu seçin (“Otomatik algıla” önerilir) ve portu belirleyin (varsayılan 1080). Mevcut sürüm tüm trafiği proxy üzerinden yönlendirir.</li>
@@ -452,17 +641,28 @@
     </ol>
     <h2>İstemci kurulumu (manuel IP + port)</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi ayrıntıları → Proxy = Manuel; host = bu cihazın IP’si, port = uygulama portu. Ya da uygulamalarda HTTP/HTTPS alanlarını doldurun; Otomatik algılama modu genellikle HTTP/HTTPS/SOCKS5 ile çalışır.</li>
-      <li><strong>iOS</strong>: Ayarlar → Wi‑Fi → mevcut ağ → Proxy’yi Yapılandır = Manuel; sunucu = host IP’si, port = uygulama portu (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Ayarlar → Ağ ve İnternet → Proxy → Manuel; adres = host IP’si, port = uygulama portu (HTTP/HTTPS); SOCKS5 destekleyen uygulamalarda SOCKS5 ayarlanabilir.</li>
-      <li><strong>macOS</strong>: Sistem Ayarları → Ağ → mevcut arayüz → Ayrıntılar → Proxyler; HTTP/HTTPS’yi (veya SOCKS5) işaretleyin, sunucu = host IP’si, port = uygulama portu.</li>
+      <li><strong>Android</strong>: Wi‑Fi ayrıntıları → Proxy = Manuel; host = bu cihazın IP’si, port = uygulama portu. Ya da uygulamalarda HTTP/HTTPS alanlarını doldurun.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android proxy kurulumu"></div>
+      </li>
+      <li><strong>iOS</strong>: Ayarlar → Wi‑Fi → mevcut ağ → Proxy’yi Yapılandır = Manuel; sunucu = host IP’si, port = uygulama portu (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS proxy kurulumu"></div>
+      </li>
+      <li><strong>Windows</strong>: Ayarlar → Ağ ve İnternet → Proxy → Manuel; adres = host IP’si, port = uygulama portu (HTTP/HTTPS); proxy hariç tutma: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows proxy kurulumu"></div>
+      </li>
+      <li><strong>macOS</strong>: Sistem Ayarları → Ağ → mevcut arayüz → Ayrıntılar → Proxyler; HTTP/HTTPS’yi (veya SOCKS5) işaretleyin, sunucu = host IP’si, port = uygulama portu.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS proxy kurulumu"></div>
+      </li>
       <li><strong>Diğer cihazlar</strong>: Cihaz/uygulamanın desteklediği HTTP/HTTPS/SOCKS5 proxy alanlarına host IP + port yazın.</li>
     </ul>
+    <h2>Gelişmiş mod</h2>
+    <p>Bazı VPN’ler LAN içindeki diğer cihazlardan gelen gelen bağlantıları engeller; bu nedenle bu host üzerindeki proxy hizmetine erişemezler ve VPN paylaşımı başarısız olur. Gelişmiş mod bir yardımcı cihaz ekler ve proxy hizmetini bu cihaza taşır. Bu host (VPN ile) yardımcı cihaza dışarıdan bağlantı kurar, veriyi geri getirir ve ardından istekleri yerel olarak yürütür.</p>
+    <p>Doğru ayarlara rağmen diğer LAN cihazları proxy’ye erişemiyorsa gelişmiş modu etkinleştirin. Yardımcı cihaz, diğer cihazlar gibi proxy ayarlayıp ana cihazın VPN’ini kullanabilir.</p>
   </div>
 
   <div class="lang" data-lang="ur">
     <h2>مقصد</h2>
-    <p>اسی Wi‑Fi/ہاٹ اسپات پر اس ڈیوائس کو LAN پراکسی گیٹ وے کے طور پر استعمال کریں؛ دیگر ڈیوائسز کی ٹریفک اس ہوسٹ سے گزرے گی (ہوسٹ VPN کے ساتھ مل کر استعمال کیا جا سکتا ہے)۔ خودکار تلاش/انکرپشن ہٹا دی گئی ہے؛ کلائنٹ کو ہوسٹ کا IP اور پورٹ ہاتھ سے درج کرنا ہوگا۔</p>
+    <p>اسی Wi‑Fi/ہاٹ اسپات پر اس ڈیوائس کو LAN پراکسی گیٹ وے کے طور پر استعمال کریں؛ دیگر ڈیوائسز کی ٹریفک اس ہوسٹ سے گزرے گی (ہوسٹ VPN کے ساتھ مل کر استعمال کیا جا سکتا ہے)۔</p>
     <h2>ہوسٹ کے مراحل</h2>
     <ol>
       <li>ایپ کھولیں، پراکسی موڈ منتخب کریں (تجویز “آٹو ڈٹیکٹ”) اور پورٹ منتخب کریں (ڈیفالٹ 1080)۔ موجودہ ورژن ساری ٹریفک پراکسی سے گزارتا ہے۔</li>
@@ -471,17 +671,28 @@
     </ol>
     <h2>کلائنٹ سیٹ اپ (ہاتھ سے IP + پورٹ)</h2>
     <ul>
-      <li><strong>Android</strong>: Wi‑Fi تفصیل → پراکسی = Manual؛ ہوسٹ = اس ڈیوائس کا IP، پورٹ = ایپ کا پورٹ۔ یا ایپس میں HTTP/HTTPS درج کریں؛ آٹو ڈٹیکٹ موڈ عموماً HTTP/HTTPS/SOCKS5 کے ساتھ کام کرتا ہے۔</li>
-      <li><strong>iOS</strong>: Settings → Wi‑Fi → موجودہ نیٹ ورک → Configure Proxy = Manual؛ سرور = ہوسٹ IP، پورٹ = ایپ پورٹ (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual؛ address = ہوسٹ IP، port = ایپ پورٹ (HTTP/HTTPS)؛ SOCKS5 کو سپورٹ کرنے والی ایپس میں SOCKS5 سیٹ کریں۔</li>
-      <li><strong>macOS</strong>: System Settings → Network → موجودہ انٹرفیس → Details → Proxies؛ HTTP/HTTPS (یا SOCKS5) منتخب کریں، server = ہوسٹ IP، port = ایپ پورٹ۔</li>
+      <li><strong>Android</strong>: Wi‑Fi تفصیل → پراکسی = Manual؛ ہوسٹ = اس ڈیوائس کا IP، پورٹ = ایپ کا پورٹ۔ یا ایپس میں HTTP/HTTPS درج کریں۔
+        <div class="guide-image"><img src="img/guide_android.png" alt="Android پراکسی سیٹ اپ"></div>
+      </li>
+      <li><strong>iOS</strong>: Settings → Wi‑Fi → موجودہ نیٹ ورک → Configure Proxy = Manual؛ سرور = ہوسٹ IP، پورٹ = ایپ پورٹ (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="iOS پراکسی سیٹ اپ"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual؛ address = ہوسٹ IP، port = ایپ پورٹ (HTTP/HTTPS)؛ proxy bypass: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*۔
+        <div class="guide-image"><img src="img/guide_window.png" alt="Windows پراکسی سیٹ اپ"></div>
+      </li>
+      <li><strong>macOS</strong>: System Settings → Network → موجودہ انٹرفیس → Details → Proxies؛ HTTP/HTTPS (یا SOCKS5) منتخب کریں، server = ہوسٹ IP، port = ایپ پورٹ۔
+        <div class="guide-image"><img src="img/guide_mac.png" alt="macOS پراکسی سیٹ اپ"></div>
+      </li>
       <li><strong>دیگر ڈیوائسز</strong>: ڈیوائس/ایپ کی HTTP/HTTPS/SOCKS5 پراکسی سیٹنگ میں ہوسٹ IP + پورٹ لکھیں۔</li>
     </ul>
+    <h2>اینہانسڈ موڈ</h2>
+    <p>کچھ VPN دیگر LAN ڈیوائسز سے آنے والی اِن باؤنڈ کنکشنز کو بلاک کر دیتے ہیں، جس سے وہ اس ہوسٹ پر موجود پراکسی سروس تک نہیں پہنچ پاتیں اور VPN شیئرنگ ناکام ہو جاتی ہے۔ اینہانسڈ موڈ ایک معاون ڈیوائس شامل کرتا ہے اور پراکسی سروس کو اس ڈیوائس پر منتقل کر دیتا ہے۔ یہ ہوسٹ (VPN کے ساتھ) معاون ڈیوائس سے آؤٹ باؤنڈ کنکشن کرتا ہے، ڈیٹا واپس لاتا ہے اور پھر مقامی طور پر ریکویسٹ کرتا ہے۔</p>
+    <p>اگر درست سیٹنگز کے باوجود دیگر LAN ڈیوائسز پراکسی تک نہیں پہنچ پا رہیں تو اینہانسڈ موڈ فعال کریں۔ معاون ڈیوائس بھی دیگر ڈیوائسز کی طرح پراکسی سیٹ کر کے مرکزی ڈیوائس کا VPN استعمال کر سکتی ہے۔</p>
   </div>
 
   <div class="lang" data-lang="vi">
     <h2>Mục đích</h2>
-    <p>Dùng thiết bị này làm gateway proxy LAN trong cùng Wi‑Fi/điểm phát; lưu lượng của thiết bị khác sẽ đi qua máy chủ này (có thể dùng kèm VPN của máy chủ). Tính năng tự động phát hiện/mã hóa đã bỏ; client phải tự nhập IP và cổng của máy chủ.</p>
+    <p>Dùng thiết bị này làm gateway proxy LAN trong cùng Wi‑Fi/điểm phát; lưu lượng của thiết bị khác sẽ đi qua máy chủ này (có thể dùng kèm VPN của máy chủ).</p>
     <h2>Các bước trên máy chủ</h2>
     <ol>
       <li>Mở ứng dụng, chọn chế độ proxy (khuyến nghị “Tự động nhận diện”) và cổng (mặc định 1080). Phiên bản hiện tại đưa toàn bộ lưu lượng qua proxy.</li>
@@ -490,12 +701,23 @@
     </ol>
     <h2>Cấu hình client (IP + cổng thủ công)</h2>
     <ul>
-      <li><strong>Android</strong>: Chi tiết Wi‑Fi → Proxy = Manual; host = IP của thiết bị này, port = cổng ứng dụng. Hoặc điền HTTP/HTTPS trong ứng dụng; chế độ tự động nhận diện thường hoạt động với HTTP/HTTPS/SOCKS5.</li>
-      <li><strong>iOS</strong>: Cài đặt → Wi‑Fi → mạng hiện tại → Cấu hình proxy = Manual; máy chủ = IP host, cổng = cổng ứng dụng (HTTP/HTTPS).</li>
-      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; địa chỉ = IP host, cổng = cổng ứng dụng (HTTP/HTTPS); ứng dụng hỗ trợ SOCKS5 có thể đặt SOCKS5.</li>
-      <li><strong>macOS</strong>: Cài đặt hệ thống → Mạng → giao diện hiện tại → Chi tiết → Proxy; đánh dấu HTTP/HTTPS (hoặc SOCKS5), máy chủ = IP host, cổng = cổng ứng dụng.</li>
+      <li><strong>Android</strong>: Chi tiết Wi‑Fi → Proxy = Manual; host = IP của thiết bị này, port = cổng ứng dụng. Hoặc điền HTTP/HTTPS trong ứng dụng.
+        <div class="guide-image"><img src="img/guide_android.png" alt="Thiết lập proxy Android"></div>
+      </li>
+      <li><strong>iOS</strong>: Cài đặt → Wi‑Fi → mạng hiện tại → Cấu hình proxy = Manual; máy chủ = IP host, cổng = cổng ứng dụng (HTTP/HTTPS).
+        <div class="guide-image"><img src="img/guide_ios.png" alt="Thiết lập proxy iOS"></div>
+      </li>
+      <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; địa chỉ = IP host, cổng = cổng ứng dụng (HTTP/HTTPS); danh sách bỏ qua: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="guide-image"><img src="img/guide_window.png" alt="Thiết lập proxy Windows"></div>
+      </li>
+      <li><strong>macOS</strong>: Cài đặt hệ thống → Mạng → giao diện hiện tại → Chi tiết → Proxy; đánh dấu HTTP/HTTPS (hoặc SOCKS5), máy chủ = IP host, cổng = cổng ứng dụng.
+        <div class="guide-image"><img src="img/guide_mac.png" alt="Thiết lập proxy macOS"></div>
+      </li>
       <li><strong>Thiết bị khác</strong>: điền IP host + cổng trong phần cấu hình proxy HTTP/HTTPS/SOCKS5 mà thiết bị/ứng dụng hỗ trợ.</li>
     </ul>
+    <h2>Chế độ tăng cường</h2>
+    <p>Một số VPN chặn kết nối vào từ thiết bị LAN khác, khiến chúng không thể truy cập dịch vụ proxy trên máy chủ này và việc chia sẻ VPN bị thất bại. Chế độ tăng cường thêm một thiết bị phối hợp và chuyển dịch vụ proxy sang thiết bị đó. Máy chủ này (có VPN) kết nối ra ngoài tới thiết bị phối hợp, mang dữ liệu về rồi mới thực hiện yêu cầu cục bộ.</p>
+    <p>Nếu các thiết bị LAN khác vẫn không truy cập được proxy dù đã cấu hình đúng, hãy bật Chế độ tăng cường. Thiết bị phối hợp có thể cấu hình proxy như các thiết bị khác để dùng VPN của thiết bị chính.</p>
   </div>
 </body>
 </html>
