@@ -122,17 +122,17 @@
 
   <div class="lang" data-lang="en">
     <h2>Purpose</h2>
-    <p>Use this device as a LAN proxy gateway on the same Wi‑Fi/hotspot; other devices forward traffic via this host (can stack with host VPN).</p>
+    <p>Use this device as a LAN proxy gateway on the same Wi‑Fi/hotspot; other devices forward traffic via this host (can stack with host VPN). Supports simultaneous connections from multiple devices.</p>
     <h2>Configuration parameters</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Configuration parameters"></div>
     <p>Host: 10.0.2.15:1080<br>Host IP: 10.0.2.15<br>App port: 1080<br>Replace the example IP and port with your device's actual values.<br>If the Listener Port is unavailable or in use, choose any port between 1024–49151; functionality is the same.</p>
-    <h2>Host steps</h2>
+    <h2>Host (with VPN) steps</h2>
     <ol>
       <li>Open the app, pick proxy mode (recommend “Auto-detect”) and port (default 1080).</li>
       <li>Ensure host and clients are on the same LAN; port not occupied.</li>
       <li>Tap “Start Gateway” and keep the foreground service alive.</li>
     </ol>
-    <h2>Client setup (manual IP + port)</h2>
+    <h2>Other devices (no VPN) setup (manual IP + port)</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = this device IP, port = app port. Or set HTTP/HTTPS in apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android proxy setup"></div>
@@ -155,17 +155,17 @@
 
   <div class="lang" data-lang="zh-CN">
     <h2>作用</h2>
-    <p>同一 Wi‑Fi/热点下，将本机作为代理网关，其他设备通过本机转发流量（可叠加本机 VPN）。</p>
+    <p>同一 Wi‑Fi/热点下，将本机作为代理网关，其他设备通过本机转发流量（可叠加本机 VPN）。支持多台设备同时连接。</p>
     <h2>配置参数介绍</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="配置参数介绍"></div>
     <p>主机：10.0.2.15:1080<br>本机 IP：10.0.2.15<br>App 端口：1080<br>请将示例中的 IP 和端口替换为你本机的实际值。<br>如提示 Listener Port 不可用或被占用，可在 1024–49151 范围内任选一个端口，功能没有区别。</p>
-    <h2>主机端步骤</h2>
+    <h2>主机端（有VPN）步骤</h2>
     <ol>
       <li>打开 App，选代理模式（推荐“自动识别”）和端口（默认 1080）。</li>
       <li>确认主机与客户端同局域网，端口未被占用。</li>
       <li>点击“启动网关”，保持前台服务运行。</li>
     </ol>
-    <h2>客户端配置（手动 IP + 端口）</h2>
+    <h2>其他设备（无VPN）配置（手动 IP + 端口）</h2>
     <ul>
       <li><strong>Android</strong>：Wi‑Fi 详情→代理=手动，主机名填本机 IP，端口填 App 端口；或在支持代理的应用中填写 HTTP/HTTPS。
         <div class="guide-image"><img src="img/guide_android.png" alt="Android 代理设置示意图"></div>
@@ -188,17 +188,17 @@
 
   <div class="lang" data-lang="ar">
     <h2>الغرض</h2>
-    <p>استخدم الجهاز كبوابة وكيل داخل نفس شبكة Wi‑Fi/نقطة الاتصال؛ تُمرَّر حركة الأجهزة الأخرى عبر هذا المضيف (يمكن تكديس VPN المضيف).</p>
+    <p>استخدم الجهاز كبوابة وكيل داخل نفس شبكة Wi‑Fi/نقطة الاتصال؛ تُمرَّر حركة الأجهزة الأخرى عبر هذا المضيف (يمكن تكديس VPN المضيف). يدعم الاتصال المتزامن لعدة أجهزة.</p>
     <h2>شرح معلمات الإعداد</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="شرح معلمات الإعداد"></div>
     <p>المضيف: 10.0.2.15:1080<br>عنوان IP للمضيف: 10.0.2.15<br>منفذ التطبيق: 1080<br>استبدل قيم IP والمنفذ في المثال بالقيم الفعلية لجهازك.<br>إذا أظهر Listener Port أنه غير متاح أو قيد الاستخدام، فاختر أي منفذ بين 1024–49151؛ لا يوجد فرق في الوظيفة.</p>
-    <h2>خطوات المضيف</h2>
+    <h2>خطوات المضيف (مع VPN)</h2>
     <ol>
       <li>افتح التطبيق، واختر وضع الوكيل (يُنصح بـ “اكتشاف تلقائي”) والمنفذ (الافتراضي 1080). الإصدار الحالي يوجّه كل الحركة عبر الوكيل.</li>
       <li>تأكد أن المضيف والعميل على نفس شبكة LAN وأن المنفذ غير مشغول.</li>
       <li>اضغط “بدء البوابة” وابقَ على الخدمة في الواجهة.</li>
     </ol>
-    <h2>إعداد العميل (IP + منفذ يدوي)</h2>
+    <h2>إعداد الأجهزة الأخرى (بدون VPN) (IP + منفذ يدوي)</h2>
     <ul>
       <li><strong>Android</strong>: تفاصيل Wi‑Fi → الوكيل = يدوي؛ الخادم = IP لهذا الجهاز، المنفذ = منفذ التطبيق. أو املأ HTTP/HTTPS في التطبيقات.
         <div class="guide-image"><img src="img/guide_android.png" alt="إعداد وكيل Android"></div>
@@ -221,17 +221,17 @@
 
   <div class="lang" data-lang="de">
     <h2>Zweck</h2>
-    <p>Nutze dieses Gerät im selben Wi‑Fi/Hotspot als LAN‑Proxy-Gateway; andere Geräte leiten den Verkehr über diesen Host (VPN des Hosts kann gestapelt werden).</p>
+    <p>Nutze dieses Gerät im selben Wi‑Fi/Hotspot als LAN‑Proxy-Gateway; andere Geräte leiten den Verkehr über diesen Host (VPN des Hosts kann gestapelt werden). Unterstützt gleichzeitige Verbindungen mehrerer Geräte.</p>
     <h2>Konfigurationsparameter</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Konfigurationsparameter"></div>
     <p>Host: 10.0.2.15:1080<br>Host-IP: 10.0.2.15<br>App-Port: 1080<br>Ersetze die Beispiel‑IP und den Port durch die tatsächlichen Werte deines Geräts.<br>Wenn der Listener-Port nicht verfügbar oder belegt ist, wähle einen beliebigen Port zwischen 1024–49151; die Funktion bleibt gleich.</p>
-    <h2>Schritte auf dem Host</h2>
+    <h2>Schritte auf dem Host (mit VPN)</h2>
     <ol>
       <li>App öffnen, Proxy-Modus wählen (empfohlen „Automatisch erkennen“) und Port wählen (Standard 1080). Aktuelle Version routet den gesamten Verkehr über den Proxy.</li>
       <li>Sicherstellen, dass Host und Clients im selben LAN sind und der Port frei ist.</li>
       <li>„Gateway starten“ tippen und den Vordergrunddienst aktiv lassen.</li>
     </ol>
-    <h2>Client-Konfiguration (manuelle IP + Port)</h2>
+    <h2>Konfiguration anderer Geräte (ohne VPN) (manuelle IP + Port)</h2>
     <ul>
       <li><strong>Android</strong>: WLAN-Details → Proxy = Manuell; Host = IP dieses Geräts, Port = App-Port. Oder HTTP/HTTPS in Apps eintragen.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android-Proxy-Einrichtung"></div>
@@ -254,17 +254,17 @@
 
   <div class="lang" data-lang="es">
     <h2>Propósito</h2>
-    <p>Usa este dispositivo como puerta de enlace proxy en la misma red Wi‑Fi/punto de acceso; los demás equipos envían su tráfico a través de este host (puede combinarse con la VPN del host).</p>
+    <p>Usa este dispositivo como puerta de enlace proxy en la misma red Wi‑Fi/punto de acceso; los demás equipos envían su tráfico a través de este host (puede combinarse con la VPN del host). Admite conexiones simultáneas de varios dispositivos.</p>
     <h2>Parámetros de configuración</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Parámetros de configuración"></div>
     <p>Host: 10.0.2.15:1080<br>IP del host: 10.0.2.15<br>Puerto de la app: 1080<br>Sustituye la IP y el puerto de ejemplo por los valores reales de tu dispositivo.<br>Si el Listener Port no está disponible o está en uso, elige cualquier puerto entre 1024–49151; la funcionalidad es la misma.</p>
-    <h2>Pasos en el host</h2>
+    <h2>Pasos en el host (con VPN)</h2>
     <ol>
       <li>Abre la app, elige el modo de proxy (se recomienda “Detección automática”) y el puerto (predeterminado 1080). La versión actual dirige todo el tráfico por el proxy.</li>
       <li>Asegúrate de que el host y los clientes estén en la misma LAN y que el puerto esté libre.</li>
       <li>Toca “Iniciar gateway” y mantén vivo el servicio en primer plano.</li>
     </ol>
-    <h2>Configuración del cliente (IP + puerto manual)</h2>
+    <h2>Configuración de otros dispositivos (sin VPN) (IP + puerto manual)</h2>
     <ul>
       <li><strong>Android</strong>: Detalles de Wi‑Fi → Proxy = Manual; host = IP de este dispositivo, puerto = puerto de la app. O configura HTTP/HTTPS en las apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Configuración de proxy en Android"></div>
@@ -287,17 +287,17 @@
 
   <div class="lang" data-lang="fa">
     <h2>هدف</h2>
-    <p>از این دستگاه در همان شبکه Wi‑Fi/هات‌اسپات به‌عنوان درگاه پروکسی LAN استفاده کنید؛ ترافیک سایر دستگاه‌ها از این میزبان عبور می‌کند (می‌توان آن را با VPN میزبان ترکیب کرد).</p>
+    <p>از این دستگاه در همان شبکه Wi‑Fi/هات‌اسپات به‌عنوان درگاه پروکسی LAN استفاده کنید؛ ترافیک سایر دستگاه‌ها از این میزبان عبور می‌کند (می‌توان آن را با VPN میزبان ترکیب کرد). از اتصال همزمان چند دستگاه پشتیبانی می‌کند.</p>
     <h2>پارامترهای پیکربندی</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="پارامترهای پیکربندی"></div>
     <p>میزبان: 10.0.2.15:1080<br>IP میزبان: 10.0.2.15<br>پورت برنامه: 1080<br>آی‌پی و پورت نمونه را با مقادیر واقعی دستگاه خود جایگزین کنید.<br>اگر Listener Port در دسترس نبود یا اشغال بود، هر پورتی بین 1024–49151 را انتخاب کنید؛ عملکرد تفاوتی ندارد.</p>
-    <h2>مراحل میزبان</h2>
+    <h2>مراحل میزبان (با VPN)</h2>
     <ol>
       <li>اپ را باز کنید، حالت پروکسی (پیشنهاد «تشخیص خودکار») و پورت (پیش‌فرض 1080) را برگزینید. نسخه فعلی تمام ترافیک را از طریق پروکسی هدایت می‌کند.</li>
       <li>مطمئن شوید میزبان و کلاینت در یک LAN هستند و پورت اشغال نشده است.</li>
       <li>روی «شروع درگاه» بزنید و سرویس پیش‌زمینه را فعال نگه دارید.</li>
     </ol>
-    <h2>پیکربندی کلاینت (IP + پورت دستی)</h2>
+    <h2>پیکربندی سایر دستگاه‌ها (بدون VPN) (IP + پورت دستی)</h2>
     <ul>
       <li><strong>Android</strong>: جزئیات Wi‑Fi → پروکسی = دستی؛ سرور = IP این دستگاه، پورت = پورت اپ. یا در اپ‌های پشتیبان، HTTP/HTTPS را پر کنید.
         <div class="guide-image"><img src="img/guide_android.png" alt="تنظیم پراکسی Android"></div>
@@ -320,17 +320,17 @@
 
   <div class="lang" data-lang="fr">
     <h2>Objet</h2>
-    <p>Utilisez cet appareil comme passerelle proxy LAN sur le même Wi‑Fi/point d’accès ; les autres appareils font transiter leur trafic via cet hôte (VPN du serveur hôte possible).</p>
+    <p>Utilisez cet appareil comme passerelle proxy LAN sur le même Wi‑Fi/point d’accès ; les autres appareils font transiter leur trafic via cet hôte (VPN du serveur hôte possible). Prend en charge les connexions simultanées de plusieurs appareils.</p>
     <h2>Paramètres de configuration</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Paramètres de configuration"></div>
     <p>Hôte : 10.0.2.15:1080<br>IP de l’hôte : 10.0.2.15<br>Port de l’app : 1080<br>Remplacez l’IP et le port d’exemple par les valeurs réelles de votre appareil.<br>Si le Listener Port est indisponible ou occupé, choisissez n’importe quel port entre 1024–49151 ; la fonctionnalité est identique.</p>
-    <h2>Étapes côté hôte</h2>
+    <h2>Étapes côté hôte (avec VPN)</h2>
     <ol>
       <li>Ouvrez l’app, choisissez le mode proxy (recommandé « Détection auto ») et le port (1080 par défaut). La version actuelle force tout le trafic via ce proxy.</li>
       <li>Vérifiez que l’hôte et les clients sont sur le même LAN et que le port est libre.</li>
       <li>Appuyez sur « Démarrer la passerelle » et maintenez le service au premier plan.</li>
     </ol>
-    <h2>Configuration client (IP + port manuels)</h2>
+    <h2>Configuration des autres appareils (sans VPN) (IP + port manuels)</h2>
     <ul>
       <li><strong>Android</strong> : Détails Wi‑Fi → Proxy = Manuel ; hôte = IP de cet appareil, port = port de l’app. Ou renseignez HTTP/HTTPS dans les apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Configuration proxy Android"></div>
@@ -353,17 +353,17 @@
 
   <div class="lang" data-lang="hi">
     <h2>उद्देश्य</h2>
-    <p>उसी Wi‑Fi/हॉटस्पॉट में इस डिवाइस को LAN प्रॉक्सी गेटवे बनाएं; अन्य डिवाइस का ट्रैफ़िक इस होस्ट से होकर गुजरता है (होस्ट VPN को जोड़ सकते हैं)।</p>
+    <p>उसी Wi‑Fi/हॉटस्पॉट में इस डिवाइस को LAN प्रॉक्सी गेटवे बनाएं; अन्य डिवाइस का ट्रैफ़िक इस होस्ट से होकर गुजरता है (होस्ट VPN को जोड़ सकते हैं)। कई डिवाइस एक साथ कनेक्ट हो सकते हैं।</p>
     <h2>कॉन्फ़िगरेशन पैरामीटर</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="कॉन्फ़िगरेशन पैरामीटर"></div>
     <p>होस्ट: 10.0.2.15:1080<br>होस्ट IP: 10.0.2.15<br>ऐप पोर्ट: 1080<br>उदाहरण IP और पोर्ट को अपने डिवाइस के वास्तविक मानों से बदलें।<br>यदि Listener Port उपलब्ध नहीं है या उपयोग में है, तो 1024–49151 के बीच कोई भी पोर्ट चुनें; कार्यक्षमता समान रहती है।</p>
-    <h2>होस्ट के चरण</h2>
+    <h2>होस्ट के चरण (VPN के साथ)</h2>
     <ol>
       <li>ऐप खोलें, प्रॉक्सी मोड चुनें (अनुशंसित “ऑटो-डिटेक्ट”) और पोर्ट चुनें (डिफ़ॉल्ट 1080)। वर्तमान संस्करण पूरा ट्रैफ़िक प्रॉक्सी से भेजता है।</li>
       <li>सुनिश्चित करें कि होस्ट और क्लाइंट एक ही LAN पर हैं और पोर्ट खाली है।</li>
       <li>“गेटवे शुरू करें” टैप करें और फोरग्राउंड सेवा को चालू रखें।</li>
     </ol>
-    <h2>क्लाइंट सेटअप (मैन्युअल IP + पोर्ट)</h2>
+    <h2>अन्य डिवाइस सेटअप (बिना VPN) (मैन्युअल IP + पोर्ट)</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi विवरण → Proxy = Manual; होस्ट = इस डिवाइस का IP, पोर्ट = ऐप पोर्ट। या ऐप में HTTP/HTTPS भरें।
         <div class="guide-image"><img src="img/guide_android.png" alt="Android प्रॉक्सी सेटअप"></div>
@@ -386,17 +386,17 @@
 
   <div class="lang" data-lang="id">
     <h2>Tujuan</h2>
-    <p>Gunakan perangkat ini sebagai gateway proxy LAN pada Wi‑Fi/hotspot yang sama; perangkat lain meneruskan trafik lewat host ini (bisa ditumpuk dengan VPN host).</p>
+    <p>Gunakan perangkat ini sebagai gateway proxy LAN pada Wi‑Fi/hotspot yang sama; perangkat lain meneruskan trafik lewat host ini (bisa ditumpuk dengan VPN host). Mendukung koneksi simultan banyak perangkat.</p>
     <h2>Parameter konfigurasi</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Parameter konfigurasi"></div>
     <p>Host: 10.0.2.15:1080<br>IP host: 10.0.2.15<br>Port aplikasi: 1080<br>Ganti IP dan port contoh dengan nilai sebenarnya di perangkat Anda.<br>Jika Listener Port tidak tersedia atau sedang dipakai, pilih port apa pun antara 1024–49151; fungsinya sama.</p>
-    <h2>Langkah di host</h2>
+    <h2>Langkah di host (dengan VPN)</h2>
     <ol>
       <li>Buka app, pilih mode proxy (disarankan “Deteksi otomatis”) dan port (default 1080). Versi sekarang memaksa seluruh trafik lewat proxy.</li>
       <li>Pastikan host dan klien berada pada LAN yang sama dan port tidak dipakai.</li>
       <li>Ketuk “Mulai Gateway” dan biarkan layanan foreground tetap aktif.</li>
     </ol>
-    <h2>Pengaturan klien (IP + port manual)</h2>
+    <h2>Pengaturan perangkat lain (tanpa VPN) (IP + port manual)</h2>
     <ul>
       <li><strong>Android</strong>: Detail Wi‑Fi → Proxy = Manual; host = IP perangkat ini, port = port app. Atau isi HTTP/HTTPS di aplikasi.
         <div class="guide-image"><img src="img/guide_android.png" alt="Pengaturan proxy Android"></div>
@@ -419,17 +419,17 @@
 
   <div class="lang" data-lang="ja">
     <h2>目的</h2>
-    <p>同一の Wi‑Fi/ホットスポット内で本機を LAN プロキシ・ゲートウェイとして使用し、他のデバイスの通信を本機経由で転送します（ホストの VPN と併用可）。</p>
+    <p>同一の Wi‑Fi/ホットスポット内で本機を LAN プロキシ・ゲートウェイとして使用し、他のデバイスの通信を本機経由で転送します（ホストの VPN と併用可）。複数デバイスの同時接続に対応します。</p>
     <h2>設定パラメータ</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="設定パラメータ"></div>
     <p>ホスト: 10.0.2.15:1080<br>ホストIP: 10.0.2.15<br>アプリのポート: 1080<br>例のIPとポートをお使いの端末の実際の値に置き換えてください。<br>Listener Port が利用不可/使用中と表示された場合は、1024〜49151 の任意のポートを選んでください。機能は同じです。</p>
-    <h2>ホストの手順</h2>
+    <h2>ホストの手順（VPNあり）</h2>
     <ol>
       <li>アプリを開き、プロキシモード（推奨「自動識別」）とポート（デフォルト 1080）を選択します。現行バージョンはすべてのトラフィックをプロキシ経由にします。</li>
       <li>ホストとクライアントが同じ LAN 上にあり、ポートが空いていることを確認します。</li>
       <li>「ゲートウェイ開始」をタップし、フォアグラウンドサービスを維持します。</li>
     </ol>
-    <h2>クライアント設定（手動 IP + ポート）</h2>
+    <h2>他のデバイス設定（VPNなし）（手動 IP + ポート）</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi 詳細 → プロキシ = 手動；ホスト = 本機の IP、ポート = アプリのポート。あるいはアプリの HTTP/HTTPS に設定。
         <div class="guide-image"><img src="img/guide_android.png" alt="Android プロキシ設定"></div>
@@ -452,17 +452,17 @@
 
   <div class="lang" data-lang="ko">
     <h2>목적</h2>
-    <p>동일한 Wi‑Fi/핫스팟에서 이 기기를 LAN 프록시 게이트웨이로 사용하여 다른 장치의 트래픽을 이 호스트로 전달합니다(호스트 VPN과 함께 사용 가능).</p>
+    <p>동일한 Wi‑Fi/핫스팟에서 이 기기를 LAN 프록시 게이트웨이로 사용하여 다른 장치의 트래픽을 이 호스트로 전달합니다(호스트 VPN과 함께 사용 가능). 여러 장치의 동시 연결을 지원합니다.</p>
     <h2>구성 파라미터</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="구성 파라미터"></div>
     <p>호스트: 10.0.2.15:1080<br>호스트 IP: 10.0.2.15<br>앱 포트: 1080<br>예시 IP와 포트를 기기 실제 값으로 변경하세요.<br>Listener Port가 사용 불가 또는 사용 중으로 표시되면 1024–49151 사이의 아무 포트나 선택해도 됩니다. 기능 차이는 없습니다.</p>
-    <h2>호스트 단계</h2>
+    <h2>호스트 단계(VPN 사용)</h2>
     <ol>
       <li>앱을 열어 프록시 모드(“자동 감지” 권장)와 포트(기본 1080)를 선택합니다. 현재 버전은 전체 트래픽을 프록시로 보냅니다.</li>
       <li>호스트와 클라이언트가 같은 LAN에 있고 포트가 비어 있는지 확인합니다.</li>
       <li>“게이트웨이 시작”을 눌러 포그라운드 서비스를 유지합니다.</li>
     </ol>
-    <h2>클라이언트 설정(수동 IP + 포트)</h2>
+    <h2>다른 장치 설정(VPN 없음) (수동 IP + 포트)</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi 세부정보 → 프록시 = 수동; 호스트 = 이 기기 IP, 포트 = 앱 포트. 또는 앱의 HTTP/HTTPS 항목에 입력.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android 프록시 설정"></div>
@@ -485,17 +485,17 @@
 
   <div class="lang" data-lang="ms">
     <h2>Tujuan</h2>
-    <p>Gunakan peranti ini sebagai gerbang proksi LAN pada Wi‑Fi/hotspot yang sama; trafik peranti lain dihantar melalui hos ini (boleh digabung dengan VPN hos).</p>
+    <p>Gunakan peranti ini sebagai gerbang proksi LAN pada Wi‑Fi/hotspot yang sama; trafik peranti lain dihantar melalui hos ini (boleh digabung dengan VPN hos). Menyokong sambungan serentak berbilang peranti.</p>
     <h2>Parameter konfigurasi</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Parameter konfigurasi"></div>
     <p>Hos: 10.0.2.15:1080<br>IP hos: 10.0.2.15<br>Port aplikasi: 1080<br>Gantikan IP dan port contoh dengan nilai sebenar peranti anda.<br>Jika Listener Port tidak tersedia atau sedang digunakan, pilih mana-mana port antara 1024–49151; fungsinya sama.</p>
-    <h2>Langkah hos</h2>
+    <h2>Langkah hos (dengan VPN)</h2>
     <ol>
       <li>Buka app, pilih mod proksi (disyorkan “Auto-detect”) dan port (lalai 1080). Versi semasa memaksa semua trafik melalui proksi.</li>
       <li>Pastikan hos dan klien berada dalam LAN yang sama dan port tidak digunakan.</li>
       <li>Ketik “Mulakan Gateway” dan kekalkan perkhidmatan latar depan.</li>
     </ol>
-    <h2>Konfigurasi klien (IP + port manual)</h2>
+    <h2>Konfigurasi peranti lain (tanpa VPN) (IP + port manual)</h2>
     <ul>
       <li><strong>Android</strong>: Butiran Wi‑Fi → Proksi = Manual; hos = IP peranti ini, port = port app. Atau isikan HTTP/HTTPS dalam app.
         <div class="guide-image"><img src="img/guide_android.png" alt="Tetapan proksi Android"></div>
@@ -518,17 +518,17 @@
 
   <div class="lang" data-lang="pt">
     <h2>Objetivo</h2>
-    <p>Use este dispositivo na mesma rede Wi‑Fi/ponto de acesso como gateway proxy LAN; outros dispositivos enviam o tráfego por este host (pode ser combinado com a VPN do host).</p>
+    <p>Use este dispositivo na mesma rede Wi‑Fi/ponto de acesso como gateway proxy LAN; outros dispositivos enviam o tráfego por este host (pode ser combinado com a VPN do host). Suporta conexões simultâneas de vários dispositivos.</p>
     <h2>Parâmetros de configuração</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Parâmetros de configuração"></div>
     <p>Host: 10.0.2.15:1080<br>IP do host: 10.0.2.15<br>Porta do app: 1080<br>Substitua o IP e a porta de exemplo pelos valores reais do seu dispositivo.<br>Se o Listener Port estiver indisponível ou em uso, escolha qualquer porta entre 1024–49151; a funcionalidade é a mesma.</p>
-    <h2>Passos no host</h2>
+    <h2>Passos no host (com VPN)</h2>
     <ol>
       <li>Abra o app, escolha o modo de proxy (recomendado “Detecção automática”) e a porta (padrão 1080). A versão atual força todo o tráfego pelo proxy.</li>
       <li>Certifique-se de que host e clientes estejam na mesma LAN e que a porta não esteja ocupada.</li>
       <li>Toque em “Iniciar gateway” e mantenha o serviço em primeiro plano ativo.</li>
     </ol>
-    <h2>Configuração do cliente (IP + porta manual)</h2>
+    <h2>Configuração de outros dispositivos (sem VPN) (IP + porta manual)</h2>
     <ul>
       <li><strong>Android</strong>: Detalhes do Wi‑Fi → Proxy = Manual; host = IP deste dispositivo, porta = porta do app. Ou preencha HTTP/HTTPS nos apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Configuração de proxy no Android"></div>
@@ -551,17 +551,17 @@
 
   <div class="lang" data-lang="ru">
     <h2>Назначение</h2>
-    <p>Используйте это устройство в той же сети Wi‑Fi/точке доступа как шлюз LAN‑прокси; трафик других устройств проходит через этот хост (можно комбинировать с VPN хоста).</p>
+    <p>Используйте это устройство в той же сети Wi‑Fi/точке доступа как шлюз LAN‑прокси; трафик других устройств проходит через этот хост (можно комбинировать с VPN хоста). Поддерживаются одновременные подключения нескольких устройств.</p>
     <h2>Параметры конфигурации</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Параметры конфигурации"></div>
     <p>Хост: 10.0.2.15:1080<br>IP хоста: 10.0.2.15<br>Порт приложения: 1080<br>Замените пример IP и порт на реальные значения вашего устройства.<br>Если Listener Port недоступен или занят, выберите любой порт в диапазоне 1024–49151 — функциональность не меняется.</p>
-    <h2>Шаги на хосте</h2>
+    <h2>Шаги на хосте (с VPN)</h2>
     <ol>
       <li>Откройте приложение, выберите режим прокси (рекомендуется «Автоопределение») и порт (по умолчанию 1080). Текущая версия направляет весь трафик через прокси.</li>
       <li>Убедитесь, что хост и клиенты в одной LAN и что порт не занят.</li>
       <li>Нажмите «Запустить шлюз» и держите foreground‑сервис активным.</li>
     </ol>
-    <h2>Настройка клиента (ручные IP + порт)</h2>
+    <h2>Настройка других устройств (без VPN) (ручные IP + порт)</h2>
     <ul>
       <li><strong>Android</strong>: сведения о Wi‑Fi → Прокси = Вручную; хост = IP этого устройства, порт = порт приложения. Или заполните HTTP/HTTPS в приложениях.
         <div class="guide-image"><img src="img/guide_android.png" alt="Настройка прокси на Android"></div>
@@ -584,17 +584,17 @@
 
   <div class="lang" data-lang="sw">
     <h2>Kusudi</h2>
-    <p>Tumia kifaa hiki kama lango la proksi la LAN katika Wi‑Fi/hotspot ile ile; trafiki ya vifaa vingine hupitia kwa host huyu (inaweza kuunganishwa na VPN ya host).</p>
+    <p>Tumia kifaa hiki kama lango la proksi la LAN katika Wi‑Fi/hotspot ile ile; trafiki ya vifaa vingine hupitia kwa host huyu (inaweza kuunganishwa na VPN ya host). Inasaidia kuunganisha vifaa vingi kwa wakati mmoja.</p>
     <h2>Vigezo vya usanidi</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Vigezo vya usanidi"></div>
     <p>Hosti: 10.0.2.15:1080<br>IP ya hosti: 10.0.2.15<br>Bandari ya programu: 1080<br>Badilisha IP na bandari ya mfano na thamani halisi za kifaa chako.<br>Ikiwa Listener Port haipatikani au inatumika, chagua bandari yoyote kati ya 1024–49151; utendaji ni sawa.</p>
-    <h2>Hatua za host</h2>
+    <h2>Hatua za host (na VPN)</h2>
     <ol>
       <li>Fungua app, chagua hali ya proksi (inapendekezwa “Utambuzi otomatiki”) na bandari (chaguo-msingi 1080). Toleo la sasa hupitisha trafiki yote kupitia proksi.</li>
       <li>Hakikisheni host na wateja wako LAN moja na bandari haijatumika.</li>
       <li>Bofya “Anzisha Gateway” na uache huduma ya foreground iendelee.</li>
     </ol>
-    <h2>Usanidi wa mteja (IP + bandari ya mkono)</h2>
+    <h2>Usanidi wa vifaa vingine (bila VPN) (IP + bandari ya mkono)</h2>
     <ul>
       <li><strong>Android</strong>: Maelezo ya Wi‑Fi → Proksi = Manual; host = IP ya kifaa hiki, bandari = bandari ya app. Au jaza HTTP/HTTPS ndani ya app.
         <div class="guide-image"><img src="img/guide_android.png" alt="Mipangilio ya proksi Android"></div>
@@ -617,17 +617,17 @@
 
   <div class="lang" data-lang="th">
     <h2>วัตถุประสงค์</h2>
-    <p>ใช้เครื่องนี้เป็นเกตเวย์พร็อกซี LAN ในเครือข่าย Wi‑Fi/ฮอตสปอตเดียวกัน เพื่อให้อุปกรณ์อื่นส่งทราฟฟิกผ่านโฮสต์นี้ (ใช้ร่วมกับ VPN ของโฮสต์ได้)</p>
+    <p>ใช้เครื่องนี้เป็นเกตเวย์พร็อกซี LAN ในเครือข่าย Wi‑Fi/ฮอตสปอตเดียวกัน เพื่อให้อุปกรณ์อื่นส่งทราฟฟิกผ่านโฮสต์นี้ (ใช้ร่วมกับ VPN ของโฮสต์ได้) รองรับการเชื่อมต่อพร้อมกันหลายอุปกรณ์.</p>
     <h2>พารามิเตอร์การตั้งค่า</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="พารามิเตอร์การตั้งค่า"></div>
     <p>โฮสต์: 10.0.2.15:1080<br>IP โฮสต์: 10.0.2.15<br>พอร์ตแอป: 1080<br>โปรดแทนที่ IP และพอร์ตตัวอย่างด้วยค่าจริงของอุปกรณ์คุณ<br>หาก Listener Port ไม่พร้อมใช้งานหรือถูกใช้งานอยู่ ให้เลือกพอร์ตใดก็ได้ระหว่าง 1024–49151; การทำงานเหมือนเดิม.</p>
-    <h2>ขั้นตอนฝั่งโฮสต์</h2>
+    <h2>ขั้นตอนฝั่งโฮสต์ (มี VPN)</h2>
     <ol>
       <li>เปิดแอป เลือกโหมดพร็อกซี (แนะนำ “ตรวจหาอัตโนมัติ”) และพอร์ต (ค่าเริ่มต้น 1080) เวอร์ชันปัจจุบันบังคับให้ทราฟฟิกทั้งหมดผ่านพร็อกซี</li>
       <li>ยืนยันว่าโฮสต์และไคลเอนต์อยู่ใน LAN เดียวกัน และพอร์ตไม่ถูกใช้งาน</li>
       <li>แตะ “เริ่มเกตเวย์” และให้บริการ foreground ทำงานต่อ</li>
     </ol>
-    <h2>การตั้งค่าไคลเอนต์ (กรอก IP + พอร์ตเอง)</h2>
+    <h2>การตั้งค่าอุปกรณ์อื่น (ไม่มี VPN) (กรอก IP + พอร์ตเอง)</h2>
     <ul>
       <li><strong>Android</strong>: รายละเอียด Wi‑Fi → Proxy = Manual; โฮสต์ = IP ของเครื่องนี้, พอร์ต = พอร์ตในแอป หรือกรอก HTTP/HTTPS ในแอป
         <div class="guide-image"><img src="img/guide_android.png" alt="การตั้งค่าพร็อกซีบน Android"></div>
@@ -650,17 +650,17 @@
 
   <div class="lang" data-lang="tl">
     <h2>Layunin</h2>
-    <p>Gamitin ang aparatong ito bilang LAN proxy gateway sa parehong Wi‑Fi/hotspot; dumaraan ang trapiko ng ibang device sa host na ito (puwedeng isabay sa VPN ng host).</p>
+    <p>Gamitin ang aparatong ito bilang LAN proxy gateway sa parehong Wi‑Fi/hotspot; dumaraan ang trapiko ng ibang device sa host na ito (puwedeng isabay sa VPN ng host). Sinusuportahan ang sabayang koneksyon ng maraming device.</p>
     <h2>Mga parameter ng pagsasaayos</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Mga parameter ng pagsasaayos"></div>
     <p>Host: 10.0.2.15:1080<br>IP ng host: 10.0.2.15<br>Port ng app: 1080<br>Palitan ang halimbawang IP at port ng aktuwal na halaga ng iyong device.<br>Kung hindi available o ginagamit ang Listener Port, pumili ng alinmang port mula 1024–49151; pareho ang functionality.</p>
-    <h2>Mga hakbang ng host</h2>
+    <h2>Mga hakbang ng host (may VPN)</h2>
     <ol>
       <li>Buksan ang app, piliin ang mode ng proxy (inirerekomenda ang “Auto-detect”) at ang port (default 1080). Sa kasalukuyang bersyon, lahat ng trapiko ay dumadaan sa proxy.</li>
       <li>Tiyaking nasa parehong LAN ang host at mga kliyente at hindi ginagamit ang port.</li>
       <li>Pindutin ang “Start Gateway” at panatilihing buhay ang foreground service.</li>
     </ol>
-    <h2>Setup ng kliyente (manu-manong IP + port)</h2>
+    <h2>Setup ng ibang device (walang VPN) (manu-manong IP + port)</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = IP ng aparatong ito, port = port ng app. O punan ang HTTP/HTTPS sa mga app.
         <div class="guide-image"><img src="img/guide_android.png" alt="Pag-configure ng proxy sa Android"></div>
@@ -683,17 +683,17 @@
 
   <div class="lang" data-lang="tr">
     <h2>Amaç</h2>
-    <p>Aynı Wi‑Fi/erişim noktasında bu cihazı LAN proxy geçidi olarak kullanın; diğer cihazların trafiği bu host üzerinden gider (host VPN’iyle birlikte kullanılabilir).</p>
+    <p>Aynı Wi‑Fi/erişim noktasında bu cihazı LAN proxy geçidi olarak kullanın; diğer cihazların trafiği bu host üzerinden gider (host VPN’iyle birlikte kullanılabilir). Birden fazla cihazın aynı anda bağlanmasını destekler.</p>
     <h2>Yapılandırma parametreleri</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Yapılandırma parametreleri"></div>
     <p>Ana makine: 10.0.2.15:1080<br>Ana makine IP: 10.0.2.15<br>Uygulama portu: 1080<br>Örnek IP ve portu cihazınızın gerçek değerleriyle değiştirin.<br>Listener Port kullanılamıyor veya meşgulse 1024–49151 arasından herhangi bir port seçin; işlev aynı kalır.</p>
-    <h2>Host adımları</h2>
+    <h2>Host adımları (VPN ile)</h2>
     <ol>
       <li>Uygulamayı açın, proxy modunu seçin (“Otomatik algıla” önerilir) ve portu belirleyin (varsayılan 1080). Mevcut sürüm tüm trafiği proxy üzerinden yönlendirir.</li>
       <li>Host ve istemcilerin aynı LAN’de olduğundan ve portun boş olduğundan emin olun.</li>
       <li>“Gateway’i başlat”a dokunun ve ön plan servisini açık tutun.</li>
     </ol>
-    <h2>İstemci kurulumu (manuel IP + port)</h2>
+    <h2>Diğer cihazların kurulumu (VPN yok) (manuel IP + port)</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi ayrıntıları → Proxy = Manuel; host = bu cihazın IP’si, port = uygulama portu. Ya da uygulamalarda HTTP/HTTPS alanlarını doldurun.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android proxy kurulumu"></div>
@@ -716,17 +716,17 @@
 
   <div class="lang" data-lang="ur">
     <h2>مقصد</h2>
-    <p>اسی Wi‑Fi/ہاٹ اسپات پر اس ڈیوائس کو LAN پراکسی گیٹ وے کے طور پر استعمال کریں؛ دیگر ڈیوائسز کی ٹریفک اس ہوسٹ سے گزرے گی (ہوسٹ VPN کے ساتھ مل کر استعمال کیا جا سکتا ہے)۔</p>
+    <p>اسی Wi‑Fi/ہاٹ اسپات پر اس ڈیوائس کو LAN پراکسی گیٹ وے کے طور پر استعمال کریں؛ دیگر ڈیوائسز کی ٹریفک اس ہوسٹ سے گزرے گی (ہوسٹ VPN کے ساتھ مل کر استعمال کیا جا سکتا ہے)۔ ایک ہی وقت میں متعدد ڈیوائسز کے کنکشن کی سپورٹ ہے۔</p>
     <h2>ترتیباتی پیرامیٹرز</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="ترتیباتی پیرامیٹرز"></div>
     <p>ہوسٹ: 10.0.2.15:1080<br>ہوسٹ IP: 10.0.2.15<br>ایپ پورٹ: 1080<br>مثالی IP اور پورٹ کو اپنے ڈیوائس کی اصل قدروں سے بدلیں۔<br>اگر Listener Port دستیاب نہ ہو یا مصروف ہو تو 1024–49151 کے درمیان کوئی بھی پورٹ منتخب کریں؛ فنکشن میں کوئی فرق نہیں۔</p>
-    <h2>ہوسٹ کے مراحل</h2>
+    <h2>ہوسٹ کے مراحل (VPN کے ساتھ)</h2>
     <ol>
       <li>ایپ کھولیں، پراکسی موڈ منتخب کریں (تجویز “آٹو ڈٹیکٹ”) اور پورٹ منتخب کریں (ڈیفالٹ 1080)۔ موجودہ ورژن ساری ٹریفک پراکسی سے گزارتا ہے۔</li>
       <li>یقین کریں کہ ہوسٹ اور کلائنٹس ایک ہی LAN پر ہیں اور پورٹ خالی ہے۔</li>
       <li>“گیٹ وے شروع کریں” پر ٹیپ کریں اور فورگراؤنڈ سروس کو جاری رکھیں۔</li>
     </ol>
-    <h2>کلائنٹ سیٹ اپ (ہاتھ سے IP + پورٹ)</h2>
+    <h2>دیگر ڈیوائسز سیٹ اپ (VPN کے بغیر) (ہاتھ سے IP + پورٹ)</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi تفصیل → پراکسی = Manual؛ ہوسٹ = اس ڈیوائس کا IP، پورٹ = ایپ کا پورٹ۔ یا ایپس میں HTTP/HTTPS درج کریں۔
         <div class="guide-image"><img src="img/guide_android.png" alt="Android پراکسی سیٹ اپ"></div>
@@ -749,17 +749,17 @@
 
   <div class="lang" data-lang="vi">
     <h2>Mục đích</h2>
-    <p>Dùng thiết bị này làm gateway proxy LAN trong cùng Wi‑Fi/điểm phát; lưu lượng của thiết bị khác sẽ đi qua máy chủ này (có thể dùng kèm VPN của máy chủ).</p>
+    <p>Dùng thiết bị này làm gateway proxy LAN trong cùng Wi‑Fi/điểm phát; lưu lượng của thiết bị khác sẽ đi qua máy chủ này (có thể dùng kèm VPN của máy chủ). Hỗ trợ kết nối đồng thời nhiều thiết bị.</p>
     <h2>Thông số cấu hình</h2>
     <div class="guide-image"><img src="img/introduce.png" alt="Thông số cấu hình"></div>
     <p>Máy chủ: 10.0.2.15:1080<br>IP máy chủ: 10.0.2.15<br>Cổng ứng dụng: 1080<br>Hãy thay IP và cổng ví dụ bằng giá trị thực tế của thiết bị.<br>Nếu Listener Port không khả dụng hoặc đang bị chiếm, hãy chọn bất kỳ cổng nào trong khoảng 1024–49151; chức năng không khác biệt.</p>
-    <h2>Các bước trên máy chủ</h2>
+    <h2>Các bước trên máy chủ (có VPN)</h2>
     <ol>
       <li>Mở ứng dụng, chọn chế độ proxy (khuyến nghị “Tự động nhận diện”) và cổng (mặc định 1080). Phiên bản hiện tại đưa toàn bộ lưu lượng qua proxy.</li>
       <li>Đảm bảo máy chủ và client cùng LAN và cổng không bị chiếm.</li>
       <li>Nhấn “Khởi động gateway” và giữ dịch vụ nền trước hoạt động.</li>
     </ol>
-    <h2>Cấu hình client (IP + cổng thủ công)</h2>
+    <h2>Cấu hình thiết bị khác (không VPN) (IP + cổng thủ công)</h2>
     <ul>
       <li><strong>Android</strong>: Chi tiết Wi‑Fi → Proxy = Manual; host = IP của thiết bị này, port = cổng ứng dụng. Hoặc điền HTTP/HTTPS trong ứng dụng.
         <div class="guide-image"><img src="img/guide_android.png" alt="Thiết lập proxy Android"></div>
