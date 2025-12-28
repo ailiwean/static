@@ -27,8 +27,8 @@
         const updated = template
           .replace(/^port:\s*1080$/m, `port: ${port}`)
           .replace(/^socks-port:\s*1080$/m, `socks-port: ${port}`)
-          .replace(/^(\s+)port:\s*1080$/m, `$1port: ${port}`)
-          .replace(/^(\s+)server:\s*.+$/m, `$1server: ${ip}`);
+          .replace(/^\s*port:\s*1080$/m, `  port: ${port}`)
+          .replace(/^\s*server:\s*.+$/m, `    server: ${ip}`);
         const blob = new Blob([updated], { type: "text/yaml" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
