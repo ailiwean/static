@@ -1,0 +1,28 @@
+port: 1080
+socks-port: 1080
+redir-port: 7892
+
+mode: rule
+allow-lan: true
+
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+
+proxies:
+  - name: "Local-NetworkShare"
+    type: socks5
+    server: 192.168.31.63
+    port: 1080
+    udp: true
+
+proxy-groups:
+  - name: "GLOBAL"
+    type: select
+    proxies:
+      - "Local-NetworkShare"
+
+rules:
+  - MATCH,GLOBAL
