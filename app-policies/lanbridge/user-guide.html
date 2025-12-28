@@ -20,6 +20,7 @@
     .yaml-form button:hover { background: #08733f; }
     .yaml-output { margin-top: 6px; color: #0a8a4b; font-weight: 600; word-break: break-all; }
     .yaml-output.error { color: #b00020; }
+    .notice-green { color: #0a8a4b; font-weight: 600; }
 
   @media (prefers-color-scheme: dark) {
     body { background: #0c1117; color: #e4e6eb; }
@@ -33,6 +34,7 @@
     .yaml-form button { background: #1f8f5a; }
     .yaml-form button:hover { background: #167347; }
     .yaml-output { color: #7ce694; }
+    .notice-green { color: #7ce694; }
   }
   </style>
   <script>
@@ -199,7 +201,7 @@
       <li>Tap “Start Gateway” and keep the foreground service alive.</li>
     </ol>
     <h2>Full‑tunnel VPN proxy</h2>
-    <p>Install Clash on another device and subscribe to the generated YAML so all traffic goes through the proxy service. Use this when you want full‑device VPN proxying. The IP and port must match the host (with VPN) service you started.</p>
+    <p>Install Clash on another device, download the generated YAML first, then import it in Clash via file import (direct link subscription is not supported currently). Use this when you want full‑device VPN proxying. The IP and port must match the host (with VPN) service you started.</p>
     <div class="yaml-generator" data-invalid-ip="Please enter a valid IP address." data-invalid-port="Please enter a valid port (1–65535)." data-output-prefix="Generated link: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Enter IP">
@@ -227,7 +229,8 @@
     </ul>
     <h2>Enhanced mode</h2>
     <p>Some VPNs block inbound connections from other LAN devices, so they cannot reach the proxy service on this host and VPN sharing fails. Enhanced mode adds a companion device and moves the proxy service to that device. This host (with VPN) connects out to the companion device, brings the data back, and then performs requests locally.</p>
-    <p>If other LAN devices still cannot access the proxy after correct settings, enable Enhanced mode. The companion device can also set up a proxy like other clients to use the VPN from the main device.</p>
+    <p>If other LAN devices still cannot access the proxy after correct settings, enable Enhanced mode. The companion device can also set up a proxy like other clients to use the VPN from the main device.
+    <p class="notice-green"><strong>Important:</strong> If the companion device also needs Clash full‑tunnel VPN, turn off VPN and connect to the main device first, then enable VPN after the connection succeeds. Device role detection currently depends on whether VPN is enabled.</p></p>
   </div>
 
   <div class="lang" data-lang="zh-CN">
@@ -243,7 +246,7 @@
       <li>点击“启动网关”，保持前台服务运行。</li>
     </ol>
     <h2>全量 VPN 代理</h2>
-    <p>在其他设备安装 Clash，订阅下方生成的 YAML，让该设备的全部流量走代理服务。适合需要全局代理的场景。输入的 IP 和端口必须与主机端（有 VPN）启动的服务保持一致。</p>
+    <p>在其他设备安装 Clash，先下载下方生成的 YAML 文件，再在 Clash 中通过“导入文件”添加配置（暂不支持通过链接直接订阅）。适合需要全局代理的场景。输入的 IP 和端口必须与主机端（有 VPN）启动的服务保持一致。</p>
     <div class="yaml-generator" data-invalid-ip="请输入正确的 IP 地址。" data-invalid-port="请输入正确的端口（1–65535）。" data-output-prefix="生成链接：">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="请输入 IP">
@@ -271,7 +274,9 @@
     </ul>
     <h2>增强模式</h2>
     <p>部分 VPN 会阻止局域网内其他设备入站到本机，导致无法访问代理服务，从而 VPN 分享失效。增强模式通过增加一个协同设备，将代理服务转移到协同设备上。本机（运行 VPN 的设备）出站访问协同设备，带回数据后再由本机发起请求。</p>
-    <p>若在正确配置后其他局域网设备仍无法访问代理，请开启增强模式。协同设备也可以像其他设备一样配置代理，使用主设备的 VPN。</p>
+    <p>若在正确配置后其他局域网设备仍无法访问代理，请开启增强模式。协同设备也可以像其他设备一样配置代理，使用主设备的 VPN。
+    <p class="notice-green"><strong>重要：</strong>协同设备如需使用 Clash 全量 VPN 代理，请先关闭 VPN 与主设备建立连接，连接成功后再开启 VPN。目前主设备与协同设备的判定依据是是否启用 VPN。</p></p>
+    <p class="notice-green"><strong>重要：</strong>协同设备如需使用 Clash 全量 VPN 代理，请先关闭 VPN 与主设备建立连接，连接成功后再开启 VPN。目前主设备与协同设备的判定依据是是否启用 VPN。</p>
   </div>
 
   <div class="lang" data-lang="ar">
@@ -287,7 +292,7 @@
       <li>اضغط “بدء البوابة” وابقَ على الخدمة في الواجهة.</li>
     </ol>
     <h2>وكيل VPN كامل النطاق</h2>
-    <p>ثبّت Clash على جهاز آخر واشترك في ملف YAML الذي يتم توليده كي تمر كل الحركة عبر خدمة الوكيل. استخدمه عندما تريد توجيه كل حركة الجهاز عبر الـVPN. يجب أن يطابق عنوان IP والمنفذ خدمة المضيف (مع VPN) التي قمت بتشغيلها.</p>
+    <p>ثبّت Clash على جهاز آخر، ثم نزّل ملف YAML المُنشأ أولًا، وبعدها استورده في Clash عبر استيراد ملف (الاشتراك المباشر عبر الرابط غير مدعوم حاليًا). استخدمه عندما تريد توجيه كل حركة الجهاز عبر الـVPN. يجب أن يطابق عنوان IP والمنفذ خدمة المضيف (مع VPN) التي قمت بتشغيلها.</p>
     <div class="yaml-generator" data-invalid-ip="يرجى إدخال عنوان IP صالح." data-invalid-port="يرجى إدخال منفذ صالح (1–65535)." data-output-prefix="الرابط المُنشأ: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="أدخل IP">
@@ -315,7 +320,8 @@
     </ul>
     <h2>الوضع المعزز</h2>
     <p>تمنع بعض شبكات VPN الاتصالات الواردة من أجهزة LAN الأخرى، لذلك لا يمكنها الوصول إلى خدمة الوكيل على هذا المضيف وتفشل مشاركة VPN. يضيف الوضع المعزز جهازًا مساعدًا وينقل خدمة الوكيل إليه. يتصل هذا المضيف (مع VPN) بالخارج بجهاز المساعدة، يعيد البيانات ثم ينفّذ الطلبات محليًا.</p>
-    <p>إذا لم تتمكن أجهزة LAN الأخرى من الوصول إلى الوكيل بعد الإعداد الصحيح، فعّل الوضع المعزز. يمكن للجهاز المساعد إعداد الوكيل مثل باقي الأجهزة لاستخدام VPN على الجهاز الرئيسي.</p>
+    <p>إذا لم تتمكن أجهزة LAN الأخرى من الوصول إلى الوكيل بعد الإعداد الصحيح، فعّل الوضع المعزز. يمكن للجهاز المساعد إعداد الوكيل مثل باقي الأجهزة لاستخدام VPN على الجهاز الرئيسي.
+    <p class="notice-green"><strong>مهم:</strong> إذا كان جهاز المساعدة يحتاج أيضًا إلى وكيل VPN كامل النطاق عبر Clash، فأوقف الـVPN أولًا واتصل بالجهاز الرئيسي، ثم فعّل الـVPN بعد نجاح الاتصال. يعتمد تحديد الدور حاليًا على ما إذا كان الـVPN مفعّلًا.</p></p>
   </div>
 
   <div class="lang" data-lang="de">
@@ -331,7 +337,7 @@
       <li>„Gateway starten“ tippen und den Vordergrunddienst aktiv lassen.</li>
     </ol>
     <h2>Volltunnel‑VPN‑Proxy</h2>
-    <p>Installiere Clash auf einem anderen Gerät und abonniere das erzeugte YAML, damit der gesamte Verkehr über den Proxy läuft. Für vollständiges Geräte‑Routing. IP und Port müssen mit dem gestarteten Host‑Dienst (mit VPN) übereinstimmen.</p>
+    <p>Installiere Clash auf einem anderen Gerät, lade die erzeugte YAML‑Datei zuerst herunter und importiere sie dann in Clash per Dateiimport (direktes Link‑Abonnement wird derzeit nicht unterstützt). Für vollständiges Geräte‑Routing. IP und Port müssen mit dem gestarteten Host‑Dienst (mit VPN) übereinstimmen.</p>
     <div class="yaml-generator" data-invalid-ip="Bitte eine gültige IP-Adresse eingeben." data-invalid-port="Bitte einen gültigen Port (1–65535) eingeben." data-output-prefix="Generierter Link: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP eingeben">
@@ -359,7 +365,8 @@
     </ul>
     <h2>Erweiterter Modus</h2>
     <p>Einige VPNs blockieren eingehende Verbindungen von anderen LAN‑Geräten, sodass diese den Proxy‑Dienst auf diesem Host nicht erreichen und das VPN‑Sharing fehlschlägt. Der erweiterte Modus fügt ein Begleitgerät hinzu und verlagert den Proxy‑Dienst dorthin. Dieser Host (mit VPN) verbindet sich ausgehend mit dem Begleitgerät, bringt die Daten zurück und führt die Anfragen lokal aus.</p>
-    <p>Wenn andere LAN‑Geräte trotz korrekter Einstellungen nicht auf den Proxy zugreifen können, aktiviere den erweiterten Modus. Das Begleitgerät kann wie andere Clients einen Proxy einrichten, um das VPN des Hauptgeräts zu nutzen.</p>
+    <p>Wenn andere LAN‑Geräte trotz korrekter Einstellungen nicht auf den Proxy zugreifen können, aktiviere den erweiterten Modus. Das Begleitgerät kann wie andere Clients einen Proxy einrichten, um das VPN des Hauptgeräts zu nutzen.
+    <p class="notice-green"><strong>Wichtig:</strong> Wenn das Begleitgerät ebenfalls den Clash‑Volltunnel‑VPN‑Proxy nutzen soll, schalte das VPN zuerst aus und stelle die Verbindung zum Hauptgerät her; aktiviere das VPN erst nach erfolgreicher Verbindung. Die Geräteerkennung basiert derzeit darauf, ob VPN aktiviert ist.</p></p>
   </div>
 
   <div class="lang" data-lang="es">
@@ -375,7 +382,7 @@
       <li>Toca “Iniciar gateway” y mantén vivo el servicio en primer plano.</li>
     </ol>
     <h2>Proxy VPN de túnel completo</h2>
-    <p>Instala Clash en otro dispositivo y suscríbete al YAML generado para que todo el tráfico pase por el proxy. Úsalo cuando necesites proxy a nivel de todo el dispositivo. La IP y el puerto deben coincidir con el servicio del host (con VPN) que iniciaste.</p>
+    <p>Instala Clash en otro dispositivo, descarga primero el YAML generado y luego impórtalo en Clash mediante importación de archivo (la suscripción directa por enlace no es compatible por ahora). Úsalo cuando necesites proxy a nivel de todo el dispositivo. La IP y el puerto deben coincidir con el servicio del host (con VPN) que iniciaste.</p>
     <div class="yaml-generator" data-invalid-ip="Introduce una IP válida." data-invalid-port="Introduce un puerto válido (1–65535)." data-output-prefix="Enlace generado: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Introduce IP">
@@ -403,7 +410,8 @@
     </ul>
     <h2>Modo mejorado</h2>
     <p>Algunas VPN bloquean las conexiones entrantes de otros dispositivos de la LAN, por lo que no pueden acceder al servicio de proxy en este host y el uso compartido de VPN falla. El modo mejorado añade un dispositivo colaborador y traslada allí el servicio de proxy. Este host (con VPN) se conecta hacia afuera al dispositivo colaborador, trae los datos y luego realiza las solicitudes localmente.</p>
-    <p>Si otros dispositivos de la LAN aún no pueden acceder al proxy con la configuración correcta, activa el modo mejorado. El dispositivo colaborador puede configurar el proxy como los demás equipos para usar la VPN del dispositivo principal.</p>
+    <p>Si otros dispositivos de la LAN aún no pueden acceder al proxy con la configuración correcta, activa el modo mejorado. El dispositivo colaborador puede configurar el proxy como los demás equipos para usar la VPN del dispositivo principal.
+    <p class="notice-green"><strong>Importante:</strong> Si el dispositivo colaborador también necesita el proxy VPN de túnel completo con Clash, primero desactiva el VPN y conéctalo al dispositivo principal; después de conectar correctamente, activa el VPN. La detección del rol del dispositivo actualmente depende de si el VPN está activado.</p></p>
   </div>
 
   <div class="lang" data-lang="fa">
@@ -419,7 +427,7 @@
       <li>روی «شروع درگاه» بزنید و سرویس پیش‌زمینه را فعال نگه دارید.</li>
     </ol>
     <h2>پروکسی VPN تمام‌ترافیک</h2>
-    <p>روی یک دستگاه دیگر Clash را نصب کنید و YAML تولیدشده را سابسکرایب کنید تا تمام ترافیک از پروکسی عبور کند. مناسب برای پروکسی سراسری دستگاه. IP و پورت باید با سرویس میزبان (با VPN) که اجرا کرده‌اید یکسان باشد.</p>
+    <p>روی یک دستگاه دیگر Clash را نصب کنید، ابتدا فایل YAML تولیدشده را دانلود کنید و سپس از طریق ایمپورت فایل در Clash اضافه کنید (در حال حاضر اشتراک مستقیم از طریق لینک پشتیبانی نمی‌شود). مناسب برای پروکسی سراسری دستگاه. IP و پورت باید با سرویس میزبان (با VPN) که اجرا کرده‌اید یکسان باشد.</p>
     <div class="yaml-generator" data-invalid-ip="لطفاً یک IP معتبر وارد کنید." data-invalid-port="لطفاً یک پورت معتبر وارد کنید (1–65535)." data-output-prefix="لینک تولیدشده: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP را وارد کنید">
@@ -447,7 +455,8 @@
     </ul>
     <h2>حالت تقویت‌شده</h2>
     <p>برخی VPNها اتصال‌های ورودی از دستگاه‌های دیگر در LAN را مسدود می‌کنند، بنابراین دستگاه‌ها نمی‌توانند به سرویس پراکسی روی این میزبان دسترسی پیدا کنند و اشتراک VPN از کار می‌افتد. حالت تقویت‌شده یک دستگاه همکار اضافه می‌کند و سرویس پراکسی را به آن منتقل می‌کند. این میزبان (با VPN) به‌صورت خروجی به دستگاه همکار متصل می‌شود، داده را برمی‌گرداند و سپس درخواست‌ها را محلی انجام می‌دهد.</p>
-    <p>اگر دستگاه‌های دیگر LAN با وجود تنظیمات صحیح هنوز به پراکسی دسترسی ندارند، حالت تقویت‌شده را فعال کنید. دستگاه همکار می‌تواند مانند سایر دستگاه‌ها پراکسی را تنظیم کند و از VPN دستگاه اصلی استفاده کند.</p>
+    <p>اگر دستگاه‌های دیگر LAN با وجود تنظیمات صحیح هنوز به پراکسی دسترسی ندارند، حالت تقویت‌شده را فعال کنید. دستگاه همکار می‌تواند مانند سایر دستگاه‌ها پراکسی را تنظیم کند و از VPN دستگاه اصلی استفاده کند.
+    <p class="notice-green"><strong>مهم:</strong> اگر دستگاه همکار هم نیاز به پراکسی VPN تمام‌ترافیک Clash دارد، ابتدا VPN را خاموش کرده و به دستگاه اصلی متصل شوید، سپس پس از اتصال موفق VPN را روشن کنید. تشخیص نقش دستگاه‌ها در حال حاضر براساس فعال بودن VPN است.</p></p>
   </div>
 
   <div class="lang" data-lang="fr">
@@ -463,7 +472,7 @@
       <li>Appuyez sur « Démarrer la passerelle » et maintenez le service au premier plan.</li>
     </ol>
     <h2>Proxy VPN tunnel complet</h2>
-    <p>Installez Clash sur un autre appareil et abonnez‑vous au YAML généré pour que tout le trafic passe par le proxy. À utiliser pour un proxy global de l’appareil. L’IP et le port doivent correspondre au service hôte (avec VPN) démarré.</p>
+    <p>Installez Clash sur un autre appareil, téléchargez d’abord le YAML généré, puis importez‑le dans Clash via l’import de fichier (l’abonnement direct par lien n’est pas pris en charge pour l’instant). À utiliser pour un proxy global de l’appareil. L’IP et le port doivent correspondre au service hôte (avec VPN) démarré.</p>
     <div class="yaml-generator" data-invalid-ip="Veuillez saisir une adresse IP valide." data-invalid-port="Veuillez saisir un port valide (1–65535)." data-output-prefix="Lien généré : ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Saisir IP">
@@ -491,7 +500,8 @@
     </ul>
     <h2>Mode renforcé</h2>
     <p>Certains VPN bloquent les connexions entrantes des autres appareils du LAN, ce qui empêche d’atteindre le service proxy sur cet hôte et fait échouer le partage VPN. Le mode renforcé ajoute un appareil compagnon et déplace le service proxy dessus. Cet hôte (avec VPN) se connecte en sortie à l’appareil compagnon, récupère les données puis effectue les requêtes localement.</p>
-    <p>Si les autres appareils du LAN ne peuvent toujours pas accéder au proxy malgré une configuration correcte, activez le mode renforcé. L’appareil compagnon peut configurer le proxy comme les autres clients afin d’utiliser le VPN de l’appareil principal.</p>
+    <p>Si les autres appareils du LAN ne peuvent toujours pas accéder au proxy malgré une configuration correcte, activez le mode renforcé. L’appareil compagnon peut configurer le proxy comme les autres clients afin d’utiliser le VPN de l’appareil principal.
+    <p class="notice-green"><strong>Important :</strong> si l’appareil compagnon doit aussi utiliser le proxy VPN tunnel complet via Clash, désactivez d’abord le VPN et connectez‑vous à l’appareil principal, puis réactivez le VPN après la connexion. La détection du rôle de l’appareil dépend actuellement du statut VPN.</p></p>
   </div>
 
   <div class="lang" data-lang="hi">
@@ -507,7 +517,7 @@
       <li>“गेटवे शुरू करें” टैप करें और फोरग्राउंड सेवा को चालू रखें।</li>
     </ol>
     <h2>फुल‑टनल VPN प्रॉक्सी</h2>
-    <p>किसी अन्य डिवाइस पर Clash इंस्टॉल करें और नीचे जनरेट किए YAML को सब्सक्राइब करें, ताकि पूरा ट्रैफ़िक प्रॉक्सी से जाए। जब आपको पूरे डिवाइस का प्रॉक्सी चाहिए तब उपयोग करें। IP और पोर्ट वही होने चाहिए जो होस्ट (VPN सहित) पर चालू सेवा में हैं।</p>
+    <p>किसी अन्य डिवाइस पर Clash इंस्टॉल करें, पहले जनरेट किए YAML को डाउनलोड करें और फिर Clash में फ़ाइल इम्पोर्ट से जोड़ें (लिंक से सीधे सब्सक्रिप्शन अभी समर्थित नहीं है)। जब आपको पूरे डिवाइस का प्रॉक्सी चाहिए तब उपयोग करें। IP और पोर्ट वही होने चाहिए जो होस्ट (VPN सहित) पर चालू सेवा में हैं।</p>
     <div class="yaml-generator" data-invalid-ip="कृपया सही IP दर्ज करें।" data-invalid-port="कृपया सही पोर्ट (1–65535) दर्ज करें।" data-output-prefix="जनरेट किया लिंक: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP दर्ज करें">
@@ -535,7 +545,8 @@
     </ul>
     <h2>एन्हांस्ड मोड</h2>
     <p>कुछ VPN अन्य LAN डिवाइसों से आने वाले इनबाउंड कनेक्शन को ब्लॉक करते हैं, इसलिए वे इस होस्ट पर चल रहे प्रॉक्सी सर्विस तक नहीं पहुंच पाते और VPN शेयरिंग विफल हो जाती है। एन्हांस्ड मोड एक सहयोगी डिवाइस जोड़ता है और प्रॉक्सी सर्विस को उस डिवाइस पर शिफ्ट करता है। यह होस्ट (VPN के साथ) उस सहयोगी डिवाइस से आउटबाउंड कनेक्शन करता है, डेटा वापस लाता है और फिर लोकल रूप से अनुरोध करता है।</p>
-    <p>यदि सही सेटिंग्स के बाद भी अन्य LAN डिवाइस प्रॉक्सी तक नहीं पहुंच पा रहे हों, तो एन्हांस्ड मोड चालू करें। सहयोगी डिवाइस अन्य डिवाइस की तरह प्रॉक्सी सेट करके मुख्य डिवाइस का VPN उपयोग कर सकता है।</p>
+    <p>यदि सही सेटिंग्स के बाद भी अन्य LAN डिवाइस प्रॉक्सी तक नहीं पहुंच पा रहे हों, तो एन्हांस्ड मोड चालू करें। सहयोगी डिवाइस अन्य डिवाइस की तरह प्रॉक्सी सेट करके मुख्य डिवाइस का VPN उपयोग कर सकता है।
+    <p class="notice-green"><strong>महत्वपूर्ण:</strong> यदि सहयोगी डिवाइस को भी Clash फुल‑टनल VPN प्रॉक्सी चाहिए, तो पहले VPN बंद करके मुख्य डिवाइस से कनेक्ट करें, कनेक्शन सफल होने के बाद VPN चालू करें। डिवाइस भूमिका की पहचान फिलहाल VPN के चालू होने पर निर्भर है।</p></p>
   </div>
 
   <div class="lang" data-lang="id">
@@ -551,7 +562,7 @@
       <li>Ketuk “Mulai Gateway” dan biarkan layanan foreground tetap aktif.</li>
     </ol>
     <h2>Proxy VPN full‑tunnel</h2>
-    <p>Instal Clash di perangkat lain lalu berlangganan YAML yang dibuat agar seluruh trafik lewat proxy. Cocok untuk proxy seluruh perangkat. IP dan port harus sama dengan layanan host (dengan VPN) yang kamu jalankan.</p>
+    <p>Instal Clash di perangkat lain, unduh dulu YAML yang dibuat, lalu impor di Clash lewat impor file (langganan langsung lewat tautan belum didukung). Cocok untuk proxy seluruh perangkat. IP dan port harus sama dengan layanan host (dengan VPN) yang kamu jalankan.</p>
     <div class="yaml-generator" data-invalid-ip="Masukkan alamat IP yang valid." data-invalid-port="Masukkan port yang valid (1–65535)." data-output-prefix="Tautan dibuat: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Masukkan IP">
@@ -579,7 +590,8 @@
     </ul>
     <h2>Mode diperkuat</h2>
     <p>Beberapa VPN memblokir koneksi masuk dari perangkat LAN lain sehingga perangkat tidak dapat menjangkau layanan proxy di host ini dan berbagi VPN gagal. Mode diperkuat menambahkan perangkat pendamping dan memindahkan layanan proxy ke perangkat tersebut. Host ini (dengan VPN) menghubungi perangkat pendamping secara keluar, membawa kembali data, lalu menjalankan permintaan secara lokal.</p>
-    <p>Jika perangkat LAN lain tetap tidak bisa mengakses proxy setelah pengaturan benar, aktifkan Mode diperkuat. Perangkat pendamping bisa mengatur proxy seperti perangkat lain untuk menggunakan VPN dari perangkat utama.</p>
+    <p>Jika perangkat LAN lain tetap tidak bisa mengakses proxy setelah pengaturan benar, aktifkan Mode diperkuat. Perangkat pendamping bisa mengatur proxy seperti perangkat lain untuk menggunakan VPN dari perangkat utama.
+    <p class="notice-green"><strong>Penting:</strong> Jika perangkat pendamping juga perlu proxy VPN full‑tunnel Clash, matikan VPN terlebih dulu dan hubungkan ke perangkat utama, lalu nyalakan VPN setelah koneksi berhasil. Pendeteksian peran perangkat saat ini bergantung pada status VPN.</p></p>
   </div>
 
   <div class="lang" data-lang="ja">
@@ -595,7 +607,7 @@
       <li>「ゲートウェイ開始」をタップし、フォアグラウンドサービスを維持します。</li>
     </ol>
     <h2>フルトンネルVPNプロキシ</h2>
-    <p>別の端末に Clash をインストールし、生成された YAML を購読して、すべての通信をプロキシ経由にします。端末全体をプロキシしたい場合に使用します。入力するIPとポートは、ホスト（VPNあり）で起動したサービスと一致させてください。</p>
+    <p>別の端末に Clash をインストールし、生成された YAML を先にダウンロードしてから、Clash で「ファイルインポート」で取り込みます（リンクの直接購読は現在未対応です）。端末全体をプロキシしたい場合に使用します。入力するIPとポートは、ホスト（VPNあり）で起動したサービスと一致させてください。</p>
     <div class="yaml-generator" data-invalid-ip="正しいIPアドレスを入力してください。" data-invalid-port="正しいポート（1–65535）を入力してください。" data-output-prefix="生成リンク：">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IPを入力">
@@ -623,7 +635,8 @@
     </ul>
     <h2>強化モード</h2>
     <p>一部の VPN は他の LAN デバイスからの着信接続を遮断するため、このホスト上のプロキシサービスに到達できず、VPN 共有が失敗します。強化モードでは協同デバイスを追加し、プロキシサービスをそのデバイスへ移します。本機（VPN 使用中）は協同デバイスへアウトバウンド接続し、データを持ち帰ってから本機でリクエストを実行します。</p>
-    <p>正しく設定しても他の LAN デバイスがプロキシに接続できない場合は、強化モードを有効にしてください。協同デバイスも他の機器と同様にプロキシを設定し、メイン端末の VPN を利用できます。</p>
+    <p>正しく設定しても他の LAN デバイスがプロキシに接続できない場合は、強化モードを有効にしてください。協同デバイスも他の機器と同様にプロキシを設定し、メイン端末の VPN を利用できます。
+    <p class="notice-green"><strong>重要：</strong>協同デバイスでも Clash のフルトンネルVPNプロキシを使う場合、まず VPN をオフにして本体と接続し、接続後に VPN をオンにしてください。現在、端末の判定は VPN の有無で行っています。</p></p>
   </div>
 
   <div class="lang" data-lang="ko">
@@ -639,7 +652,7 @@
       <li>“게이트웨이 시작”을 눌러 포그라운드 서비스를 유지합니다.</li>
     </ol>
     <h2>전체 터널 VPN 프록시</h2>
-    <p>다른 기기에 Clash를 설치하고 생성된 YAML을 구독하여 모든 트래픽이 프록시를 통과하도록 합니다. 기기 전체 프록시가 필요할 때 사용하세요. IP와 포트는 호스트( VPN 사용 )에서 실행한 서비스와 일치해야 합니다.</p>
+    <p>다른 기기에 Clash를 설치하고 생성된 YAML을 먼저 다운로드한 뒤 Clash에서 파일 가져오기로 불러오세요(링크 직접 구독은 현재 지원되지 않습니다). 기기 전체 프록시가 필요할 때 사용하세요. IP와 포트는 호스트( VPN 사용 )에서 실행한 서비스와 일치해야 합니다.</p>
     <div class="yaml-generator" data-invalid-ip="유효한 IP 주소를 입력하세요." data-invalid-port="유효한 포트(1–65535)를 입력하세요." data-output-prefix="생성된 링크: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP 입력">
@@ -667,7 +680,8 @@
     </ul>
     <h2>향상 모드</h2>
     <p>일부 VPN은 다른 LAN 기기에서 들어오는 인바운드 연결을 차단해 이 호스트의 프록시 서비스에 접근하지 못하고 VPN 공유가 실패합니다. 향상 모드는 협력 기기를 추가해 프록시 서비스를 그 기기로 옮깁니다. 이 호스트(VPN 사용 중)가 협력 기기로 아웃바운드 연결해 데이터를 가져온 뒤 로컬에서 요청을 수행합니다.</p>
-    <p>정상적으로 설정했는데도 다른 LAN 기기가 프록시에 접속하지 못하면 향상 모드를 켜세요. 협력 기기도 다른 장치처럼 프록시를 설정해 메인 장치의 VPN을 사용할 수 있습니다.</p>
+    <p>정상적으로 설정했는데도 다른 LAN 기기가 프록시에 접속하지 못하면 향상 모드를 켜세요. 협력 기기도 다른 장치처럼 프록시를 설정해 메인 장치의 VPN을 사용할 수 있습니다.
+    <p class="notice-green"><strong>중요:</strong> 협력 기기에서도 Clash 전체 터널 VPN 프록시를 사용해야 한다면, 먼저 VPN을 끄고 메인 기기와 연결한 뒤 연결이 성공하면 VPN을 켜세요. 현재 기기 구분은 VPN 사용 여부로 판단합니다.</p></p>
   </div>
 
   <div class="lang" data-lang="ms">
@@ -683,7 +697,7 @@
       <li>Ketik “Mulakan Gateway” dan kekalkan perkhidmatan latar depan.</li>
     </ol>
     <h2>Proksi VPN terowong penuh</h2>
-    <p>Pasang Clash pada peranti lain dan langgan YAML yang dijana supaya semua trafik melalui proksi. Sesuai untuk proksi seluruh peranti. IP dan port mesti sepadan dengan servis hos (dengan VPN) yang anda jalankan.</p>
+    <p>Pasang Clash pada peranti lain, muat turun dahulu YAML yang dijana, kemudian import di Clash melalui import fail (langganan terus melalui pautan belum disokong). Sesuai untuk proksi seluruh peranti. IP dan port mesti sepadan dengan servis hos (dengan VPN) yang anda jalankan.</p>
     <div class="yaml-generator" data-invalid-ip="Sila masukkan alamat IP yang sah." data-invalid-port="Sila masukkan port yang sah (1–65535)." data-output-prefix="Pautan dijana: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Masukkan IP">
@@ -711,7 +725,8 @@
     </ul>
     <h2>Mod dipertingkat</h2>
     <p>Sesetengah VPN menyekat sambungan masuk daripada peranti LAN lain, jadi peranti tidak dapat mengakses perkhidmatan proksi pada hos ini dan perkongsian VPN gagal. Mod dipertingkat menambah peranti rakan dan memindahkan perkhidmatan proksi ke peranti tersebut. Hos ini (dengan VPN) membuat sambungan keluar ke peranti rakan, membawa data balik, kemudian membuat permintaan secara tempatan.</p>
-    <p>Jika peranti LAN lain masih tidak dapat mengakses proksi selepas tetapan betul, aktifkan Mod dipertingkat. Peranti rakan boleh menetapkan proksi seperti peranti lain untuk menggunakan VPN peranti utama.</p>
+    <p>Jika peranti LAN lain masih tidak dapat mengakses proksi selepas tetapan betul, aktifkan Mod dipertingkat. Peranti rakan boleh menetapkan proksi seperti peranti lain untuk menggunakan VPN peranti utama.
+    <p class="notice-green"><strong>Penting:</strong> Jika peranti rakan juga perlu proksi VPN terowong penuh Clash, matikan VPN dahulu dan sambungkan ke peranti utama, kemudian hidupkan VPN selepas sambungan berjaya. Pengenalpastian peranan peranti kini bergantung pada status VPN.</p></p>
   </div>
 
   <div class="lang" data-lang="pt">
@@ -727,7 +742,7 @@
       <li>Toque em “Iniciar gateway” e mantenha o serviço em primeiro plano ativo.</li>
     </ol>
     <h2>Proxy VPN de túnel completo</h2>
-    <p>Instale o Clash em outro dispositivo e assine o YAML gerado para que todo o tráfego passe pelo proxy. Use quando precisar de proxy no dispositivo inteiro. O IP e a porta devem corresponder ao serviço do host (com VPN) que você iniciou.</p>
+    <p>Instale o Clash em outro dispositivo, baixe primeiro o YAML gerado e depois importe-o no Clash por importação de arquivo (a assinatura direta por link não é suportada no momento). Use quando precisar de proxy no dispositivo inteiro. O IP e a porta devem corresponder ao serviço do host (com VPN) que você iniciou.</p>
     <div class="yaml-generator" data-invalid-ip="Digite um IP válido." data-invalid-port="Digite uma porta válida (1–65535)." data-output-prefix="Link gerado: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Digite o IP">
@@ -755,7 +770,8 @@
     </ul>
     <h2>Modo aprimorado</h2>
     <p>Algumas VPNs bloqueiam conexões de entrada de outros dispositivos da LAN, então eles não conseguem acessar o serviço de proxy neste host e o compartilhamento de VPN falha. O modo aprimorado adiciona um dispositivo auxiliar e move o serviço de proxy para esse dispositivo. Este host (com VPN) se conecta de saída ao dispositivo auxiliar, traz os dados de volta e então executa as requisições localmente.</p>
-    <p>Se outros dispositivos da LAN ainda não conseguirem acessar o proxy após a configuração correta, ative o modo aprimorado. O dispositivo auxiliar pode configurar o proxy como os demais dispositivos para usar a VPN do dispositivo principal.</p>
+    <p>Se outros dispositivos da LAN ainda não conseguirem acessar o proxy após a configuração correta, ative o modo aprimorado. O dispositivo auxiliar pode configurar o proxy como os demais dispositivos para usar a VPN do dispositivo principal.
+    <p class="notice-green"><strong>Importante:</strong> Se o dispositivo auxiliar também precisar do proxy VPN de túnel completo do Clash, desative o VPN primeiro e conecte-se ao dispositivo principal; após a conexão bem‑sucedida, ative o VPN. A detecção do papel do dispositivo atualmente depende de o VPN estar ativo.</p></p>
   </div>
 
   <div class="lang" data-lang="ru">
@@ -771,7 +787,7 @@
       <li>Нажмите «Запустить шлюз» и держите foreground‑сервис активным.</li>
     </ol>
     <h2>Полнотуннельный VPN‑прокси</h2>
-    <p>Установите Clash на другом устройстве и подпишитесь на созданный YAML, чтобы весь трафик шел через прокси. Используйте, когда нужен прокси для всего устройства. IP и порт должны совпадать с запущенной на хосте (с VPN) службой.</p>
+    <p>Установите Clash на другом устройстве, сначала скачайте созданный YAML, затем импортируйте его в Clash через импорт файла (прямая подписка по ссылке сейчас не поддерживается). Используйте, когда нужен прокси для всего устройства. IP и порт должны совпадать с запущенной на хосте (с VPN) службой.</p>
     <div class="yaml-generator" data-invalid-ip="Введите корректный IP‑адрес." data-invalid-port="Введите корректный порт (1–65535)." data-output-prefix="Сгенерированная ссылка: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Введите IP">
@@ -799,7 +815,8 @@
     </ul>
     <h2>Усиленный режим</h2>
     <p>Некоторые VPN блокируют входящие подключения от других устройств в LAN, поэтому они не могут достучаться до прокси‑сервиса на этом хосте и общий доступ к VPN не работает. Усиленный режим добавляет устройство‑партнёр и переносит на него прокси‑сервис. Этот хост (с VPN) исходящим подключением обращается к устройству‑партнёру, забирает данные и затем выполняет запросы локально.</p>
-    <p>Если другие устройства LAN всё равно не могут получить доступ к прокси при корректных настройках, включите усиленный режим. Устройство‑партнёр может настроить прокси как другие устройства и использовать VPN основного устройства.</p>
+    <p>Если другие устройства LAN всё равно не могут получить доступ к прокси при корректных настройках, включите усиленный режим. Устройство‑партнёр может настроить прокси как другие устройства и использовать VPN основного устройства.
+    <p class="notice-green"><strong>Важно:</strong> если устройству‑партнёру тоже нужен полнотуннельный VPN‑прокси в Clash, сначала отключите VPN и подключитесь к основному устройству, а после успешного подключения включите VPN. Сейчас определение роли устройства зависит от того, включён ли VPN.</p></p>
   </div>
 
   <div class="lang" data-lang="sw">
@@ -815,7 +832,7 @@
       <li>Bofya “Anzisha Gateway” na uache huduma ya foreground iendelee.</li>
     </ol>
     <h2>Proksi ya VPN full‑tunnel</h2>
-    <p>Sakinisha Clash kwenye kifaa kingine kisha subscribe YAML iliyotengenezwa ili trafiki yote ipitie proksi. Tumia unapohitaji proksi ya kifaa chote. IP na port lazima vilingane na huduma ya host (yenye VPN) uliyowasha.</p>
+    <p>Sakinisha Clash kwenye kifaa kingine, pakua kwanza YAML iliyotengenezwa, kisha ulete kwenye Clash kwa kuingiza faili (usajili wa moja kwa moja kupitia kiungo hauauniwi kwa sasa). Tumia unapohitaji proksi ya kifaa chote. IP na port lazima vilingane na huduma ya host (yenye VPN) uliyowasha.</p>
     <div class="yaml-generator" data-invalid-ip="Tafadhali ingiza IP sahihi." data-invalid-port="Tafadhali ingiza port sahihi (1–65535)." data-output-prefix="Kiungo kilichotengenezwa: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Ingiza IP">
@@ -843,7 +860,8 @@
     </ul>
     <h2>Hali iliyoimarishwa</h2>
     <p>Baadhi ya VPN huzuia miunganisho inayoingia kutoka kwa vifaa vingine vya LAN, hivyo haviwezi kufikia huduma ya proksi kwenye host hii na ushiriki wa VPN hushindikana. Hali iliyoimarishwa huongeza kifaa mshirika na kuhamisha huduma ya proksi kwenda kwenye kifaa hicho. Host hii (yenye VPN) huunganishwa kwa njia ya kutoka kwenda kwenye kifaa mshirika, hurejesha data kisha hufanya maombi ndani ya kifaa.</p>
-    <p>Ikiwa vifaa vingine vya LAN bado haviwezi kufikia proksi baada ya mipangilio sahihi, washa Hali iliyoimarishwa. Kifaa mshirika kinaweza kusanidi proksi kama vifaa vingine ili kutumia VPN ya kifaa kikuu.</p>
+    <p>Ikiwa vifaa vingine vya LAN bado haviwezi kufikia proksi baada ya mipangilio sahihi, washa Hali iliyoimarishwa. Kifaa mshirika kinaweza kusanidi proksi kama vifaa vingine ili kutumia VPN ya kifaa kikuu.
+    <p class="notice-green"><strong>Muhimu:</strong> Ikiwa kifaa mshirika pia kinahitaji proksi ya VPN full‑tunnel ya Clash, zima VPN kwanza na uunganishe kwenye kifaa kikuu, kisha washa VPN baada ya muunganisho kufanikiwa. Utambuzi wa majukumu ya vifaa kwa sasa unategemea ikiwa VPN imewashwa.</p></p>
   </div>
 
   <div class="lang" data-lang="th">
@@ -859,7 +877,7 @@
       <li>แตะ “เริ่มเกตเวย์” และให้บริการ foreground ทำงานต่อ</li>
     </ol>
     <h2>พร็อกซี VPN แบบ full‑tunnel</h2>
-    <p>ติดตั้ง Clash บนอุปกรณ์อื่นแล้วสมัคร YAML ที่สร้างขึ้น เพื่อให้ทราฟฟิกทั้งหมดผ่านพร็อกซี ใช้เมื่ออยากให้ทั้งอุปกรณ์ผ่านพร็อกซี IP และพอร์ตต้องตรงกับบริการบนโฮสต์ (มี VPN) ที่คุณเปิดใช้งาน</p>
+    <p>ติดตั้ง Clash บนอุปกรณ์อื่น ดาวน์โหลดไฟล์ YAML ที่สร้างขึ้นก่อน แล้วนำเข้าใน Clash ด้วยการนำเข้าไฟล์ (ยังไม่รองรับการสมัครผ่านลิงก์โดยตรง) ใช้เมื่ออยากให้ทั้งอุปกรณ์ผ่านพร็อกซี IP และพอร์ตต้องตรงกับบริการบนโฮสต์ (มี VPN) ที่คุณเปิดใช้งาน</p>
     <div class="yaml-generator" data-invalid-ip="กรุณากรอก IP ที่ถูกต้อง" data-invalid-port="กรุณากรอกพอร์ตที่ถูกต้อง (1–65535)" data-output-prefix="ลิงก์ที่สร้าง: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="กรอก IP">
@@ -887,7 +905,8 @@
     </ul>
     <h2>โหมดเสริม</h2>
     <p>VPN บางตัวบล็อกการเชื่อมต่อขาเข้าจากอุปกรณ์ LAN อื่น ทำให้อุปกรณ์เหล่านั้นเข้าถึงบริการพร็อกซีบนโฮสต์นี้ไม่ได้และการแชร์ VPN ล้มเหลว โหมดเสริมจะเพิ่มอุปกรณ์ประสานและย้ายบริการพร็อกซีไปที่อุปกรณ์นั้น โฮสต์นี้ (ที่ใช้ VPN) จะเชื่อมต่อออกไปยังอุปกรณ์ประสาน รับข้อมูลกลับมา แล้วจึงทำคำขอภายในเครื่อง</p>
-    <p>หากอุปกรณ์ LAN อื่นยังเข้าถึงพร็อกซีไม่ได้แม้ตั้งค่าถูกต้อง ให้เปิดโหมดเสริม อุปกรณ์ประสานสามารถตั้งค่าพร็อกซีเหมือนอุปกรณ์อื่นเพื่อใช้ VPN จากอุปกรณ์หลักได้</p>
+    <p>หากอุปกรณ์ LAN อื่นยังเข้าถึงพร็อกซีไม่ได้แม้ตั้งค่าถูกต้อง ให้เปิดโหมดเสริม อุปกรณ์ประสานสามารถตั้งค่าพร็อกซีเหมือนอุปกรณ์อื่นเพื่อใช้ VPN จากอุปกรณ์หลักได้
+    <p class="notice-green"><strong>สำคัญ:</strong> หากอุปกรณ์ประสานต้องใช้พร็อกซี VPN แบบ full‑tunnel ของ Clash ด้วย ให้ปิด VPN ก่อนแล้วเชื่อมต่อกับอุปกรณ์หลัก จากนั้นเปิด VPN หลังเชื่อมต่อสำเร็จ การระบุบทบาทอุปกรณ์ในขณะนี้อ้างอิงจากการเปิดใช้งาน VPN</p></p>
   </div>
 
   <div class="lang" data-lang="tl">
@@ -903,7 +922,7 @@
       <li>Pindutin ang “Start Gateway” at panatilihing buhay ang foreground service.</li>
     </ol>
     <h2>Full‑tunnel VPN proxy</h2>
-    <p>Mag‑install ng Clash sa ibang device at mag‑subscribe sa generated YAML para dumaan lahat ng traffic sa proxy. Gamitin kapag kailangan ng full‑device proxy. Dapat tumugma ang IP at port sa serbisyong pinatakbo sa host (may VPN).</p>
+    <p>Mag‑install ng Clash sa ibang device, i‑download muna ang generated YAML, pagkatapos ay i‑import sa Clash gamit ang file import (hindi pa suportado ang direktang subscription sa link). Gamitin kapag kailangan ng full‑device proxy. Dapat tumugma ang IP at port sa serbisyong pinatakbo sa host (may VPN).</p>
     <div class="yaml-generator" data-invalid-ip="Maglagay ng wastong IP." data-invalid-port="Maglagay ng wastong port (1–65535)." data-output-prefix="Nabuong link: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Ilagay ang IP">
@@ -931,7 +950,8 @@
     </ul>
     <h2>Pinalakas na mode</h2>
     <p>May ilang VPN na humaharang sa inbound na koneksyon mula sa ibang LAN device, kaya hindi nila maabot ang proxy service sa host na ito at pumapalya ang VPN sharing. Ang pinalakas na mode ay nagdaragdag ng katuwang na device at inililipat ang proxy service doon. Kumokonekta palabas ang host na ito (may VPN) sa katuwang na device, dinadala pabalik ang data, at saka gumagawa ng request nang lokal.</p>
-    <p>Kung hindi pa rin ma-access ng ibang LAN device ang proxy kahit tama ang settings, i-enable ang pinalakas na mode. Ang katuwang na device ay puwedeng mag-configure ng proxy tulad ng ibang device para magamit ang VPN ng pangunahing device.</p>
+    <p>Kung hindi pa rin ma-access ng ibang LAN device ang proxy kahit tama ang settings, i-enable ang pinalakas na mode. Ang katuwang na device ay puwedeng mag-configure ng proxy tulad ng ibang device para magamit ang VPN ng pangunahing device.
+    <p class="notice-green"><strong>Mahalaga:</strong> Kung kailangan din ng katuwang na device ang Clash full‑tunnel VPN proxy, patayin muna ang VPN at kumonekta sa pangunahing device, pagkatapos ay buksan ang VPN kapag matagumpay ang koneksyon. Ang pagtukoy sa papel ng device ay kasalukuyang nakabase sa kung naka‑VPN.</p></p>
   </div>
 
   <div class="lang" data-lang="tr">
@@ -947,7 +967,7 @@
       <li>“Gateway’i başlat”a dokunun ve ön plan servisini açık tutun.</li>
     </ol>
     <h2>Tam tünel VPN proxy</h2>
-    <p>Başka bir cihaza Clash kurun ve oluşturulan YAML’e abone olun; böylece tüm trafik proxy üzerinden geçer. Tüm cihaz için proxy gerektiğinde kullanın. IP ve port, hostta (VPN açıkken) başlattığınız hizmetle aynı olmalıdır.</p>
+    <p>Başka bir cihaza Clash kurun, oluşturulan YAML’i önce indirin, ardından Clash’te dosya içe aktarma ile ekleyin (bağlantıdan doğrudan abonelik şu anda desteklenmiyor). Tüm cihaz için proxy gerektiğinde kullanın. IP ve port, hostta (VPN açıkken) başlattığınız hizmetle aynı olmalıdır.</p>
     <div class="yaml-generator" data-invalid-ip="Geçerli bir IP adresi girin." data-invalid-port="Geçerli bir port (1–65535) girin." data-output-prefix="Oluşturulan bağlantı: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP girin">
@@ -975,7 +995,8 @@
     </ul>
     <h2>Gelişmiş mod</h2>
     <p>Bazı VPN’ler LAN içindeki diğer cihazlardan gelen gelen bağlantıları engeller; bu nedenle bu host üzerindeki proxy hizmetine erişemezler ve VPN paylaşımı başarısız olur. Gelişmiş mod bir yardımcı cihaz ekler ve proxy hizmetini bu cihaza taşır. Bu host (VPN ile) yardımcı cihaza dışarıdan bağlantı kurar, veriyi geri getirir ve ardından istekleri yerel olarak yürütür.</p>
-    <p>Doğru ayarlara rağmen diğer LAN cihazları proxy’ye erişemiyorsa gelişmiş modu etkinleştirin. Yardımcı cihaz, diğer cihazlar gibi proxy ayarlayıp ana cihazın VPN’ini kullanabilir.</p>
+    <p>Doğru ayarlara rağmen diğer LAN cihazları proxy’ye erişemiyorsa gelişmiş modu etkinleştirin. Yardımcı cihaz, diğer cihazlar gibi proxy ayarlayıp ana cihazın VPN’ini kullanabilir.
+    <p class="notice-green"><strong>Önemli:</strong> Yardımcı cihaz da Clash tam tünel VPN proxy kullanacaksa, önce VPN'i kapatıp ana cihaza bağlanın; bağlantı başarılı olduktan sonra VPN'i açın. Cihaz rolü şu anda VPN'in açık olup olmadığına göre belirlenir.</p></p>
   </div>
 
   <div class="lang" data-lang="ur">
@@ -991,7 +1012,7 @@
       <li>“گیٹ وے شروع کریں” پر ٹیپ کریں اور فورگراؤنڈ سروس کو جاری رکھیں۔</li>
     </ol>
     <h2>فل ٹنل VPN پراکسی</h2>
-    <p>دوسرے ڈیوائس پر Clash انسٹال کریں اور تیار شدہ YAML سبسکرائب کریں تاکہ تمام ٹریفک پراکسی سے گزرے۔ جب پورے ڈیوائس کا پراکسی چاہیے تو استعمال کریں۔ IP اور پورٹ کو میزبان (VPN کے ساتھ) پر چلائی گئی سروس کے مطابق رکھیں۔</p>
+    <p>دوسرے ڈیوائس پر Clash انسٹال کریں، پہلے تیار شدہ YAML فائل ڈاؤن لوڈ کریں، پھر Clash میں فائل امپورٹ کے ذریعے شامل کریں (لنک سے براہِ راست سبسکرپشن فی الحال سپورٹڈ نہیں ہے)۔ جب پورے ڈیوائس کا پراکسی چاہیے تو استعمال کریں۔ IP اور پورٹ کو میزبان (VPN کے ساتھ) پر چلائی گئی سروس کے مطابق رکھیں۔</p>
     <div class="yaml-generator" data-invalid-ip="براہ کرم درست IP درج کریں۔" data-invalid-port="براہ کرم درست پورٹ (1–65535) درج کریں۔" data-output-prefix="بنایا گیا لنک: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP درج کریں">
@@ -1019,7 +1040,8 @@
     </ul>
     <h2>اینہانسڈ موڈ</h2>
     <p>کچھ VPN دیگر LAN ڈیوائسز سے آنے والی اِن باؤنڈ کنکشنز کو بلاک کر دیتے ہیں، جس سے وہ اس ہوسٹ پر موجود پراکسی سروس تک نہیں پہنچ پاتیں اور VPN شیئرنگ ناکام ہو جاتی ہے۔ اینہانسڈ موڈ ایک معاون ڈیوائس شامل کرتا ہے اور پراکسی سروس کو اس ڈیوائس پر منتقل کر دیتا ہے۔ یہ ہوسٹ (VPN کے ساتھ) معاون ڈیوائس سے آؤٹ باؤنڈ کنکشن کرتا ہے، ڈیٹا واپس لاتا ہے اور پھر مقامی طور پر ریکویسٹ کرتا ہے۔</p>
-    <p>اگر درست سیٹنگز کے باوجود دیگر LAN ڈیوائسز پراکسی تک نہیں پہنچ پا رہیں تو اینہانسڈ موڈ فعال کریں۔ معاون ڈیوائس بھی دیگر ڈیوائسز کی طرح پراکسی سیٹ کر کے مرکزی ڈیوائس کا VPN استعمال کر سکتی ہے۔</p>
+    <p>اگر درست سیٹنگز کے باوجود دیگر LAN ڈیوائسز پراکسی تک نہیں پہنچ پا رہیں تو اینہانسڈ موڈ فعال کریں۔ معاون ڈیوائس بھی دیگر ڈیوائسز کی طرح پراکسی سیٹ کر کے مرکزی ڈیوائس کا VPN استعمال کر سکتی ہے۔
+    <p class="notice-green"><strong>اہم:</strong> اگر معاون ڈیوائس کو بھی Clash فل ٹنل VPN پراکسی درکار ہو تو پہلے VPN بند کر کے مرکزی ڈیوائس سے کنکشن قائم کریں، پھر کنکشن کامیاب ہونے کے بعد VPN آن کریں۔ فی الحال ڈیوائس کی شناخت VPN کے فعال ہونے پر مبنی ہے۔</p></p>
   </div>
 
   <div class="lang" data-lang="vi">
@@ -1035,7 +1057,7 @@
       <li>Nhấn “Khởi động gateway” và giữ dịch vụ nền trước hoạt động.</li>
     </ol>
     <h2>Proxy VPN full‑tunnel</h2>
-    <p>Cài Clash trên thiết bị khác và đăng ký YAML đã tạo để toàn bộ lưu lượng đi qua proxy. Dùng khi cần proxy toàn bộ thiết bị. IP và cổng phải khớp với dịch vụ trên host (có VPN) mà bạn đã bật.</p>
+    <p>Cài Clash trên thiết bị khác, tải trước YAML đã tạo rồi nhập vào Clash bằng chức năng import file (hiện chưa hỗ trợ đăng ký trực tiếp qua liên kết). Dùng khi cần proxy toàn bộ thiết bị. IP và cổng phải khớp với dịch vụ trên host (có VPN) mà bạn đã bật.</p>
     <div class="yaml-generator" data-invalid-ip="Vui lòng nhập IP hợp lệ." data-invalid-port="Vui lòng nhập cổng hợp lệ (1–65535)." data-output-prefix="Liên kết đã tạo: ">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="Nhập IP">
@@ -1063,7 +1085,8 @@
     </ul>
     <h2>Chế độ tăng cường</h2>
     <p>Một số VPN chặn kết nối vào từ thiết bị LAN khác, khiến chúng không thể truy cập dịch vụ proxy trên máy chủ này và việc chia sẻ VPN bị thất bại. Chế độ tăng cường thêm một thiết bị phối hợp và chuyển dịch vụ proxy sang thiết bị đó. Máy chủ này (có VPN) kết nối ra ngoài tới thiết bị phối hợp, mang dữ liệu về rồi mới thực hiện yêu cầu cục bộ.</p>
-    <p>Nếu các thiết bị LAN khác vẫn không truy cập được proxy dù đã cấu hình đúng, hãy bật Chế độ tăng cường. Thiết bị phối hợp có thể cấu hình proxy như các thiết bị khác để dùng VPN của thiết bị chính.</p>
+    <p>Nếu các thiết bị LAN khác vẫn không truy cập được proxy dù đã cấu hình đúng, hãy bật Chế độ tăng cường. Thiết bị phối hợp có thể cấu hình proxy như các thiết bị khác để dùng VPN của thiết bị chính.
+    <p class="notice-green"><strong>Quan trọng:</strong> Nếu thiết bị phối hợp cũng cần dùng proxy VPN full‑tunnel của Clash, hãy tắt VPN trước để kết nối với thiết bị chính, rồi bật VPN sau khi kết nối thành công. Việc phân biệt vai trò thiết bị hiện dựa trên việc VPN có bật hay không.</p></p>
   </div>
 </body>
 </html>
