@@ -10,9 +10,11 @@
       (async () => {
         const params = new URLSearchParams(window.location.search);
 
-        // 合并 hash 参数到 params
+        // 合并 hash 参数到 params（#ip=...&port=... 这种也支持）
         if (window.location.hash) {
-          const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+          const hashParams = new URLSearchParams(
+            window.location.hash.replace(/^#/, "")
+          );
           for (const [key, value] of hashParams.entries()) {
             if (!params.has(key)) {
               params.set(key, value);
@@ -26,49 +28,85 @@
         const port = portRaw ? portRaw.trim() : "";
 
         if (!ip || !port) {
-          // 没有必要参数就不做任何事
+          // 缺参数就不处理
           return;
         }
 
-        let content;
+        let content = "";
         try {
-          // 从当前相对路径读取模板文件 1080.yaml
-          const res = await fetch("1080.yaml");
+          // 从当前相对路径读取 1080.yaml（适配 GitHub Pages 子路径）
+          const res = await fetch(new URL("1080.yaml", location.href));
           if (!res.ok) {
             throw new Error("Failed to load 1080.yaml");
           }
           content = await res.text();
         } catch (e) {
-          // 读失败就用最小模板兜底
-          content = "";
+          // 真读不到就直接用一个最简单模板兜底
+          content =
+            `port: 1080\n` +
+            `socks-port: 1080\n` +
+            `redir-port: 7892\n\n` +
+            `proxies:\n` +
+            `  - name: "Local-NetworkShare"\n` +
+            `    type: socks5\n` +
+            `    server: ${ip}\n` +
+            `    port: ${port}\n` +
+            `    udp: true\n`;
         }
 
-        // 如果有 port 行，就替换（去掉行首缩进）
-        if (/^\s*port:/m.test(content)) {
-          content = content.replace(/^\s*port:.*$/m, `port: ${port}`);
-        } else {
-          // 没有就加在最前面
-          content = `port: ${port}\n` + content;
-        }
+        // 在 content 中找到 name: "Local-NetworkShare" 对应的那个代理块
+        const proxyName = 'Local-NetworkShare';
+        const proxyBlockRegex = new RegExp(
+          '(\\-\\s+name:\\s+"' + proxyName.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') + '"[\\s\\S]*?)(?=\\n\\s*-\\s+name:|\\n\\s*proxy-groups:|$)',
+          'm'
+        );
 
-        // 如果有 server 行，就替换（去掉行首缩进）
-        if (/^\s*server:/m.test(content)) {
-          content = content.replace(/^\s*server:.*$/m, `server: ${ip}`);
+        const match = content.match(proxyBlockRegex);
+        if (match) {
+          let block = match[1];
+
+          // 只在这个 block 里替换 server 和 port，保留缩进
+          if (/^\s*server:/m.test(block)) {
+            block = block.replace(
+              /^(\s*)server:\s*.*$/m,
+              `$1server: ${ip}`
+            );
+          }
+
+          if (/^\s*port:/m.test(block)) {
+            block = block.replace(
+              /^(\s*)port:\s*.*$/m,
+              `$1port: ${port}`
+            );
+          }
+
+          // 把修改后的 block 放回去
+          content = content.replace(proxyBlockRegex, block);
         } else {
-          // 没有就紧跟在 port 后面加一行
-          content = content.replace(/^(port:.*\n)/, `$1server: ${ip}\n`);
-          // 如果上面没匹配到（比如 content 为空），再兜底一次
-          if (!/^server:/m.test(content)) {
-            content += `\nserver: ${ip}\n`;
+          // 如果没找到这个代理块，可以选择在 proxies: 后面追加一个
+          if (/^proxies:/m.test(content)) {
+            content = content.replace(
+              /^proxies:\s*$/m,
+              `proxies:\n  - name: "Local-NetworkShare"\n    type: socks5\n    server: ${ip}\n    port: ${port}\n    udp: true`
+            );
+          } else {
+            // 再兜底一次：直接在末尾加一个 proxies
+            content +=
+              `\nproxies:\n` +
+              `  - name: "Local-NetworkShare"\n` +
+              `    type: socks5\n` +
+              `    server: ${ip}\n` +
+              `    port: ${port}\n` +
+              `    udp: true\n`;
           }
         }
 
-        // 创建下载
+        // 生成下载（文件名用端口号；如果你永远想叫 1080.yaml，就写 "1080.yaml"）
         const blob = new Blob([content], { type: "text/yaml" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = `${port}.yaml`; // 如果想一直叫 1080.yaml，这里改成 "1080.yaml"
+        link.download = `${port}.yaml`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
