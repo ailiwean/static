@@ -13,6 +13,14 @@
     .lang-switch label { margin-right: 8px; font-weight: 600; }
     .lang-switch select { padding: 6px 10px; }
     .guide-image img { max-width: 100%; height: auto; margin: 8px 0 12px; border: 1px solid #ddd; border-radius: 8px; }
+
+    .yaml-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+    .yaml-input { padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; min-width: 180px; }
+    .yaml-form button { padding: 6px 12px; border: none; border-radius: 6px; background: #0a8a4b; color: #fff; cursor: pointer; }
+    .yaml-form button:hover { background: #08733f; }
+    .yaml-output { margin-top: 6px; color: #0a8a4b; font-weight: 600; word-break: break-all; }
+    .yaml-output.error { color: #b00020; }
+
   @media (prefers-color-scheme: dark) {
     body { background: #0c1117; color: #e4e6eb; }
     h1, h2 { color: #7ce694; }
@@ -21,10 +29,67 @@
     .lang { border-top-color: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.2); }
     .lang-switch select { background: #161b22; color: #e4e6eb; border: 1px solid rgba(255,255,255,0.2); }
     .guide-image img { border-color: rgba(255,255,255,0.2); }
+    .yaml-input { background: #161b22; color: #e4e6eb; border: 1px solid rgba(255,255,255,0.2); }
+    .yaml-form button { background: #1f8f5a; }
+    .yaml-form button:hover { background: #167347; }
+    .yaml-output { color: #7ce694; }
   }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+      const setupYamlGenerators = () => {
+        const isValidIp = (value) => {
+          const parts = value.split('.');
+          if (parts.length !== 4) return false;
+          return parts.every(part => /^\d+$/.test(part) && Number(part) >= 0 && Number(part) <= 255);
+        };
+        const isValidPort = (value) => {
+          if (!/^\d+$/.test(value)) return false;
+          const num = Number(value);
+          return num >= 1 && num <= 65535;
+        };
+        document.querySelectorAll('.yaml-generator').forEach((wrapper) => {
+          const inputs = wrapper.querySelectorAll('input');
+          const ipInput = inputs[0];
+          const portInput = inputs[1];
+          const button = wrapper.querySelector('button');
+          const output = wrapper.querySelector('.yaml-output');
+          const invalidIp = wrapper.dataset.invalidIp || 'Invalid IP.';
+          const invalidPort = wrapper.dataset.invalidPort || 'Invalid port.';
+          const prefix = wrapper.dataset.outputPrefix || '';
+
+          const renderError = (message) => {
+            output.textContent = message;
+            output.classList.add('error');
+          };
+
+          const renderLink = (link) => {
+            output.classList.remove('error');
+            output.innerHTML = `${prefix}<a href="${link}">${link}</a>`;
+          };
+
+          const handleGenerate = () => {
+            const ip = ipInput.value.trim();
+            const port = portInput.value.trim();
+            if (!isValidIp(ip)) {
+              renderError(invalidIp);
+              return;
+            }
+            if (!isValidPort(port)) {
+              renderError(invalidPort);
+              return;
+            }
+            const url = new URL('port-yaml.html', window.location.href);
+            url.searchParams.set('ip', ip);
+            url.searchParams.set('port', port);
+            renderLink(url.toString());
+          };
+
+          button.addEventListener('click', handleGenerate);
+        });
+      };
+
       const titles = {
         'en':'Network Share User Guide',
         'zh-CN':'Network Share 使用手册',
@@ -48,26 +113,26 @@
         'vi':'Hướng dẫn sử dụng Network Share'
       };
       const intro = {
-        'en':'Use Network Share as a LAN proxy gateway; clients must manually set host IP + port.',
-        'zh-CN':'将本机作为局域网代理网关，客户端需手动填写主机 IP 和端口。',
-        'ar':'استخدم الجهاز كبوابة وكيل LAN؛ على العميل إدخال IP+منفذ يدويًا.',
-        'de':'Nutze das Gerät als LAN-Proxy; Clients müssen Host-IP+Port manuell setzen.',
-        'es':'Usa el equipo como proxy LAN; los clientes configuran IP+puerto manualmente.',
-        'fa':'گوشی را در LAN به‌عنوان پروکسی استفاده کنید؛ کلاینت باید IP+پورت را دستی وارد کند.',
-        'fr':'Utilisez l’appareil comme proxy LAN; clients saisissent IP+port manuellement.',
-        'hi':'LAN प्रॉक्सी के रूप में उपयोग; क्लाइंट IP+पोर्ट मैन्युअल सेट करें.',
-        'id':'Gunakan sebagai proxy LAN; klien isi IP+port manual.',
-        'ja':'本機をLANプロキシとして利用。クライアントは手動でIP+ポート設定。',
-        'ko':'LAN 프록시로 사용; 클라이언트가 IP+포트를 수동 설정.',
-        'ms':'Guna sebagai proksi LAN; klien isi IP+port secara manual.',
-        'pt':'Use como proxy LAN; cliente define IP+porta manual.',
-        'ru':'Используйте как LAN-прокси; клиенты вручную вводят IP+порт.',
-        'sw':'Tumia kama proksi ya LAN; mteja aweke IP+port kwa mkono.',
-        'th':'ใช้เป็นพร็อกซี LAN; ไคลเอนต์ตั้ง IP+พอร์ตเอง.',
-        'tl':'Gamitin bilang LAN proxy; mano ang IP+port.',
-        'tr':'LAN proxy olarak kullan; istemci IP+portu elle girmeli.',
-        'ur':'LAN پراکسی کے طور پر؛ کلائنٹ IP+پورٹ ہاتھ سے ڈالیں.',
-        'vi':'Dùng làm proxy LAN; client tự nhập IP+port.'
+        'en':'Supports full‑tunnel VPN proxy and LAN proxy; set host IP + port as needed.',
+        'zh-CN':'支持全量 VPN 代理与局域网代理，可按需填写主机 IP 和端口。',
+        'ar':'يدعم وكيل VPN كامل النطاق ووكيل LAN؛ اضبط IP المضيف والمنفذ عند الحاجة.',
+        'de':'Unterstützt Volltunnel‑VPN‑Proxy und LAN‑Proxy; Host‑IP und Port nach Bedarf setzen.',
+        'es':'Admite proxy VPN de túnel completo y proxy LAN; configura IP y puerto del host según sea necesario.',
+        'fa':'از پروکسی VPN تمام‌ترافیک و پروکسی LAN پشتیبانی می‌کند؛ IP و پورت میزبان را در صورت نیاز تنظیم کنید.',
+        'fr':'Prend en charge le proxy VPN tunnel complet et le proxy LAN ; définissez l’IP et le port de l’hôte selon le besoin.',
+        'hi':'फुल‑टनल VPN प्रॉक्सी और LAN प्रॉक्सी समर्थित हैं; आवश्यकता अनुसार होस्ट IP व पोर्ट सेट करें।',
+        'id':'Mendukung proxy VPN full‑tunnel dan proxy LAN; atur IP dan port host sesuai kebutuhan.',
+        'ja':'フルトンネルVPNプロキシとLANプロキシに対応。必要に応じてホストIPとポートを設定してください。',
+        'ko':'전체 터널 VPN 프록시와 LAN 프록시를 지원합니다. 필요에 따라 호스트 IP와 포트를 설정하세요.',
+        'ms':'Menyokong proksi VPN terowong penuh dan proksi LAN; tetapkan IP serta port hos mengikut keperluan.',
+        'pt':'Suporta proxy VPN de túnel completo e proxy LAN; defina IP e porta do host conforme necessário.',
+        'ru':'Поддерживаются полнотуннельный VPN‑прокси и LAN‑прокси; при необходимости укажите IP и порт хоста.',
+        'sw':'Inaunga mkono proksi ya VPN full‑tunnel na proksi ya LAN; weka IP na port ya host inapohitajika.',
+        'th':'รองรับพร็อกซี VPN แบบ full‑tunnel และพร็อกซี LAN; ตั้งค่า IP และพอร์ตของโฮสต์ตามต้องการ',
+        'tl':'Sumusuporta sa full‑tunnel VPN proxy at LAN proxy; itakda ang host IP at port kung kailangan.',
+        'tr':'Tam tünel VPN proxy ve LAN proxy desteklenir; gerektiğinde host IP ve portu ayarlayın.',
+        'ur':'فل ٹنل VPN پراکسی اور LAN پراکسی سپورٹ ہے؛ ضرورت کے مطابق ہوسٹ IP اور پورٹ سیٹ کریں۔',
+        'vi':'Hỗ trợ proxy VPN full‑tunnel và proxy LAN; đặt IP và cổng của host khi cần.'
       };
       const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
       const apply = (lang) => {
@@ -88,6 +153,7 @@
       apply(target);
       const sel=document.getElementById('lang-select');
       if(sel) sel.addEventListener('change',e=>apply(e.target.value));
+      setupYamlGenerators();
     });
   </script>
 </head>
@@ -118,7 +184,7 @@
       <option value="vi">Tiếng Việt</option>
     </select>
   </div>
-  <p id="intro">Use Network Share as a LAN proxy gateway; clients must manually set host IP + port.</p>
+  <p id="intro">Supports full‑tunnel VPN proxy and LAN proxy; set host IP + port as needed.</p>
 
   <div class="lang" data-lang="en">
     <h2>Purpose</h2>
@@ -132,7 +198,18 @@
       <li>Ensure host and clients are on the same LAN; port not occupied.</li>
       <li>Tap “Start Gateway” and keep the foreground service alive.</li>
     </ol>
-    <h2>Other devices (no VPN) setup (manual IP + port)</h2>
+    <h2>Full‑tunnel VPN proxy</h2>
+    <p>Install Clash on another device and subscribe to the generated YAML so all traffic goes through the proxy service. Use this when you want full‑device VPN proxying.</p>
+    <div class="yaml-generator" data-invalid-ip="Please enter a valid IP address." data-invalid-port="Please enter a valid port (1–65535)." data-output-prefix="Generated link: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Enter IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Enter port">
+        <button type="button">Generate YAML link</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash download: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN proxy / Wi‑Fi LAN proxy</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = this device IP, port = app port. Or set HTTP/HTTPS in apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android proxy setup"></div>
@@ -165,7 +242,18 @@
       <li>确认主机与客户端同局域网，端口未被占用。</li>
       <li>点击“启动网关”，保持前台服务运行。</li>
     </ol>
-    <h2>其他设备（无VPN）配置（手动 IP + 端口）</h2>
+    <h2>全量 VPN 代理</h2>
+    <p>在其他设备安装 Clash，订阅下方生成的 YAML，让该设备的全部流量走代理服务。适合需要全局代理的场景。</p>
+    <div class="yaml-generator" data-invalid-ip="请输入正确的 IP 地址。" data-invalid-port="请输入正确的端口（1–65535）。" data-output-prefix="生成链接：">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="请输入 IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="请输入端口">
+        <button type="button">生成 YAML 链接</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash 下载地址： <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>局域网代理 / Wi‑Fi 局域网代理</h2>
     <ul>
       <li><strong>Android</strong>：Wi‑Fi 详情→代理=手动，主机名填本机 IP，端口填 App 端口；或在支持代理的应用中填写 HTTP/HTTPS。
         <div class="guide-image"><img src="img/guide_android.png" alt="Android 代理设置示意图"></div>
@@ -198,7 +286,18 @@
       <li>تأكد أن المضيف والعميل على نفس شبكة LAN وأن المنفذ غير مشغول.</li>
       <li>اضغط “بدء البوابة” وابقَ على الخدمة في الواجهة.</li>
     </ol>
-    <h2>إعداد الأجهزة الأخرى (بدون VPN) (IP + منفذ يدوي)</h2>
+    <h2>وكيل VPN كامل النطاق</h2>
+    <p>ثبّت Clash على جهاز آخر واشترك في ملف YAML الذي يتم توليده كي تمر كل الحركة عبر خدمة الوكيل. استخدمه عندما تريد توجيه كل حركة الجهاز عبر الـVPN.</p>
+    <div class="yaml-generator" data-invalid-ip="يرجى إدخال عنوان IP صالح." data-invalid-port="يرجى إدخال منفذ صالح (1–65535)." data-output-prefix="الرابط المُنشأ: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="أدخل IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="أدخل المنفذ">
+        <button type="button">إنشاء رابط YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>تنزيل Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>وكيل LAN / وكيل Wi‑Fi LAN</h2>
     <ul>
       <li><strong>Android</strong>: تفاصيل Wi‑Fi → الوكيل = يدوي؛ الخادم = IP لهذا الجهاز، المنفذ = منفذ التطبيق. أو املأ HTTP/HTTPS في التطبيقات.
         <div class="guide-image"><img src="img/guide_android.png" alt="إعداد وكيل Android"></div>
@@ -231,7 +330,18 @@
       <li>Sicherstellen, dass Host und Clients im selben LAN sind und der Port frei ist.</li>
       <li>„Gateway starten“ tippen und den Vordergrunddienst aktiv lassen.</li>
     </ol>
-    <h2>Konfiguration anderer Geräte (ohne VPN) (manuelle IP + Port)</h2>
+    <h2>Volltunnel‑VPN‑Proxy</h2>
+    <p>Installiere Clash auf einem anderen Gerät und abonniere das erzeugte YAML, damit der gesamte Verkehr über den Proxy läuft. Für vollständiges Geräte‑Routing.</p>
+    <div class="yaml-generator" data-invalid-ip="Bitte eine gültige IP-Adresse eingeben." data-invalid-port="Bitte einen gültigen Port (1–65535) eingeben." data-output-prefix="Generierter Link: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP eingeben">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Port eingeben">
+        <button type="button">YAML‑Link erzeugen</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash‑Download: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN‑Proxy / Wi‑Fi‑LAN‑Proxy</h2>
     <ul>
       <li><strong>Android</strong>: WLAN-Details → Proxy = Manuell; Host = IP dieses Geräts, Port = App-Port. Oder HTTP/HTTPS in Apps eintragen.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android-Proxy-Einrichtung"></div>
@@ -264,7 +374,18 @@
       <li>Asegúrate de que el host y los clientes estén en la misma LAN y que el puerto esté libre.</li>
       <li>Toca “Iniciar gateway” y mantén vivo el servicio en primer plano.</li>
     </ol>
-    <h2>Configuración de otros dispositivos (sin VPN) (IP + puerto manual)</h2>
+    <h2>Proxy VPN de túnel completo</h2>
+    <p>Instala Clash en otro dispositivo y suscríbete al YAML generado para que todo el tráfico pase por el proxy. Úsalo cuando necesites proxy a nivel de todo el dispositivo.</p>
+    <div class="yaml-generator" data-invalid-ip="Introduce una IP válida." data-invalid-port="Introduce un puerto válido (1–65535)." data-output-prefix="Enlace generado: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Introduce IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Introduce puerto">
+        <button type="button">Generar enlace YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Descarga de Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proxy LAN / Proxy LAN por Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: Detalles de Wi‑Fi → Proxy = Manual; host = IP de este dispositivo, puerto = puerto de la app. O configura HTTP/HTTPS en las apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Configuración de proxy en Android"></div>
@@ -297,7 +418,18 @@
       <li>مطمئن شوید میزبان و کلاینت در یک LAN هستند و پورت اشغال نشده است.</li>
       <li>روی «شروع درگاه» بزنید و سرویس پیش‌زمینه را فعال نگه دارید.</li>
     </ol>
-    <h2>پیکربندی سایر دستگاه‌ها (بدون VPN) (IP + پورت دستی)</h2>
+    <h2>پروکسی VPN تمام‌ترافیک</h2>
+    <p>روی یک دستگاه دیگر Clash را نصب کنید و YAML تولیدشده را سابسکرایب کنید تا تمام ترافیک از پروکسی عبور کند. مناسب برای پروکسی سراسری دستگاه.</p>
+    <div class="yaml-generator" data-invalid-ip="لطفاً یک IP معتبر وارد کنید." data-invalid-port="لطفاً یک پورت معتبر وارد کنید (1–65535)." data-output-prefix="لینک تولیدشده: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP را وارد کنید">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="پورت را وارد کنید">
+        <button type="button">ایجاد لینک YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>دانلود Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>پروکسی LAN / پروکسی LAN از طریق Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: جزئیات Wi‑Fi → پروکسی = دستی؛ سرور = IP این دستگاه، پورت = پورت اپ. یا در اپ‌های پشتیبان، HTTP/HTTPS را پر کنید.
         <div class="guide-image"><img src="img/guide_android.png" alt="تنظیم پراکسی Android"></div>
@@ -330,7 +462,18 @@
       <li>Vérifiez que l’hôte et les clients sont sur le même LAN et que le port est libre.</li>
       <li>Appuyez sur « Démarrer la passerelle » et maintenez le service au premier plan.</li>
     </ol>
-    <h2>Configuration des autres appareils (sans VPN) (IP + port manuels)</h2>
+    <h2>Proxy VPN tunnel complet</h2>
+    <p>Installez Clash sur un autre appareil et abonnez‑vous au YAML généré pour que tout le trafic passe par le proxy. À utiliser pour un proxy global de l’appareil.</p>
+    <div class="yaml-generator" data-invalid-ip="Veuillez saisir une adresse IP valide." data-invalid-port="Veuillez saisir un port valide (1–65535)." data-output-prefix="Lien généré : ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Saisir IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Saisir le port">
+        <button type="button">Générer le lien YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Téléchargement Clash : <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proxy LAN / Proxy LAN via Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong> : Détails Wi‑Fi → Proxy = Manuel ; hôte = IP de cet appareil, port = port de l’app. Ou renseignez HTTP/HTTPS dans les apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Configuration proxy Android"></div>
@@ -363,7 +506,18 @@
       <li>सुनिश्चित करें कि होस्ट और क्लाइंट एक ही LAN पर हैं और पोर्ट खाली है।</li>
       <li>“गेटवे शुरू करें” टैप करें और फोरग्राउंड सेवा को चालू रखें।</li>
     </ol>
-    <h2>अन्य डिवाइस सेटअप (बिना VPN) (मैन्युअल IP + पोर्ट)</h2>
+    <h2>फुल‑टनल VPN प्रॉक्सी</h2>
+    <p>किसी अन्य डिवाइस पर Clash इंस्टॉल करें और नीचे जनरेट किए YAML को सब्सक्राइब करें, ताकि पूरा ट्रैफ़िक प्रॉक्सी से जाए। जब आपको पूरे डिवाइस का प्रॉक्सी चाहिए तब उपयोग करें।</p>
+    <div class="yaml-generator" data-invalid-ip="कृपया सही IP दर्ज करें।" data-invalid-port="कृपया सही पोर्ट (1–65535) दर्ज करें।" data-output-prefix="जनरेट किया लिंक: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP दर्ज करें">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="पोर्ट दर्ज करें">
+        <button type="button">YAML लिंक बनाएं</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash डाउनलोड: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN प्रॉक्सी / Wi‑Fi LAN प्रॉक्सी</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi विवरण → Proxy = Manual; होस्ट = इस डिवाइस का IP, पोर्ट = ऐप पोर्ट। या ऐप में HTTP/HTTPS भरें।
         <div class="guide-image"><img src="img/guide_android.png" alt="Android प्रॉक्सी सेटअप"></div>
@@ -396,7 +550,18 @@
       <li>Pastikan host dan klien berada pada LAN yang sama dan port tidak dipakai.</li>
       <li>Ketuk “Mulai Gateway” dan biarkan layanan foreground tetap aktif.</li>
     </ol>
-    <h2>Pengaturan perangkat lain (tanpa VPN) (IP + port manual)</h2>
+    <h2>Proxy VPN full‑tunnel</h2>
+    <p>Instal Clash di perangkat lain lalu berlangganan YAML yang dibuat agar seluruh trafik lewat proxy. Cocok untuk proxy seluruh perangkat.</p>
+    <div class="yaml-generator" data-invalid-ip="Masukkan alamat IP yang valid." data-invalid-port="Masukkan port yang valid (1–65535)." data-output-prefix="Tautan dibuat: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Masukkan IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Masukkan port">
+        <button type="button">Buat tautan YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Unduh Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proxy LAN / Proxy LAN Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: Detail Wi‑Fi → Proxy = Manual; host = IP perangkat ini, port = port app. Atau isi HTTP/HTTPS di aplikasi.
         <div class="guide-image"><img src="img/guide_android.png" alt="Pengaturan proxy Android"></div>
@@ -429,7 +594,18 @@
       <li>ホストとクライアントが同じ LAN 上にあり、ポートが空いていることを確認します。</li>
       <li>「ゲートウェイ開始」をタップし、フォアグラウンドサービスを維持します。</li>
     </ol>
-    <h2>他のデバイス設定（VPNなし）（手動 IP + ポート）</h2>
+    <h2>フルトンネルVPNプロキシ</h2>
+    <p>別の端末に Clash をインストールし、生成された YAML を購読して、すべての通信をプロキシ経由にします。端末全体をプロキシしたい場合に使用します。</p>
+    <div class="yaml-generator" data-invalid-ip="正しいIPアドレスを入力してください。" data-invalid-port="正しいポート（1–65535）を入力してください。" data-output-prefix="生成リンク：">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IPを入力">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="ポートを入力">
+        <button type="button">YAMLリンクを生成</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash ダウンロード： <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LANプロキシ / Wi‑Fi LANプロキシ</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi 詳細 → プロキシ = 手動；ホスト = 本機の IP、ポート = アプリのポート。あるいはアプリの HTTP/HTTPS に設定。
         <div class="guide-image"><img src="img/guide_android.png" alt="Android プロキシ設定"></div>
@@ -462,7 +638,18 @@
       <li>호스트와 클라이언트가 같은 LAN에 있고 포트가 비어 있는지 확인합니다.</li>
       <li>“게이트웨이 시작”을 눌러 포그라운드 서비스를 유지합니다.</li>
     </ol>
-    <h2>다른 장치 설정(VPN 없음) (수동 IP + 포트)</h2>
+    <h2>전체 터널 VPN 프록시</h2>
+    <p>다른 기기에 Clash를 설치하고 생성된 YAML을 구독하여 모든 트래픽이 프록시를 통과하도록 합니다. 기기 전체 프록시가 필요할 때 사용하세요.</p>
+    <div class="yaml-generator" data-invalid-ip="유효한 IP 주소를 입력하세요." data-invalid-port="유효한 포트(1–65535)를 입력하세요." data-output-prefix="생성된 링크: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP 입력">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="포트 입력">
+        <button type="button">YAML 링크 생성</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash 다운로드: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN 프록시 / Wi‑Fi LAN 프록시</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi 세부정보 → 프록시 = 수동; 호스트 = 이 기기 IP, 포트 = 앱 포트. 또는 앱의 HTTP/HTTPS 항목에 입력.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android 프록시 설정"></div>
@@ -495,7 +682,18 @@
       <li>Pastikan hos dan klien berada dalam LAN yang sama dan port tidak digunakan.</li>
       <li>Ketik “Mulakan Gateway” dan kekalkan perkhidmatan latar depan.</li>
     </ol>
-    <h2>Konfigurasi peranti lain (tanpa VPN) (IP + port manual)</h2>
+    <h2>Proksi VPN terowong penuh</h2>
+    <p>Pasang Clash pada peranti lain dan langgan YAML yang dijana supaya semua trafik melalui proksi. Sesuai untuk proksi seluruh peranti.</p>
+    <div class="yaml-generator" data-invalid-ip="Sila masukkan alamat IP yang sah." data-invalid-port="Sila masukkan port yang sah (1–65535)." data-output-prefix="Pautan dijana: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Masukkan IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Masukkan port">
+        <button type="button">Jana pautan YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Muat turun Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proksi LAN / Proksi LAN Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: Butiran Wi‑Fi → Proksi = Manual; hos = IP peranti ini, port = port app. Atau isikan HTTP/HTTPS dalam app.
         <div class="guide-image"><img src="img/guide_android.png" alt="Tetapan proksi Android"></div>
@@ -528,7 +726,18 @@
       <li>Certifique-se de que host e clientes estejam na mesma LAN e que a porta não esteja ocupada.</li>
       <li>Toque em “Iniciar gateway” e mantenha o serviço em primeiro plano ativo.</li>
     </ol>
-    <h2>Configuração de outros dispositivos (sem VPN) (IP + porta manual)</h2>
+    <h2>Proxy VPN de túnel completo</h2>
+    <p>Instale o Clash em outro dispositivo e assine o YAML gerado para que todo o tráfego passe pelo proxy. Use quando precisar de proxy no dispositivo inteiro.</p>
+    <div class="yaml-generator" data-invalid-ip="Digite um IP válido." data-invalid-port="Digite uma porta válida (1–65535)." data-output-prefix="Link gerado: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Digite o IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Digite a porta">
+        <button type="button">Gerar link YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Download do Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proxy LAN / Proxy LAN via Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: Detalhes do Wi‑Fi → Proxy = Manual; host = IP deste dispositivo, porta = porta do app. Ou preencha HTTP/HTTPS nos apps.
         <div class="guide-image"><img src="img/guide_android.png" alt="Configuração de proxy no Android"></div>
@@ -561,7 +770,18 @@
       <li>Убедитесь, что хост и клиенты в одной LAN и что порт не занят.</li>
       <li>Нажмите «Запустить шлюз» и держите foreground‑сервис активным.</li>
     </ol>
-    <h2>Настройка других устройств (без VPN) (ручные IP + порт)</h2>
+    <h2>Полнотуннельный VPN‑прокси</h2>
+    <p>Установите Clash на другом устройстве и подпишитесь на созданный YAML, чтобы весь трафик шел через прокси. Используйте, когда нужен прокси для всего устройства.</p>
+    <div class="yaml-generator" data-invalid-ip="Введите корректный IP‑адрес." data-invalid-port="Введите корректный порт (1–65535)." data-output-prefix="Сгенерированная ссылка: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Введите IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Введите порт">
+        <button type="button">Сгенерировать ссылку YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Скачать Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN‑прокси / Wi‑Fi LAN‑прокси</h2>
     <ul>
       <li><strong>Android</strong>: сведения о Wi‑Fi → Прокси = Вручную; хост = IP этого устройства, порт = порт приложения. Или заполните HTTP/HTTPS в приложениях.
         <div class="guide-image"><img src="img/guide_android.png" alt="Настройка прокси на Android"></div>
@@ -594,7 +814,18 @@
       <li>Hakikisheni host na wateja wako LAN moja na bandari haijatumika.</li>
       <li>Bofya “Anzisha Gateway” na uache huduma ya foreground iendelee.</li>
     </ol>
-    <h2>Usanidi wa vifaa vingine (bila VPN) (IP + bandari ya mkono)</h2>
+    <h2>Proksi ya VPN full‑tunnel</h2>
+    <p>Sakinisha Clash kwenye kifaa kingine kisha subscribe YAML iliyotengenezwa ili trafiki yote ipitie proksi. Tumia unapohitaji proksi ya kifaa chote.</p>
+    <div class="yaml-generator" data-invalid-ip="Tafadhali ingiza IP sahihi." data-invalid-port="Tafadhali ingiza port sahihi (1–65535)." data-output-prefix="Kiungo kilichotengenezwa: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Ingiza IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Ingiza port">
+        <button type="button">Tengeneza kiungo cha YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Pakua Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proksi ya LAN / Proksi ya LAN ya Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: Maelezo ya Wi‑Fi → Proksi = Manual; host = IP ya kifaa hiki, bandari = bandari ya app. Au jaza HTTP/HTTPS ndani ya app.
         <div class="guide-image"><img src="img/guide_android.png" alt="Mipangilio ya proksi Android"></div>
@@ -627,7 +858,18 @@
       <li>ยืนยันว่าโฮสต์และไคลเอนต์อยู่ใน LAN เดียวกัน และพอร์ตไม่ถูกใช้งาน</li>
       <li>แตะ “เริ่มเกตเวย์” และให้บริการ foreground ทำงานต่อ</li>
     </ol>
-    <h2>การตั้งค่าอุปกรณ์อื่น (ไม่มี VPN) (กรอก IP + พอร์ตเอง)</h2>
+    <h2>พร็อกซี VPN แบบ full‑tunnel</h2>
+    <p>ติดตั้ง Clash บนอุปกรณ์อื่นแล้วสมัคร YAML ที่สร้างขึ้น เพื่อให้ทราฟฟิกทั้งหมดผ่านพร็อกซี ใช้เมื่ออยากให้ทั้งอุปกรณ์ผ่านพร็อกซี</p>
+    <div class="yaml-generator" data-invalid-ip="กรุณากรอก IP ที่ถูกต้อง" data-invalid-port="กรุณากรอกพอร์ตที่ถูกต้อง (1–65535)" data-output-prefix="ลิงก์ที่สร้าง: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="กรอก IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="กรอกพอร์ต">
+        <button type="button">สร้างลิงก์ YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>ดาวน์โหลด Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>พร็อกซี LAN / พร็อกซี LAN ผ่าน Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: รายละเอียด Wi‑Fi → Proxy = Manual; โฮสต์ = IP ของเครื่องนี้, พอร์ต = พอร์ตในแอป หรือกรอก HTTP/HTTPS ในแอป
         <div class="guide-image"><img src="img/guide_android.png" alt="การตั้งค่าพร็อกซีบน Android"></div>
@@ -660,7 +902,18 @@
       <li>Tiyaking nasa parehong LAN ang host at mga kliyente at hindi ginagamit ang port.</li>
       <li>Pindutin ang “Start Gateway” at panatilihing buhay ang foreground service.</li>
     </ol>
-    <h2>Setup ng ibang device (walang VPN) (manu-manong IP + port)</h2>
+    <h2>Full‑tunnel VPN proxy</h2>
+    <p>Mag‑install ng Clash sa ibang device at mag‑subscribe sa generated YAML para dumaan lahat ng traffic sa proxy. Gamitin kapag kailangan ng full‑device proxy.</p>
+    <div class="yaml-generator" data-invalid-ip="Maglagay ng wastong IP." data-invalid-port="Maglagay ng wastong port (1–65535)." data-output-prefix="Nabuong link: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Ilagay ang IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Ilagay ang port">
+        <button type="button">Gumawa ng YAML link</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>I‑download ang Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN proxy / Wi‑Fi LAN proxy</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi details → Proxy = Manual; host = IP ng aparatong ito, port = port ng app. O punan ang HTTP/HTTPS sa mga app.
         <div class="guide-image"><img src="img/guide_android.png" alt="Pag-configure ng proxy sa Android"></div>
@@ -693,7 +946,18 @@
       <li>Host ve istemcilerin aynı LAN’de olduğundan ve portun boş olduğundan emin olun.</li>
       <li>“Gateway’i başlat”a dokunun ve ön plan servisini açık tutun.</li>
     </ol>
-    <h2>Diğer cihazların kurulumu (VPN yok) (manuel IP + port)</h2>
+    <h2>Tam tünel VPN proxy</h2>
+    <p>Başka bir cihaza Clash kurun ve oluşturulan YAML’e abone olun; böylece tüm trafik proxy üzerinden geçer. Tüm cihaz için proxy gerektiğinde kullanın.</p>
+    <div class="yaml-generator" data-invalid-ip="Geçerli bir IP adresi girin." data-invalid-port="Geçerli bir port (1–65535) girin." data-output-prefix="Oluşturulan bağlantı: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP girin">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Port girin">
+        <button type="button">YAML bağlantısı oluştur</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash indir: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN proxy / Wi‑Fi LAN proxy</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi ayrıntıları → Proxy = Manuel; host = bu cihazın IP’si, port = uygulama portu. Ya da uygulamalarda HTTP/HTTPS alanlarını doldurun.
         <div class="guide-image"><img src="img/guide_android.png" alt="Android proxy kurulumu"></div>
@@ -726,7 +990,18 @@
       <li>یقین کریں کہ ہوسٹ اور کلائنٹس ایک ہی LAN پر ہیں اور پورٹ خالی ہے۔</li>
       <li>“گیٹ وے شروع کریں” پر ٹیپ کریں اور فورگراؤنڈ سروس کو جاری رکھیں۔</li>
     </ol>
-    <h2>دیگر ڈیوائسز سیٹ اپ (VPN کے بغیر) (ہاتھ سے IP + پورٹ)</h2>
+    <h2>فل ٹنل VPN پراکسی</h2>
+    <p>دوسرے ڈیوائس پر Clash انسٹال کریں اور تیار شدہ YAML سبسکرائب کریں تاکہ تمام ٹریفک پراکسی سے گزرے۔ جب پورے ڈیوائس کا پراکسی چاہیے تو استعمال کریں۔</p>
+    <div class="yaml-generator" data-invalid-ip="براہ کرم درست IP درج کریں۔" data-invalid-port="براہ کرم درست پورٹ (1–65535) درج کریں۔" data-output-prefix="بنایا گیا لنک: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="IP درج کریں">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="پورٹ درج کریں">
+        <button type="button">YAML لنک بنائیں</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Clash ڈاؤن لوڈ: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>LAN پراکسی / Wi‑Fi LAN پراکسی</h2>
     <ul>
       <li><strong>Android</strong>: Wi‑Fi تفصیل → پراکسی = Manual؛ ہوسٹ = اس ڈیوائس کا IP، پورٹ = ایپ کا پورٹ۔ یا ایپس میں HTTP/HTTPS درج کریں۔
         <div class="guide-image"><img src="img/guide_android.png" alt="Android پراکسی سیٹ اپ"></div>
@@ -759,7 +1034,18 @@
       <li>Đảm bảo máy chủ và client cùng LAN và cổng không bị chiếm.</li>
       <li>Nhấn “Khởi động gateway” và giữ dịch vụ nền trước hoạt động.</li>
     </ol>
-    <h2>Cấu hình thiết bị khác (không VPN) (IP + cổng thủ công)</h2>
+    <h2>Proxy VPN full‑tunnel</h2>
+    <p>Cài Clash trên thiết bị khác và đăng ký YAML đã tạo để toàn bộ lưu lượng đi qua proxy. Dùng khi cần proxy toàn bộ thiết bị.</p>
+    <div class="yaml-generator" data-invalid-ip="Vui lòng nhập IP hợp lệ." data-invalid-port="Vui lòng nhập cổng hợp lệ (1–65535)." data-output-prefix="Liên kết đã tạo: ">
+      <div class="yaml-form">
+        <input class="yaml-input" type="text" inputmode="decimal" placeholder="Nhập IP">
+        <input class="yaml-input" type="text" inputmode="numeric" placeholder="Nhập cổng">
+        <button type="button">Tạo liên kết YAML</button>
+      </div>
+      <div class="yaml-output" aria-live="polite"></div>
+    </div>
+    <p>Tải Clash: <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <h2>Proxy LAN / Proxy LAN qua Wi‑Fi</h2>
     <ul>
       <li><strong>Android</strong>: Chi tiết Wi‑Fi → Proxy = Manual; host = IP của thiết bị này, port = cổng ứng dụng. Hoặc điền HTTP/HTTPS trong ứng dụng.
         <div class="guide-image"><img src="img/guide_android.png" alt="Thiết lập proxy Android"></div>
