@@ -20,9 +20,16 @@
       const ip = params.get("ip");
       const port = params.get("port");
 
-      if (ip && port) {
-        const content = `port: ${port}\nserver: ${ip}\n`;
-        const blob = new Blob([content], { type: "text/yaml" });
+      const downloadYaml = async () => {
+        if (!ip || !port) return;
+        const response = await fetch("1080.yaml", { cache: "no-store" });
+        const template = await response.text();
+        const updated = template
+          .replace(/^port:\s*1080$/m, `port: ${port}`)
+          .replace(/^socks-port:\s*1080$/m, `socks-port: ${port}`)
+          .replace(/^(\s+)port:\s*1080$/m, `$1port: ${port}`)
+          .replace(/^(\s+)server:\s*.+$/m, `$1server: ${ip}`);
+        const blob = new Blob([updated], { type: "text/yaml" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
@@ -31,7 +38,9 @@
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-      }
+      };
+
+      void downloadYaml();
     </script>
   </body>
 </html>
