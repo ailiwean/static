@@ -99,6 +99,81 @@
         });
       };
 
+      const setupCopyButtons = () => {
+        const copyLabels = {
+          'en': { copy: 'Copy', copied: 'Copied', bypass: 'Proxy bypass:' },
+          'zh-CN': { copy: '一键复制', copied: '已复制', bypass: '代理忽略项：' },
+          'ar': { copy: 'نسخ', copied: 'تم النسخ', bypass: 'تجاوز الوكيل:' },
+          'de': { copy: 'Kopieren', copied: 'Kopiert', bypass: 'Proxy-Ausnahmen:' },
+          'es': { copy: 'Copiar', copied: 'Copiado', bypass: 'Omitir proxy:' },
+          'fa': { copy: 'کپی', copied: 'کپی شد', bypass: 'استثناهای پروکسی:' },
+          'fr': { copy: 'Copier', copied: 'Copié', bypass: 'Exceptions proxy :' },
+          'hi': { copy: 'कॉपी', copied: 'कॉपी हो गया', bypass: 'प्रॉक्सी बायपास:' },
+          'id': { copy: 'Salin', copied: 'Tersalin', bypass: 'Abaikan proxy:' },
+          'ja': { copy: 'コピー', copied: 'コピー済み', bypass: 'プロキシ除外:' },
+          'ko': { copy: '복사', copied: '복사됨', bypass: '프록시 제외:' },
+          'ms': { copy: 'Salin', copied: 'Disalin', bypass: 'Abaikan proksi:' },
+          'pt': { copy: 'Copiar', copied: 'Copiado', bypass: 'Ignorar proxy:' },
+          'ru': { copy: 'Копировать', copied: 'Скопировано', bypass: 'Исключения прокси:' },
+          'sw': { copy: 'Nakili', copied: 'Imenakiliwa', bypass: 'Epuka proksi:' },
+          'th': { copy: 'คัดลอก', copied: 'คัดลอกแล้ว', bypass: 'ยกเว้นพร็อกซี:' },
+          'tl': { copy: 'Kopyahin', copied: 'Nakopya', bypass: 'I-bypass ang proxy:' },
+          'tr': { copy: 'Kopyala', copied: 'Kopyalandı', bypass: 'Proxy hariç:' },
+          'ur': { copy: 'کاپی', copied: 'کاپی ہو گیا', bypass: 'پراکسی کو نظرانداز کریں:' },
+          'vi': { copy: 'Sao chép', copied: 'Đã sao chép', bypass: 'Bỏ qua proxy:' }
+        };
+
+        const getLabels = (el) => {
+          const lang = el.closest('.lang')?.dataset.lang || 'en';
+          return copyLabels[lang] || copyLabels.en;
+        };
+
+        document.querySelectorAll('.proxy-bypass-label').forEach((label) => {
+          const labels = getLabels(label);
+          label.textContent = labels.bypass;
+        });
+
+        const fallbackCopy = (value) => {
+          const textarea = document.createElement('textarea');
+          textarea.value = value;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          try {
+            document.execCommand('copy');
+          } finally {
+            document.body.removeChild(textarea);
+          }
+        };
+
+        document.querySelectorAll('.copy-btn').forEach((button) => {
+          const labels = getLabels(button);
+          button.textContent = labels.copy;
+          button.addEventListener('click', async () => {
+            const value = button.dataset.copy || '';
+            try {
+              if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(value);
+              } else {
+                fallbackCopy(value);
+              }
+              button.textContent = labels.copied;
+              setTimeout(() => {
+                button.textContent = labels.copy;
+              }, 1600);
+            } catch (err) {
+              fallbackCopy(value);
+              button.textContent = labels.copied;
+              setTimeout(() => {
+                button.textContent = labels.copy;
+              }, 1600);
+            }
+          });
+        });
+      };
+
       const titles = {
         'en':'Network Share User Guide',
         'zh-CN':'Network Share 使用手册',
@@ -163,6 +238,7 @@
       const sel=document.getElementById('lang-select');
       if(sel) sel.addEventListener('change',e=>apply(e.target.value));
       setupYamlGenerators();
+      setupCopyButtons();
     });
   </script>
 </head>
