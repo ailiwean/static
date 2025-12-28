@@ -43,17 +43,23 @@
           content = "";
         }
 
-        // 如果有 port 行，就替换（去掉行首缩进）
+        // 如果有 port 行，就替换（保留缩进）
         if (/^\s*port:/m.test(content)) {
-          content = content.replace(/^\s*port:.*$/m, `port: ${port}`);
+          content = content.replace(
+            /^(\s*)port:.*$/gm,
+            (_, indent) => `${indent}port: ${port}`
+          );
         } else {
           // 没有就加在最前面
           content = `port: ${port}\n` + content;
         }
 
-        // 如果有 server 行，就替换（去掉行首缩进）
+        // 如果有 server 行，就替换（保留缩进）
         if (/^\s*server:/m.test(content)) {
-          content = content.replace(/^\s*server:.*$/m, `server: ${ip}`);
+          content = content.replace(
+            /^(\s*)server:.*$/gm,
+            (_, indent) => `${indent}server: ${ip}`
+          );
         } else {
           // 没有就紧跟在 port 后面加一行
           content = content.replace(/^(port:.*\n)/, `$1server: ${ip}\n`);
