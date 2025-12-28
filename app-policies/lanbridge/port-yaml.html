@@ -8,6 +8,8 @@
   <body>
     <script>
       const params = new URLSearchParams(window.location.search);
+
+      // 合并 hash 参数
       if (window.location.hash) {
         const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
         for (const [key, value] of hashParams.entries()) {
@@ -17,19 +19,29 @@
         }
       }
 
-      const ip = params.get("ip");
-      const port = params.get("port");
+      // 去掉 ip / port 参数首尾空格
+      const rawIp = params.get("ip");
+      const rawPort = params.get("port");
+      const ip = rawIp ? rawIp.trim() : "";
+      const port = rawPort ? rawPort.trim() : "";
 
       if (ip && port) {
-        const content = `port: ${port}\nserver: ${ip}\n`;
+        let content = `port: ${port}\nserver: ${ip}\n`;
+
+        // 再保险一点：把文件开头所有空白字符都去掉
+        // 包括空格、TAB、换行、以及可能的 BOM
+        content = content.replace(/^\s+/, "").replace(/^\uFEFF/, "");
+
         const blob = new Blob([content], { type: "text/yaml" });
         const url = URL.createObjectURL(blob);
+
         const link = document.createElement("a");
         link.href = url;
         link.download = `${port}.yaml`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
         URL.revokeObjectURL(url);
       }
     </script>
