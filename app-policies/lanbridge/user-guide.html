@@ -20,6 +20,11 @@
     .yaml-form button:hover { background: #08733f; }
     .yaml-output { margin-top: 6px; color: #0a8a4b; font-weight: 600; word-break: break-all; }
     .yaml-output.error { color: #b00020; }
+    .copy-row { margin-top: 6px; }
+    .copy-btn { padding: 6px 12px; border: 1px solid #0a8a4b; border-radius: 6px; background: transparent; color: #0a8a4b; cursor: pointer; font-weight: 600; }
+    .copy-btn:hover { background: rgba(10,138,75,0.08); }
+    .proxy-bypass { margin-top: 4px; }
+    .proxy-bypass-label { font-weight: 600; }
     .notice-green { color: #0a8a4b; font-weight: 600; }
 
   @media (prefers-color-scheme: dark) {
@@ -34,6 +39,8 @@
     .yaml-form button { background: #1f8f5a; }
     .yaml-form button:hover { background: #167347; }
     .yaml-output { color: #7ce694; }
+    .copy-btn { border-color: #7ce694; color: #7ce694; }
+    .copy-btn:hover { background: rgba(124,230,148,0.12); }
     .notice-green { color: #7ce694; }
   }
   </style>
@@ -220,17 +227,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS proxy setup"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = host IP, port = app port (HTTP/HTTPS); proxy bypass = localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows proxy setup"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → current interface → Details → Proxies; check HTTP/HTTPS (or SOCKS5), server = host IP, port = app port.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS proxy setup"></div>
       </li>
       <li><strong>Other devices</strong>: fill host IP + port in HTTP/HTTPS/SOCKS5 proxy settings supported by the device/app.</li>
     </ul>
     <h2>Enhanced mode</h2>
     <p>Some VPNs block inbound connections from other LAN devices, so they cannot reach the proxy service on this host and VPN sharing fails. Enhanced mode adds a companion device and moves the proxy service to that device. This host (with VPN) connects out to the companion device, brings the data back, and then performs requests locally.</p>
-    <p>If other LAN devices still cannot access the proxy after correct settings, enable Enhanced mode. The companion device can also set up a proxy like other clients to use the VPN from the main device.
-    <p class="notice-green"><strong>Important:</strong> If the companion device also needs Clash full‑tunnel VPN, turn off VPN and connect to the main device first, then enable VPN after the connection succeeds. Device role detection currently depends on whether VPN is enabled.</p></p>
+    <p>If other LAN devices still cannot access the proxy after correct settings, enable Enhanced mode. The companion device can also set up a proxy like other clients to use the VPN from the main device.</p>
+    <p class="notice-green"><strong>Important:</strong> If the companion device also needs Clash full‑tunnel VPN, turn off VPN and connect to the main device first, then enable VPN after the connection succeeds. Device role detection currently depends on whether VPN is enabled.</p>
   </div>
 
   <div class="lang" data-lang="zh-CN">
@@ -265,17 +275,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS 代理设置示意图"></div>
       </li>
       <li><strong>Windows</strong>：设置→网络和 Internet→代理→手动代理，地址=本机 IP，端口=App 端口（HTTP/HTTPS）。<br>代理忽略项：localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*。
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows 代理设置示意图"></div>
       </li>
       <li><strong>macOS</strong>：系统设置→网络→当前接口→详情→代理，勾选 HTTP/HTTPS（或 SOCKS5），服务器=本机 IP，端口=App 端口。
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS 代理设置示意图"></div>
       </li>
       <li><strong>其他设备</strong>：在支持的 HTTP/HTTPS/SOCKS5 代理入口手动填本机 IP + 端口。</li>
     </ul>
     <h2>增强模式</h2>
     <p>部分 VPN 会阻止局域网内其他设备入站到本机，导致无法访问代理服务，从而 VPN 分享失效。增强模式通过增加一个协同设备，将代理服务转移到协同设备上。本机（运行 VPN 的设备）出站访问协同设备，带回数据后再由本机发起请求。</p>
-    <p>若在正确配置后其他局域网设备仍无法访问代理，请开启增强模式。协同设备也可以像其他设备一样配置代理，使用主设备的 VPN。
-    <p class="notice-green"><strong>重要：</strong>协同设备如需使用 Clash 全量 VPN 代理，请先关闭 VPN 与主设备建立连接，连接成功后再开启 VPN。目前主设备与协同设备的判定依据是是否启用 VPN。</p></p>
+    <p>若在正确配置后其他局域网设备仍无法访问代理，请开启增强模式。协同设备也可以像其他设备一样配置代理，使用主设备的 VPN。</p>
+    <p class="notice-green"><strong>重要：</strong>协同设备如需使用 Clash 全量 VPN 代理，请先关闭 VPN 与主设备建立连接，连接成功后再开启 VPN。目前主设备与协同设备的判定依据是是否启用 VPN。</p>
     <p class="notice-green"><strong>重要：</strong>协同设备如需使用 Clash 全量 VPN 代理，请先关闭 VPN 与主设备建立连接，连接成功后再开启 VPN。目前主设备与协同设备的判定依据是是否启用 VPN。</p>
   </div>
 
@@ -311,17 +324,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="إعداد وكيل iOS"></div>
       </li>
       <li><strong>Windows</strong>: الإعدادات → الشبكة والإنترنت → الوكيل → يدوي؛ العنوان = IP المضيف، المنفذ = منفذ التطبيق (HTTP/HTTPS)؛ قائمة التجاهل: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="إعداد وكيل Windows"></div>
       </li>
       <li><strong>macOS</strong>: إعدادات النظام → الشبكة → الواجهة الحالية → التفاصيل → الوكلاء؛ فعّل HTTP/HTTPS (أو SOCKS5)، الخادم = IP المضيف، المنفذ = منفذ التطبيق.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="إعداد وكيل macOS"></div>
       </li>
       <li><strong>أجهزة أخرى</strong>: أدخل IP المضيف + المنفذ في إعدادات وكيل HTTP/HTTPS/SOCKS5 المدعومة.</li>
     </ul>
     <h2>الوضع المعزز</h2>
     <p>تمنع بعض شبكات VPN الاتصالات الواردة من أجهزة LAN الأخرى، لذلك لا يمكنها الوصول إلى خدمة الوكيل على هذا المضيف وتفشل مشاركة VPN. يضيف الوضع المعزز جهازًا مساعدًا وينقل خدمة الوكيل إليه. يتصل هذا المضيف (مع VPN) بالخارج بجهاز المساعدة، يعيد البيانات ثم ينفّذ الطلبات محليًا.</p>
-    <p>إذا لم تتمكن أجهزة LAN الأخرى من الوصول إلى الوكيل بعد الإعداد الصحيح، فعّل الوضع المعزز. يمكن للجهاز المساعد إعداد الوكيل مثل باقي الأجهزة لاستخدام VPN على الجهاز الرئيسي.
-    <p class="notice-green"><strong>مهم:</strong> إذا كان جهاز المساعدة يحتاج أيضًا إلى وكيل VPN كامل النطاق عبر Clash، فأوقف الـVPN أولًا واتصل بالجهاز الرئيسي، ثم فعّل الـVPN بعد نجاح الاتصال. يعتمد تحديد الدور حاليًا على ما إذا كان الـVPN مفعّلًا.</p></p>
+    <p>إذا لم تتمكن أجهزة LAN الأخرى من الوصول إلى الوكيل بعد الإعداد الصحيح، فعّل الوضع المعزز. يمكن للجهاز المساعد إعداد الوكيل مثل باقي الأجهزة لاستخدام VPN على الجهاز الرئيسي.</p>
+    <p class="notice-green"><strong>مهم:</strong> إذا كان جهاز المساعدة يحتاج أيضًا إلى وكيل VPN كامل النطاق عبر Clash، فأوقف الـVPN أولًا واتصل بالجهاز الرئيسي، ثم فعّل الـVPN بعد نجاح الاتصال. يعتمد تحديد الدور حاليًا على ما إذا كان الـVPN مفعّلًا.</p>
   </div>
 
   <div class="lang" data-lang="de">
@@ -356,17 +372,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS-Proxy-Einrichtung"></div>
       </li>
       <li><strong>Windows</strong>: Einstellungen → Netzwerk & Internet → Proxy → Manuell; Adresse = Host-IP, Port = App-Port (HTTP/HTTPS); Proxy-Ausnahmen: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows-Proxy-Einrichtung"></div>
       </li>
       <li><strong>macOS</strong>: Systemeinstellungen → Netzwerk → aktuelle Schnittstelle → Details → Proxys; HTTP/HTTPS (oder SOCKS5) markieren, Server = Host-IP, Port = App-Port.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS-Proxy-Einrichtung"></div>
       </li>
       <li><strong>Andere Geräte</strong>: Host-IP + Port in den HTTP/HTTPS/SOCKS5-Proxyfeldern des Geräts/der App eintragen.</li>
     </ul>
     <h2>Erweiterter Modus</h2>
     <p>Einige VPNs blockieren eingehende Verbindungen von anderen LAN‑Geräten, sodass diese den Proxy‑Dienst auf diesem Host nicht erreichen und das VPN‑Sharing fehlschlägt. Der erweiterte Modus fügt ein Begleitgerät hinzu und verlagert den Proxy‑Dienst dorthin. Dieser Host (mit VPN) verbindet sich ausgehend mit dem Begleitgerät, bringt die Daten zurück und führt die Anfragen lokal aus.</p>
-    <p>Wenn andere LAN‑Geräte trotz korrekter Einstellungen nicht auf den Proxy zugreifen können, aktiviere den erweiterten Modus. Das Begleitgerät kann wie andere Clients einen Proxy einrichten, um das VPN des Hauptgeräts zu nutzen.
-    <p class="notice-green"><strong>Wichtig:</strong> Wenn das Begleitgerät ebenfalls den Clash‑Volltunnel‑VPN‑Proxy nutzen soll, schalte das VPN zuerst aus und stelle die Verbindung zum Hauptgerät her; aktiviere das VPN erst nach erfolgreicher Verbindung. Die Geräteerkennung basiert derzeit darauf, ob VPN aktiviert ist.</p></p>
+    <p>Wenn andere LAN‑Geräte trotz korrekter Einstellungen nicht auf den Proxy zugreifen können, aktiviere den erweiterten Modus. Das Begleitgerät kann wie andere Clients einen Proxy einrichten, um das VPN des Hauptgeräts zu nutzen.</p>
+    <p class="notice-green"><strong>Wichtig:</strong> Wenn das Begleitgerät ebenfalls den Clash‑Volltunnel‑VPN‑Proxy nutzen soll, schalte das VPN zuerst aus und stelle die Verbindung zum Hauptgerät her; aktiviere das VPN erst nach erfolgreicher Verbindung. Die Geräteerkennung basiert derzeit darauf, ob VPN aktiviert ist.</p>
   </div>
 
   <div class="lang" data-lang="es">
@@ -401,17 +420,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Configuración de proxy en iOS"></div>
       </li>
       <li><strong>Windows</strong>: Configuración → Red e Internet → Proxy → Manual; dirección = IP del host, puerto = puerto de la app (HTTP/HTTPS); excepciones del proxy: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Configuración de proxy en Windows"></div>
       </li>
       <li><strong>macOS</strong>: Ajustes del sistema → Red → interfaz actual → Detalles → Proxies; marca HTTP/HTTPS (o SOCKS5), servidor = IP del host, puerto = puerto de la app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Configuración de proxy en macOS"></div>
       </li>
       <li><strong>Otros dispositivos</strong>: introduce IP del host + puerto en los ajustes de proxy HTTP/HTTPS/SOCKS5 que el equipo o la app admitan.</li>
     </ul>
     <h2>Modo mejorado</h2>
     <p>Algunas VPN bloquean las conexiones entrantes de otros dispositivos de la LAN, por lo que no pueden acceder al servicio de proxy en este host y el uso compartido de VPN falla. El modo mejorado añade un dispositivo colaborador y traslada allí el servicio de proxy. Este host (con VPN) se conecta hacia afuera al dispositivo colaborador, trae los datos y luego realiza las solicitudes localmente.</p>
-    <p>Si otros dispositivos de la LAN aún no pueden acceder al proxy con la configuración correcta, activa el modo mejorado. El dispositivo colaborador puede configurar el proxy como los demás equipos para usar la VPN del dispositivo principal.
-    <p class="notice-green"><strong>Importante:</strong> Si el dispositivo colaborador también necesita el proxy VPN de túnel completo con Clash, primero desactiva el VPN y conéctalo al dispositivo principal; después de conectar correctamente, activa el VPN. La detección del rol del dispositivo actualmente depende de si el VPN está activado.</p></p>
+    <p>Si otros dispositivos de la LAN aún no pueden acceder al proxy con la configuración correcta, activa el modo mejorado. El dispositivo colaborador puede configurar el proxy como los demás equipos para usar la VPN del dispositivo principal.</p>
+    <p class="notice-green"><strong>Importante:</strong> Si el dispositivo colaborador también necesita el proxy VPN de túnel completo con Clash, primero desactiva el VPN y conéctalo al dispositivo principal; después de conectar correctamente, activa el VPN. La detección del rol del dispositivo actualmente depende de si el VPN está activado.</p>
   </div>
 
   <div class="lang" data-lang="fa">
@@ -446,17 +468,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="تنظیم پراکسی iOS"></div>
       </li>
       <li><strong>Windows</strong>: تنظیمات → شبکه و اینترنت → پروکسی → دستی؛ آدرس = IP میزبان، پورت = پورت اپ (HTTP/HTTPS)؛ فهرست استثنا: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="تنظیم پراکسی Windows"></div>
       </li>
       <li><strong>macOS</strong>: تنظیمات سیستم → شبکه → رابط فعلی → جزئیات → پروکسی‌ها؛ HTTP/HTTPS (یا SOCKS5) را تیک بزنید، سرور = IP میزبان، پورت = پورت اپ.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="تنظیم پراکسی macOS"></div>
       </li>
       <li><strong>دستگاه‌های دیگر</strong>: در تنظیمات پروکسی HTTP/HTTPS/SOCKS5 پشتیبانی‌شده، IP میزبان + پورت را وارد کنید.</li>
     </ul>
     <h2>حالت تقویت‌شده</h2>
     <p>برخی VPNها اتصال‌های ورودی از دستگاه‌های دیگر در LAN را مسدود می‌کنند، بنابراین دستگاه‌ها نمی‌توانند به سرویس پراکسی روی این میزبان دسترسی پیدا کنند و اشتراک VPN از کار می‌افتد. حالت تقویت‌شده یک دستگاه همکار اضافه می‌کند و سرویس پراکسی را به آن منتقل می‌کند. این میزبان (با VPN) به‌صورت خروجی به دستگاه همکار متصل می‌شود، داده را برمی‌گرداند و سپس درخواست‌ها را محلی انجام می‌دهد.</p>
-    <p>اگر دستگاه‌های دیگر LAN با وجود تنظیمات صحیح هنوز به پراکسی دسترسی ندارند، حالت تقویت‌شده را فعال کنید. دستگاه همکار می‌تواند مانند سایر دستگاه‌ها پراکسی را تنظیم کند و از VPN دستگاه اصلی استفاده کند.
-    <p class="notice-green"><strong>مهم:</strong> اگر دستگاه همکار هم نیاز به پراکسی VPN تمام‌ترافیک Clash دارد، ابتدا VPN را خاموش کرده و به دستگاه اصلی متصل شوید، سپس پس از اتصال موفق VPN را روشن کنید. تشخیص نقش دستگاه‌ها در حال حاضر براساس فعال بودن VPN است.</p></p>
+    <p>اگر دستگاه‌های دیگر LAN با وجود تنظیمات صحیح هنوز به پراکسی دسترسی ندارند، حالت تقویت‌شده را فعال کنید. دستگاه همکار می‌تواند مانند سایر دستگاه‌ها پراکسی را تنظیم کند و از VPN دستگاه اصلی استفاده کند.</p>
+    <p class="notice-green"><strong>مهم:</strong> اگر دستگاه همکار هم نیاز به پراکسی VPN تمام‌ترافیک Clash دارد، ابتدا VPN را خاموش کرده و به دستگاه اصلی متصل شوید، سپس پس از اتصال موفق VPN را روشن کنید. تشخیص نقش دستگاه‌ها در حال حاضر براساس فعال بودن VPN است.</p>
   </div>
 
   <div class="lang" data-lang="fr">
@@ -491,17 +516,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Configuration proxy iOS"></div>
       </li>
       <li><strong>Windows</strong> : Paramètres → Réseau et Internet → Proxy → Manuel ; adresse = IP hôte, port = port de l’app (HTTP/HTTPS) ; exceptions proxy : localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Configuration proxy Windows"></div>
       </li>
       <li><strong>macOS</strong> : Réglages Système → Réseau → interface actuelle → Détails → Proxys ; cochez HTTP/HTTPS (ou SOCKS5), serveur = IP hôte, port = port de l’app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Configuration proxy macOS"></div>
       </li>
       <li><strong>Autres appareils</strong> : renseignez IP hôte + port dans les paramètres proxy HTTP/HTTPS/SOCKS5 pris en charge.</li>
     </ul>
     <h2>Mode renforcé</h2>
     <p>Certains VPN bloquent les connexions entrantes des autres appareils du LAN, ce qui empêche d’atteindre le service proxy sur cet hôte et fait échouer le partage VPN. Le mode renforcé ajoute un appareil compagnon et déplace le service proxy dessus. Cet hôte (avec VPN) se connecte en sortie à l’appareil compagnon, récupère les données puis effectue les requêtes localement.</p>
-    <p>Si les autres appareils du LAN ne peuvent toujours pas accéder au proxy malgré une configuration correcte, activez le mode renforcé. L’appareil compagnon peut configurer le proxy comme les autres clients afin d’utiliser le VPN de l’appareil principal.
-    <p class="notice-green"><strong>Important :</strong> si l’appareil compagnon doit aussi utiliser le proxy VPN tunnel complet via Clash, désactivez d’abord le VPN et connectez‑vous à l’appareil principal, puis réactivez le VPN après la connexion. La détection du rôle de l’appareil dépend actuellement du statut VPN.</p></p>
+    <p>Si les autres appareils du LAN ne peuvent toujours pas accéder au proxy malgré une configuration correcte, activez le mode renforcé. L’appareil compagnon peut configurer le proxy comme les autres clients afin d’utiliser le VPN de l’appareil principal.</p>
+    <p class="notice-green"><strong>Important :</strong> si l’appareil compagnon doit aussi utiliser le proxy VPN tunnel complet via Clash, désactivez d’abord le VPN et connectez‑vous à l’appareil principal, puis réactivez le VPN après la connexion. La détection du rôle de l’appareil dépend actuellement du statut VPN.</p>
   </div>
 
   <div class="lang" data-lang="hi">
@@ -536,17 +564,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS प्रॉक्सी सेटअप"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; पता = होस्ट IP, पोर्ट = ऐप पोर्ट (HTTP/HTTPS); प्रॉक्सी बहिष्करण: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows प्रॉक्सी सेटअप"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → वर्तमान इंटरफ़ेस → Details → Proxies; HTTP/HTTPS (या SOCKS5) चुनें, सर्वर = होस्ट IP, पोर्ट = ऐप पोर्ट।
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS प्रॉक्सी सेटअप"></div>
       </li>
       <li><strong>अन्य डिवाइस</strong>: समर्थित HTTP/HTTPS/SOCKS5 प्रॉक्सी सेटिंग में होस्ट IP + पोर्ट भरें।</li>
     </ul>
     <h2>एन्हांस्ड मोड</h2>
     <p>कुछ VPN अन्य LAN डिवाइसों से आने वाले इनबाउंड कनेक्शन को ब्लॉक करते हैं, इसलिए वे इस होस्ट पर चल रहे प्रॉक्सी सर्विस तक नहीं पहुंच पाते और VPN शेयरिंग विफल हो जाती है। एन्हांस्ड मोड एक सहयोगी डिवाइस जोड़ता है और प्रॉक्सी सर्विस को उस डिवाइस पर शिफ्ट करता है। यह होस्ट (VPN के साथ) उस सहयोगी डिवाइस से आउटबाउंड कनेक्शन करता है, डेटा वापस लाता है और फिर लोकल रूप से अनुरोध करता है।</p>
-    <p>यदि सही सेटिंग्स के बाद भी अन्य LAN डिवाइस प्रॉक्सी तक नहीं पहुंच पा रहे हों, तो एन्हांस्ड मोड चालू करें। सहयोगी डिवाइस अन्य डिवाइस की तरह प्रॉक्सी सेट करके मुख्य डिवाइस का VPN उपयोग कर सकता है।
-    <p class="notice-green"><strong>महत्वपूर्ण:</strong> यदि सहयोगी डिवाइस को भी Clash फुल‑टनल VPN प्रॉक्सी चाहिए, तो पहले VPN बंद करके मुख्य डिवाइस से कनेक्ट करें, कनेक्शन सफल होने के बाद VPN चालू करें। डिवाइस भूमिका की पहचान फिलहाल VPN के चालू होने पर निर्भर है।</p></p>
+    <p>यदि सही सेटिंग्स के बाद भी अन्य LAN डिवाइस प्रॉक्सी तक नहीं पहुंच पा रहे हों, तो एन्हांस्ड मोड चालू करें। सहयोगी डिवाइस अन्य डिवाइस की तरह प्रॉक्सी सेट करके मुख्य डिवाइस का VPN उपयोग कर सकता है।</p>
+    <p class="notice-green"><strong>महत्वपूर्ण:</strong> यदि सहयोगी डिवाइस को भी Clash फुल‑टनल VPN प्रॉक्सी चाहिए, तो पहले VPN बंद करके मुख्य डिवाइस से कनेक्ट करें, कनेक्शन सफल होने के बाद VPN चालू करें। डिवाइस भूमिका की पहचान फिलहाल VPN के चालू होने पर निर्भर है।</p>
   </div>
 
   <div class="lang" data-lang="id">
@@ -581,17 +612,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Pengaturan proxy iOS"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP host, port = port app (HTTP/HTTPS); pengecualian proxy: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Pengaturan proxy Windows"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → antarmuka saat ini → Details → Proxies; centang HTTP/HTTPS (atau SOCKS5), server = IP host, port = port app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Pengaturan proxy macOS"></div>
       </li>
       <li><strong>Perangkat lain</strong>: isi IP host + port di pengaturan proxy HTTP/HTTPS/SOCKS5 yang didukung.</li>
     </ul>
     <h2>Mode diperkuat</h2>
     <p>Beberapa VPN memblokir koneksi masuk dari perangkat LAN lain sehingga perangkat tidak dapat menjangkau layanan proxy di host ini dan berbagi VPN gagal. Mode diperkuat menambahkan perangkat pendamping dan memindahkan layanan proxy ke perangkat tersebut. Host ini (dengan VPN) menghubungi perangkat pendamping secara keluar, membawa kembali data, lalu menjalankan permintaan secara lokal.</p>
-    <p>Jika perangkat LAN lain tetap tidak bisa mengakses proxy setelah pengaturan benar, aktifkan Mode diperkuat. Perangkat pendamping bisa mengatur proxy seperti perangkat lain untuk menggunakan VPN dari perangkat utama.
-    <p class="notice-green"><strong>Penting:</strong> Jika perangkat pendamping juga perlu proxy VPN full‑tunnel Clash, matikan VPN terlebih dulu dan hubungkan ke perangkat utama, lalu nyalakan VPN setelah koneksi berhasil. Pendeteksian peran perangkat saat ini bergantung pada status VPN.</p></p>
+    <p>Jika perangkat LAN lain tetap tidak bisa mengakses proxy setelah pengaturan benar, aktifkan Mode diperkuat. Perangkat pendamping bisa mengatur proxy seperti perangkat lain untuk menggunakan VPN dari perangkat utama.</p>
+    <p class="notice-green"><strong>Penting:</strong> Jika perangkat pendamping juga perlu proxy VPN full‑tunnel Clash, matikan VPN terlebih dulu dan hubungkan ke perangkat utama, lalu nyalakan VPN setelah koneksi berhasil. Pendeteksian peran perangkat saat ini bergantung pada status VPN.</p>
   </div>
 
   <div class="lang" data-lang="ja">
@@ -626,17 +660,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS プロキシ設定"></div>
       </li>
       <li><strong>Windows</strong>: 設定 → ネットワークとインターネット → プロキシ → 手動プロキシ；アドレス = ホスト IP、ポート = アプリのポート（HTTP/HTTPS）。プロキシ除外: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*。
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows プロキシ設定"></div>
       </li>
       <li><strong>macOS</strong>: システム設定 → ネットワーク → 使用中のインターフェース → 詳細 → プロキシ；HTTP/HTTPS（または SOCKS5）をチェック、サーバ = ホスト IP、ポート = アプリのポート。
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS プロキシ設定"></div>
       </li>
       <li><strong>その他のデバイス</strong>: デバイス/アプリの HTTP/HTTPS/SOCKS5 プロキシ欄にホスト IP とポートを入力します。</li>
     </ul>
     <h2>強化モード</h2>
     <p>一部の VPN は他の LAN デバイスからの着信接続を遮断するため、このホスト上のプロキシサービスに到達できず、VPN 共有が失敗します。強化モードでは協同デバイスを追加し、プロキシサービスをそのデバイスへ移します。本機（VPN 使用中）は協同デバイスへアウトバウンド接続し、データを持ち帰ってから本機でリクエストを実行します。</p>
-    <p>正しく設定しても他の LAN デバイスがプロキシに接続できない場合は、強化モードを有効にしてください。協同デバイスも他の機器と同様にプロキシを設定し、メイン端末の VPN を利用できます。
-    <p class="notice-green"><strong>重要：</strong>協同デバイスでも Clash のフルトンネルVPNプロキシを使う場合、まず VPN をオフにして本体と接続し、接続後に VPN をオンにしてください。現在、端末の判定は VPN の有無で行っています。</p></p>
+    <p>正しく設定しても他の LAN デバイスがプロキシに接続できない場合は、強化モードを有効にしてください。協同デバイスも他の機器と同様にプロキシを設定し、メイン端末の VPN を利用できます。</p>
+    <p class="notice-green"><strong>重要：</strong>協同デバイスでも Clash のフルトンネルVPNプロキシを使う場合、まず VPN をオフにして本体と接続し、接続後に VPN をオンにしてください。現在、端末の判定は VPN の有無で行っています。</p>
   </div>
 
   <div class="lang" data-lang="ko">
@@ -671,17 +708,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS 프록시 설정"></div>
       </li>
       <li><strong>Windows</strong>: 설정 → 네트워크 및 인터넷 → 프록시 → 수동; 주소 = 호스트 IP, 포트 = 앱 포트(HTTP/HTTPS). 프록시 제외: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows 프록시 설정"></div>
       </li>
       <li><strong>macOS</strong>: 시스템 설정 → 네트워크 → 현재 인터페이스 → 세부사항 → 프록시; HTTP/HTTPS(또는 SOCKS5) 선택, 서버 = 호스트 IP, 포트 = 앱 포트.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS 프록시 설정"></div>
       </li>
       <li><strong>기타 장치</strong>: 기기/앱에서 지원하는 HTTP/HTTPS/SOCKS5 프록시 설정에 호스트 IP + 포트를 입력합니다.</li>
     </ul>
     <h2>향상 모드</h2>
     <p>일부 VPN은 다른 LAN 기기에서 들어오는 인바운드 연결을 차단해 이 호스트의 프록시 서비스에 접근하지 못하고 VPN 공유가 실패합니다. 향상 모드는 협력 기기를 추가해 프록시 서비스를 그 기기로 옮깁니다. 이 호스트(VPN 사용 중)가 협력 기기로 아웃바운드 연결해 데이터를 가져온 뒤 로컬에서 요청을 수행합니다.</p>
-    <p>정상적으로 설정했는데도 다른 LAN 기기가 프록시에 접속하지 못하면 향상 모드를 켜세요. 협력 기기도 다른 장치처럼 프록시를 설정해 메인 장치의 VPN을 사용할 수 있습니다.
-    <p class="notice-green"><strong>중요:</strong> 협력 기기에서도 Clash 전체 터널 VPN 프록시를 사용해야 한다면, 먼저 VPN을 끄고 메인 기기와 연결한 뒤 연결이 성공하면 VPN을 켜세요. 현재 기기 구분은 VPN 사용 여부로 판단합니다.</p></p>
+    <p>정상적으로 설정했는데도 다른 LAN 기기가 프록시에 접속하지 못하면 향상 모드를 켜세요. 협력 기기도 다른 장치처럼 프록시를 설정해 메인 장치의 VPN을 사용할 수 있습니다.</p>
+    <p class="notice-green"><strong>중요:</strong> 협력 기기에서도 Clash 전체 터널 VPN 프록시를 사용해야 한다면, 먼저 VPN을 끄고 메인 기기와 연결한 뒤 연결이 성공하면 VPN을 켜세요. 현재 기기 구분은 VPN 사용 여부로 판단합니다.</p>
   </div>
 
   <div class="lang" data-lang="ms">
@@ -716,17 +756,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Tetapan proksi iOS"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; alamat = IP hos, port = port app (HTTP/HTTPS); pengecualian proksi: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Tetapan proksi Windows"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → antara muka semasa → Details → Proxies; tandakan HTTP/HTTPS (atau SOCKS5), server = IP hos, port = port app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Tetapan proksi macOS"></div>
       </li>
       <li><strong>Peranti lain</strong>: isi IP hos + port dalam tetapan proksi HTTP/HTTPS/SOCKS5 yang disokong.</li>
     </ul>
     <h2>Mod dipertingkat</h2>
     <p>Sesetengah VPN menyekat sambungan masuk daripada peranti LAN lain, jadi peranti tidak dapat mengakses perkhidmatan proksi pada hos ini dan perkongsian VPN gagal. Mod dipertingkat menambah peranti rakan dan memindahkan perkhidmatan proksi ke peranti tersebut. Hos ini (dengan VPN) membuat sambungan keluar ke peranti rakan, membawa data balik, kemudian membuat permintaan secara tempatan.</p>
-    <p>Jika peranti LAN lain masih tidak dapat mengakses proksi selepas tetapan betul, aktifkan Mod dipertingkat. Peranti rakan boleh menetapkan proksi seperti peranti lain untuk menggunakan VPN peranti utama.
-    <p class="notice-green"><strong>Penting:</strong> Jika peranti rakan juga perlu proksi VPN terowong penuh Clash, matikan VPN dahulu dan sambungkan ke peranti utama, kemudian hidupkan VPN selepas sambungan berjaya. Pengenalpastian peranan peranti kini bergantung pada status VPN.</p></p>
+    <p>Jika peranti LAN lain masih tidak dapat mengakses proksi selepas tetapan betul, aktifkan Mod dipertingkat. Peranti rakan boleh menetapkan proksi seperti peranti lain untuk menggunakan VPN peranti utama.</p>
+    <p class="notice-green"><strong>Penting:</strong> Jika peranti rakan juga perlu proksi VPN terowong penuh Clash, matikan VPN dahulu dan sambungkan ke peranti utama, kemudian hidupkan VPN selepas sambungan berjaya. Pengenalpastian peranan peranti kini bergantung pada status VPN.</p>
   </div>
 
   <div class="lang" data-lang="pt">
@@ -761,17 +804,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Configuração de proxy no iOS"></div>
       </li>
       <li><strong>Windows</strong>: Configurações → Rede e Internet → Proxy → Manual; endereço = IP do host, porta = porta do app (HTTP/HTTPS); exceções de proxy: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Configuração de proxy no Windows"></div>
       </li>
       <li><strong>macOS</strong>: Ajustes do Sistema → Rede → interface atual → Detalhes → Proxies; marque HTTP/HTTPS (ou SOCKS5), servidor = IP do host, porta = porta do app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Configuração de proxy no macOS"></div>
       </li>
       <li><strong>Outros dispositivos</strong>: preencha IP do host + porta nas configurações de proxy HTTP/HTTPS/SOCKS5 suportadas.</li>
     </ul>
     <h2>Modo aprimorado</h2>
     <p>Algumas VPNs bloqueiam conexões de entrada de outros dispositivos da LAN, então eles não conseguem acessar o serviço de proxy neste host e o compartilhamento de VPN falha. O modo aprimorado adiciona um dispositivo auxiliar e move o serviço de proxy para esse dispositivo. Este host (com VPN) se conecta de saída ao dispositivo auxiliar, traz os dados de volta e então executa as requisições localmente.</p>
-    <p>Se outros dispositivos da LAN ainda não conseguirem acessar o proxy após a configuração correta, ative o modo aprimorado. O dispositivo auxiliar pode configurar o proxy como os demais dispositivos para usar a VPN do dispositivo principal.
-    <p class="notice-green"><strong>Importante:</strong> Se o dispositivo auxiliar também precisar do proxy VPN de túnel completo do Clash, desative o VPN primeiro e conecte-se ao dispositivo principal; após a conexão bem‑sucedida, ative o VPN. A detecção do papel do dispositivo atualmente depende de o VPN estar ativo.</p></p>
+    <p>Se outros dispositivos da LAN ainda não conseguirem acessar o proxy após a configuração correta, ative o modo aprimorado. O dispositivo auxiliar pode configurar o proxy como os demais dispositivos para usar a VPN do dispositivo principal.</p>
+    <p class="notice-green"><strong>Importante:</strong> Se o dispositivo auxiliar também precisar do proxy VPN de túnel completo do Clash, desative o VPN primeiro e conecte-se ao dispositivo principal; após a conexão bem‑sucedida, ative o VPN. A detecção do papel do dispositivo atualmente depende de o VPN estar ativo.</p>
   </div>
 
   <div class="lang" data-lang="ru">
@@ -806,17 +852,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Настройка прокси на iOS"></div>
       </li>
       <li><strong>Windows</strong>: Настройки → Сеть и Интернет → Прокси → Вручную; адрес = IP хоста, порт = порт приложения (HTTP/HTTPS); исключения прокси: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Настройка прокси на Windows"></div>
       </li>
       <li><strong>macOS</strong>: Настройки системы → Сеть → текущий интерфейс → Подробнее → Прокси; отметьте HTTP/HTTPS (или SOCKS5), сервер = IP хоста, порт = порт приложения.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Настройка прокси на macOS"></div>
       </li>
       <li><strong>Другие устройства</strong>: в полях прокси HTTP/HTTPS/SOCKS5 устройства/приложения укажите IP хоста + порт.</li>
     </ul>
     <h2>Усиленный режим</h2>
     <p>Некоторые VPN блокируют входящие подключения от других устройств в LAN, поэтому они не могут достучаться до прокси‑сервиса на этом хосте и общий доступ к VPN не работает. Усиленный режим добавляет устройство‑партнёр и переносит на него прокси‑сервис. Этот хост (с VPN) исходящим подключением обращается к устройству‑партнёру, забирает данные и затем выполняет запросы локально.</p>
-    <p>Если другие устройства LAN всё равно не могут получить доступ к прокси при корректных настройках, включите усиленный режим. Устройство‑партнёр может настроить прокси как другие устройства и использовать VPN основного устройства.
-    <p class="notice-green"><strong>Важно:</strong> если устройству‑партнёру тоже нужен полнотуннельный VPN‑прокси в Clash, сначала отключите VPN и подключитесь к основному устройству, а после успешного подключения включите VPN. Сейчас определение роли устройства зависит от того, включён ли VPN.</p></p>
+    <p>Если другие устройства LAN всё равно не могут получить доступ к прокси при корректных настройках, включите усиленный режим. Устройство‑партнёр может настроить прокси как другие устройства и использовать VPN основного устройства.</p>
+    <p class="notice-green"><strong>Важно:</strong> если устройству‑партнёру тоже нужен полнотуннельный VPN‑прокси в Clash, сначала отключите VPN и подключитесь к основному устройству, а после успешного подключения включите VPN. Сейчас определение роли устройства зависит от того, включён ли VPN.</p>
   </div>
 
   <div class="lang" data-lang="sw">
@@ -851,17 +900,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Mipangilio ya proksi iOS"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; anwani = IP ya host, bandari = bandari ya app (HTTP/HTTPS); orodha ya kuacha: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Mipangilio ya proksi Windows"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → kiolesura cha sasa → Details → Proxies; tiki HTTP/HTTPS (au SOCKS5), seva = IP ya host, bandari = bandari ya app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Mipangilio ya proksi macOS"></div>
       </li>
       <li><strong>Vifaa vingine</strong>: ingiza IP ya host + bandari kwenye mipangilio ya proksi ya HTTP/HTTPS/SOCKS5 inayotolewa.</li>
     </ul>
     <h2>Hali iliyoimarishwa</h2>
     <p>Baadhi ya VPN huzuia miunganisho inayoingia kutoka kwa vifaa vingine vya LAN, hivyo haviwezi kufikia huduma ya proksi kwenye host hii na ushiriki wa VPN hushindikana. Hali iliyoimarishwa huongeza kifaa mshirika na kuhamisha huduma ya proksi kwenda kwenye kifaa hicho. Host hii (yenye VPN) huunganishwa kwa njia ya kutoka kwenda kwenye kifaa mshirika, hurejesha data kisha hufanya maombi ndani ya kifaa.</p>
-    <p>Ikiwa vifaa vingine vya LAN bado haviwezi kufikia proksi baada ya mipangilio sahihi, washa Hali iliyoimarishwa. Kifaa mshirika kinaweza kusanidi proksi kama vifaa vingine ili kutumia VPN ya kifaa kikuu.
-    <p class="notice-green"><strong>Muhimu:</strong> Ikiwa kifaa mshirika pia kinahitaji proksi ya VPN full‑tunnel ya Clash, zima VPN kwanza na uunganishe kwenye kifaa kikuu, kisha washa VPN baada ya muunganisho kufanikiwa. Utambuzi wa majukumu ya vifaa kwa sasa unategemea ikiwa VPN imewashwa.</p></p>
+    <p>Ikiwa vifaa vingine vya LAN bado haviwezi kufikia proksi baada ya mipangilio sahihi, washa Hali iliyoimarishwa. Kifaa mshirika kinaweza kusanidi proksi kama vifaa vingine ili kutumia VPN ya kifaa kikuu.</p>
+    <p class="notice-green"><strong>Muhimu:</strong> Ikiwa kifaa mshirika pia kinahitaji proksi ya VPN full‑tunnel ya Clash, zima VPN kwanza na uunganishe kwenye kifaa kikuu, kisha washa VPN baada ya muunganisho kufanikiwa. Utambuzi wa majukumu ya vifaa kwa sasa unategemea ikiwa VPN imewashwa.</p>
   </div>
 
   <div class="lang" data-lang="th">
@@ -896,17 +948,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="การตั้งค่าพร็อกซีบน iOS"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP โฮสต์, port = พอร์ตแอป (HTTP/HTTPS); รายการละเว้นพร็อกซี: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="การตั้งค่าพร็อกซีบน Windows"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → อินเทอร์เฟซปัจจุบัน → Details → Proxies; ติ๊ก HTTP/HTTPS (หรือ SOCKS5), server = IP โฮสต์, port = พอร์ตแอป
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="การตั้งค่าพร็อกซีบน macOS"></div>
       </li>
       <li><strong>อุปกรณ์อื่น</strong>: กรอก IP โฮสต์ + พอร์ตในช่องตั้งค่าพร็อกซี HTTP/HTTPS/SOCKS5 ที่อุปกรณ์/แอปมีให้</li>
     </ul>
     <h2>โหมดเสริม</h2>
     <p>VPN บางตัวบล็อกการเชื่อมต่อขาเข้าจากอุปกรณ์ LAN อื่น ทำให้อุปกรณ์เหล่านั้นเข้าถึงบริการพร็อกซีบนโฮสต์นี้ไม่ได้และการแชร์ VPN ล้มเหลว โหมดเสริมจะเพิ่มอุปกรณ์ประสานและย้ายบริการพร็อกซีไปที่อุปกรณ์นั้น โฮสต์นี้ (ที่ใช้ VPN) จะเชื่อมต่อออกไปยังอุปกรณ์ประสาน รับข้อมูลกลับมา แล้วจึงทำคำขอภายในเครื่อง</p>
-    <p>หากอุปกรณ์ LAN อื่นยังเข้าถึงพร็อกซีไม่ได้แม้ตั้งค่าถูกต้อง ให้เปิดโหมดเสริม อุปกรณ์ประสานสามารถตั้งค่าพร็อกซีเหมือนอุปกรณ์อื่นเพื่อใช้ VPN จากอุปกรณ์หลักได้
-    <p class="notice-green"><strong>สำคัญ:</strong> หากอุปกรณ์ประสานต้องใช้พร็อกซี VPN แบบ full‑tunnel ของ Clash ด้วย ให้ปิด VPN ก่อนแล้วเชื่อมต่อกับอุปกรณ์หลัก จากนั้นเปิด VPN หลังเชื่อมต่อสำเร็จ การระบุบทบาทอุปกรณ์ในขณะนี้อ้างอิงจากการเปิดใช้งาน VPN</p></p>
+    <p>หากอุปกรณ์ LAN อื่นยังเข้าถึงพร็อกซีไม่ได้แม้ตั้งค่าถูกต้อง ให้เปิดโหมดเสริม อุปกรณ์ประสานสามารถตั้งค่าพร็อกซีเหมือนอุปกรณ์อื่นเพื่อใช้ VPN จากอุปกรณ์หลักได้</p>
+    <p class="notice-green"><strong>สำคัญ:</strong> หากอุปกรณ์ประสานต้องใช้พร็อกซี VPN แบบ full‑tunnel ของ Clash ด้วย ให้ปิด VPN ก่อนแล้วเชื่อมต่อกับอุปกรณ์หลัก จากนั้นเปิด VPN หลังเชื่อมต่อสำเร็จ การระบุบทบาทอุปกรณ์ในขณะนี้อ้างอิงจากการเปิดใช้งาน VPN</p>
   </div>
 
   <div class="lang" data-lang="tl">
@@ -941,17 +996,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Pag-configure ng proxy sa iOS"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; address = IP ng host, port = port ng app (HTTP/HTTPS); proxy bypass: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Pag-configure ng proxy sa Windows"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → kasalukuyang interface → Details → Proxies; piliin ang HTTP/HTTPS (o SOCKS5), server = IP ng host, port = port ng app.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Pag-configure ng proxy sa macOS"></div>
       </li>
       <li><strong>Ibang device</strong>: ilagay ang IP ng host + port sa mga setting ng HTTP/HTTPS/SOCKS5 proxy na sinusuportahan ng device/app.</li>
     </ul>
     <h2>Pinalakas na mode</h2>
     <p>May ilang VPN na humaharang sa inbound na koneksyon mula sa ibang LAN device, kaya hindi nila maabot ang proxy service sa host na ito at pumapalya ang VPN sharing. Ang pinalakas na mode ay nagdaragdag ng katuwang na device at inililipat ang proxy service doon. Kumokonekta palabas ang host na ito (may VPN) sa katuwang na device, dinadala pabalik ang data, at saka gumagawa ng request nang lokal.</p>
-    <p>Kung hindi pa rin ma-access ng ibang LAN device ang proxy kahit tama ang settings, i-enable ang pinalakas na mode. Ang katuwang na device ay puwedeng mag-configure ng proxy tulad ng ibang device para magamit ang VPN ng pangunahing device.
-    <p class="notice-green"><strong>Mahalaga:</strong> Kung kailangan din ng katuwang na device ang Clash full‑tunnel VPN proxy, patayin muna ang VPN at kumonekta sa pangunahing device, pagkatapos ay buksan ang VPN kapag matagumpay ang koneksyon. Ang pagtukoy sa papel ng device ay kasalukuyang nakabase sa kung naka‑VPN.</p></p>
+    <p>Kung hindi pa rin ma-access ng ibang LAN device ang proxy kahit tama ang settings, i-enable ang pinalakas na mode. Ang katuwang na device ay puwedeng mag-configure ng proxy tulad ng ibang device para magamit ang VPN ng pangunahing device.</p>
+    <p class="notice-green"><strong>Mahalaga:</strong> Kung kailangan din ng katuwang na device ang Clash full‑tunnel VPN proxy, patayin muna ang VPN at kumonekta sa pangunahing device, pagkatapos ay buksan ang VPN kapag matagumpay ang koneksyon. Ang pagtukoy sa papel ng device ay kasalukuyang nakabase sa kung naka‑VPN.</p>
   </div>
 
   <div class="lang" data-lang="tr">
@@ -986,17 +1044,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS proxy kurulumu"></div>
       </li>
       <li><strong>Windows</strong>: Ayarlar → Ağ ve İnternet → Proxy → Manuel; adres = host IP’si, port = uygulama portu (HTTP/HTTPS); proxy hariç tutma: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows proxy kurulumu"></div>
       </li>
       <li><strong>macOS</strong>: Sistem Ayarları → Ağ → mevcut arayüz → Ayrıntılar → Proxyler; HTTP/HTTPS’yi (veya SOCKS5) işaretleyin, sunucu = host IP’si, port = uygulama portu.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS proxy kurulumu"></div>
       </li>
       <li><strong>Diğer cihazlar</strong>: Cihaz/uygulamanın desteklediği HTTP/HTTPS/SOCKS5 proxy alanlarına host IP + port yazın.</li>
     </ul>
     <h2>Gelişmiş mod</h2>
     <p>Bazı VPN’ler LAN içindeki diğer cihazlardan gelen gelen bağlantıları engeller; bu nedenle bu host üzerindeki proxy hizmetine erişemezler ve VPN paylaşımı başarısız olur. Gelişmiş mod bir yardımcı cihaz ekler ve proxy hizmetini bu cihaza taşır. Bu host (VPN ile) yardımcı cihaza dışarıdan bağlantı kurar, veriyi geri getirir ve ardından istekleri yerel olarak yürütür.</p>
-    <p>Doğru ayarlara rağmen diğer LAN cihazları proxy’ye erişemiyorsa gelişmiş modu etkinleştirin. Yardımcı cihaz, diğer cihazlar gibi proxy ayarlayıp ana cihazın VPN’ini kullanabilir.
-    <p class="notice-green"><strong>Önemli:</strong> Yardımcı cihaz da Clash tam tünel VPN proxy kullanacaksa, önce VPN'i kapatıp ana cihaza bağlanın; bağlantı başarılı olduktan sonra VPN'i açın. Cihaz rolü şu anda VPN'in açık olup olmadığına göre belirlenir.</p></p>
+    <p>Doğru ayarlara rağmen diğer LAN cihazları proxy’ye erişemiyorsa gelişmiş modu etkinleştirin. Yardımcı cihaz, diğer cihazlar gibi proxy ayarlayıp ana cihazın VPN’ini kullanabilir.</p>
+    <p class="notice-green"><strong>Önemli:</strong> Yardımcı cihaz da Clash tam tünel VPN proxy kullanacaksa, önce VPN'i kapatıp ana cihaza bağlanın; bağlantı başarılı olduktan sonra VPN'i açın. Cihaz rolü şu anda VPN'in açık olup olmadığına göre belirlenir.</p>
   </div>
 
   <div class="lang" data-lang="ur">
@@ -1031,17 +1092,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="iOS پراکسی سیٹ اپ"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual؛ address = ہوسٹ IP، port = ایپ پورٹ (HTTP/HTTPS)؛ proxy bypass: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*۔
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Windows پراکسی سیٹ اپ"></div>
       </li>
       <li><strong>macOS</strong>: System Settings → Network → موجودہ انٹرفیس → Details → Proxies؛ HTTP/HTTPS (یا SOCKS5) منتخب کریں، server = ہوسٹ IP، port = ایپ پورٹ۔
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="macOS پراکسی سیٹ اپ"></div>
       </li>
       <li><strong>دیگر ڈیوائسز</strong>: ڈیوائس/ایپ کی HTTP/HTTPS/SOCKS5 پراکسی سیٹنگ میں ہوسٹ IP + پورٹ لکھیں۔</li>
     </ul>
     <h2>اینہانسڈ موڈ</h2>
     <p>کچھ VPN دیگر LAN ڈیوائسز سے آنے والی اِن باؤنڈ کنکشنز کو بلاک کر دیتے ہیں، جس سے وہ اس ہوسٹ پر موجود پراکسی سروس تک نہیں پہنچ پاتیں اور VPN شیئرنگ ناکام ہو جاتی ہے۔ اینہانسڈ موڈ ایک معاون ڈیوائس شامل کرتا ہے اور پراکسی سروس کو اس ڈیوائس پر منتقل کر دیتا ہے۔ یہ ہوسٹ (VPN کے ساتھ) معاون ڈیوائس سے آؤٹ باؤنڈ کنکشن کرتا ہے، ڈیٹا واپس لاتا ہے اور پھر مقامی طور پر ریکویسٹ کرتا ہے۔</p>
-    <p>اگر درست سیٹنگز کے باوجود دیگر LAN ڈیوائسز پراکسی تک نہیں پہنچ پا رہیں تو اینہانسڈ موڈ فعال کریں۔ معاون ڈیوائس بھی دیگر ڈیوائسز کی طرح پراکسی سیٹ کر کے مرکزی ڈیوائس کا VPN استعمال کر سکتی ہے۔
-    <p class="notice-green"><strong>اہم:</strong> اگر معاون ڈیوائس کو بھی Clash فل ٹنل VPN پراکسی درکار ہو تو پہلے VPN بند کر کے مرکزی ڈیوائس سے کنکشن قائم کریں، پھر کنکشن کامیاب ہونے کے بعد VPN آن کریں۔ فی الحال ڈیوائس کی شناخت VPN کے فعال ہونے پر مبنی ہے۔</p></p>
+    <p>اگر درست سیٹنگز کے باوجود دیگر LAN ڈیوائسز پراکسی تک نہیں پہنچ پا رہیں تو اینہانسڈ موڈ فعال کریں۔ معاون ڈیوائس بھی دیگر ڈیوائسز کی طرح پراکسی سیٹ کر کے مرکزی ڈیوائس کا VPN استعمال کر سکتی ہے۔</p>
+    <p class="notice-green"><strong>اہم:</strong> اگر معاون ڈیوائس کو بھی Clash فل ٹنل VPN پراکسی درکار ہو تو پہلے VPN بند کر کے مرکزی ڈیوائس سے کنکشن قائم کریں، پھر کنکشن کامیاب ہونے کے بعد VPN آن کریں۔ فی الحال ڈیوائس کی شناخت VPN کے فعال ہونے پر مبنی ہے۔</p>
   </div>
 
   <div class="lang" data-lang="vi">
@@ -1076,17 +1140,20 @@
         <div class="guide-image"><img src="img/guide_ios.png" alt="Thiết lập proxy iOS"></div>
       </li>
       <li><strong>Windows</strong>: Settings → Network & Internet → Proxy → Manual; địa chỉ = IP host, cổng = cổng ứng dụng (HTTP/HTTPS); danh sách bỏ qua: localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*.
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="localhost;127.*;192.168.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*"></button></div>
         <div class="guide-image"><img src="img/guide_window.png" alt="Thiết lập proxy Windows"></div>
       </li>
       <li><strong>macOS</strong>: Cài đặt hệ thống → Mạng → giao diện hiện tại → Chi tiết → Proxy; đánh dấu HTTP/HTTPS (hoặc SOCKS5), máy chủ = IP host, cổng = cổng ứng dụng.
+        <div class="proxy-bypass"><span class="proxy-bypass-label"></span> 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*</div>
+        <div class="copy-row"><button type="button" class="copy-btn" data-copy="127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,172.29.0.0/16,localhost,*.local,*.crashlytics.com,<local>,919dm*"></button></div>
         <div class="guide-image"><img src="img/guide_mac.png" alt="Thiết lập proxy macOS"></div>
       </li>
       <li><strong>Thiết bị khác</strong>: điền IP host + cổng trong phần cấu hình proxy HTTP/HTTPS/SOCKS5 mà thiết bị/ứng dụng hỗ trợ.</li>
     </ul>
     <h2>Chế độ tăng cường</h2>
     <p>Một số VPN chặn kết nối vào từ thiết bị LAN khác, khiến chúng không thể truy cập dịch vụ proxy trên máy chủ này và việc chia sẻ VPN bị thất bại. Chế độ tăng cường thêm một thiết bị phối hợp và chuyển dịch vụ proxy sang thiết bị đó. Máy chủ này (có VPN) kết nối ra ngoài tới thiết bị phối hợp, mang dữ liệu về rồi mới thực hiện yêu cầu cục bộ.</p>
-    <p>Nếu các thiết bị LAN khác vẫn không truy cập được proxy dù đã cấu hình đúng, hãy bật Chế độ tăng cường. Thiết bị phối hợp có thể cấu hình proxy như các thiết bị khác để dùng VPN của thiết bị chính.
-    <p class="notice-green"><strong>Quan trọng:</strong> Nếu thiết bị phối hợp cũng cần dùng proxy VPN full‑tunnel của Clash, hãy tắt VPN trước để kết nối với thiết bị chính, rồi bật VPN sau khi kết nối thành công. Việc phân biệt vai trò thiết bị hiện dựa trên việc VPN có bật hay không.</p></p>
+    <p>Nếu các thiết bị LAN khác vẫn không truy cập được proxy dù đã cấu hình đúng, hãy bật Chế độ tăng cường. Thiết bị phối hợp có thể cấu hình proxy như các thiết bị khác để dùng VPN của thiết bị chính.</p>
+    <p class="notice-green"><strong>Quan trọng:</strong> Nếu thiết bị phối hợp cũng cần dùng proxy VPN full‑tunnel của Clash, hãy tắt VPN trước để kết nối với thiết bị chính, rồi bật VPN sau khi kết nối thành công. Việc phân biệt vai trò thiết bị hiện dựa trên việc VPN có bật hay không.</p>
   </div>
 </body>
 </html>
