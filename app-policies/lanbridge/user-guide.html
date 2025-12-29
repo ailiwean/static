@@ -27,6 +27,12 @@
     .proxy-bypass { margin-top: 4px; }
     .proxy-bypass-label { font-weight: 600; }
     .notice-green { color: #0a8a4b; font-weight: 600; }
+    .flow-scroll { overflow-x: auto; padding: 8px 0 12px; }
+    .flow-track { display: flex; gap: 12px; align-items: flex-start; }
+    .flow-step { flex: 0 0 auto; width: 220px; border: 1px solid #ddd; border-radius: 10px; padding: 8px; background: #fff; }
+    .flow-step img { width: 100%; height: auto; display: block; border-radius: 8px; }
+    .flow-step-index { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: #0a8a4b; color: #fff; font-weight: 700; margin-bottom: 6px; }
+    .flow-step-text { display: block; margin-top: 6px; font-size: 13px; color: #333; }
 
   @media (prefers-color-scheme: dark) {
     body { background: #0c1117; color: #e4e6eb; }
@@ -43,6 +49,8 @@
     .copy-btn { border-color: #7ce694; color: #7ce694; }
     .copy-btn:hover { background: rgba(124,230,148,0.12); }
     .notice-green { color: #7ce694; }
+    .flow-step { border-color: rgba(255,255,255,0.2); background: #161b22; }
+    .flow-step-text { color: #e4e6eb; }
   }
   </style>
   <script>
@@ -333,7 +341,8 @@
       <li>点击“启动网关”，保持前台服务运行。</li>
     </ol>
     <h2>全量 VPN 代理</h2>
-    <p>在其他设备安装 Clash，先下载下方生成的 YAML 文件，再在 Clash 中通过“导入文件”添加配置（暂不支持通过链接直接订阅）。适合需要全局代理的场景。输入的 IP 和端口必须与主机端（有 VPN）启动的服务保持一致。</p>
+    <p>全量 VPN 代理指设备的所有网络流量都通过主机转发，实现全局代理；适合需要全量代理的场景。</p>
+    <p>在其他设备安装 Clash，先下载下方生成的 YAML 文件，再在 Clash 中通过“导入文件”添加配置（暂不支持通过链接直接订阅）。输入的 IP 和端口必须与主机端（有 VPN）启动的服务保持一致。</p>
     <div class="yaml-generator" data-invalid-ip="请输入正确的 IP 地址。" data-invalid-port="请输入正确的端口（1–65535）。" data-output-prefix="生成链接：">
       <div class="yaml-form">
         <input class="yaml-input" type="text" inputmode="decimal" placeholder="请输入 IP">
@@ -342,7 +351,44 @@
       </div>
       <div class="yaml-output" aria-live="polite"></div>
     </div>
-    <p>Clash 下载地址： <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a></p>
+    <p>Clash 下载地址： <a href="https://github.com/clashdownload/Clash">https://github.com/clashdownload/Clash</a>（如需更详细的使用流程，可在该页面查看官方说明）。</p>
+    <h3>Android / iOS：导入 YAML 配置</h3>
+    <div class="flow-scroll" aria-label="Clash 移动端导入 YAML 流程">
+      <div class="flow-track">
+        <div class="flow-step"><span class="flow-step-index">1</span><img src="img/clash_mobile_1.png" alt="Clash 移动端导入步骤 1"><span class="flow-step-text">打开 Clash</span></div>
+        <div class="flow-step"><span class="flow-step-index">2</span><img src="img/clash_mobile_2.png" alt="Clash 移动端导入步骤 2"><span class="flow-step-text">进入配置管理</span></div>
+        <div class="flow-step"><span class="flow-step-index">3</span><img src="img/clash_mobile_3.png" alt="Clash 移动端导入步骤 3"><span class="flow-step-text">选择导入</span></div>
+        <div class="flow-step"><span class="flow-step-index">4</span><img src="img/clash_mobile_4.png" alt="Clash 移动端导入步骤 4"><span class="flow-step-text">选择文件</span></div>
+        <div class="flow-step"><span class="flow-step-index">5</span><img src="img/clash_mobile_5.png" alt="Clash 移动端导入步骤 5"><span class="flow-step-text">定位下载的 YAML</span></div>
+        <div class="flow-step"><span class="flow-step-index">6</span><img src="img/clash_mobile_6.png" alt="Clash 移动端导入步骤 6"><span class="flow-step-text">确认导入</span></div>
+        <div class="flow-step"><span class="flow-step-index">7</span><img src="img/clash_mobile_7.png" alt="Clash 移动端导入步骤 7"><span class="flow-step-text">导入完成</span></div>
+        <div class="flow-step"><span class="flow-step-index">8</span><img src="img/clash_mobile_8.png" alt="Clash 移动端导入步骤 8"><span class="flow-step-text">选中配置</span></div>
+        <div class="flow-step"><span class="flow-step-index">9</span><img src="img/clash_mobile_9.png" alt="Clash 移动端导入步骤 9"><span class="flow-step-text">进入连接页</span></div>
+        <div class="flow-step"><span class="flow-step-index">10</span><img src="img/clash_mobile_10.png" alt="Clash 移动端导入步骤 10"><span class="flow-step-text">准备启用</span></div>
+      </div>
+    </div>
+    <h3>Android / iOS：开启全量/TUN 模式</h3>
+    <div class="flow-scroll" aria-label="Clash 移动端开启全量模式流程">
+      <div class="flow-track">
+        <div class="flow-step"><span class="flow-step-index">1</span><img src="img/clash_mobile_tun1.png" alt="Clash 移动端全量模式步骤 1"><span class="flow-step-text">进入模式设置</span></div>
+        <div class="flow-step"><span class="flow-step-index">2</span><img src="img/clash_mobile_tun2.png" alt="Clash 移动端全量模式步骤 2"><span class="flow-step-text">选择全量/TUN</span></div>
+        <div class="flow-step"><span class="flow-step-index">3</span><img src="img/clash_mobile_tun3.png" alt="Clash 移动端全量模式步骤 3"><span class="flow-step-text">开启代理</span></div>
+      </div>
+    </div>
+    <h3>Windows / macOS：导入 YAML 配置</h3>
+    <p>打开 Clash，将下载的 YAML 文件直接拖入窗口完成导入。</p>
+    <div class="flow-scroll" aria-label="Clash 桌面端导入 YAML 流程">
+      <div class="flow-track">
+        <div class="flow-step"><span class="flow-step-index">1</span><img src="img/clash_desktop1.png" alt="Clash 桌面端导入步骤 1"><span class="flow-step-text">打开 Clash</span></div>
+        <div class="flow-step"><span class="flow-step-index">2</span><img src="img/clash_desktop2.png" alt="Clash 桌面端导入步骤 2"><span class="flow-step-text">拖入 YAML 完成导入</span></div>
+      </div>
+    </div>
+    <h3>Windows / macOS：开启全量/TUN 模式</h3>
+    <div class="flow-scroll" aria-label="Clash 桌面端开启全量模式流程">
+      <div class="flow-track">
+        <div class="flow-step"><span class="flow-step-index">1</span><img src="img/clash_desktop_tun.png" alt="Clash 桌面端全量模式步骤 1"><span class="flow-step-text">切换为全量/TUN 并启用</span></div>
+      </div>
+    </div>
     <h2>局域网代理 / Wi‑Fi 局域网代理</h2>
     <ul>
       <li><strong>Android</strong>：Wi‑Fi 详情→代理=手动，主机名填本机 IP，端口填 App 端口；或在支持代理的应用中填写 HTTP/HTTPS。
