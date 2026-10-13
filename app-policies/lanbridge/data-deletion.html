@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Network Share Data Deletion Notice</title>
+  <title>VPN Share Hotspot - Tethering Data Deletion Notice</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 960px; margin: 32px auto; padding: 0 16px; line-height: 1.6; }
     h1, h2 { color: #0a8a4b; }
@@ -25,26 +25,26 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const titles = {
-        'en':'Network Share Data Deletion Notice',
-        'zh-CN':'Network Share 数据删除说明',
-        'ar':'إشعار حذف البيانات لـ Network Share',
-        'de':'Network Share Datenlöschungshinweis',
-        'es':'Aviso de Eliminación de Datos de Network Share',
-        'fa':'اطلاعیه حذف داده Network Share',
-        'fr':'Avis de Suppression des Données Network Share',
-        'hi':'Network Share डेटा 삭제 안내',
-        'id':'Pemberitahuan Penghapusan Data Network Share',
-        'ja':'Network Share データ削除通知',
-        'ko':'Network Share 데이터 삭제 안내',
-        'ms':'Notis Pemadaman Data Network Share',
-        'pt':'Aviso de Exclusão de Dados do Network Share',
-        'ru':'Уведомление об удалении данных Network Share',
-        'sw':'Taarifa ya Kufuta Data ya Network Share',
-        'th':'ประกาศการลบข้อมูล Network Share',
-        'tl':'Abiso sa Pagbura ng Datos ng Network Share',
-        'tr':'Network Share Veri Silme Bildirimi',
-        'ur':'Network Share ڈیٹا حذف نوٹس',
-        'vi':'Thông báo Xóa Dữ liệu Network Share'
+        'en':'VPN Share Hotspot - Tethering Data Deletion Notice',
+        'zh-CN':'VPN Share Hotspot - Tethering 数据删除说明',
+        'ar':'إشعار حذف البيانات لـ VPN Share Hotspot - Tethering',
+        'de':'VPN Share Hotspot - Tethering Datenlöschungshinweis',
+        'es':'Aviso de Eliminación de Datos de VPN Share Hotspot - Tethering',
+        'fa':'اطلاعیه حذف داده VPN Share Hotspot - Tethering',
+        'fr':'Avis de Suppression des Données VPN Share Hotspot - Tethering',
+        'hi':'VPN Share Hotspot - Tethering डेटा 삭제 안내',
+        'id':'Pemberitahuan Penghapusan Data VPN Share Hotspot - Tethering',
+        'ja':'VPN Share Hotspot - Tethering データ削除通知',
+        'ko':'VPN Share Hotspot - Tethering 데이터 삭제 안내',
+        'ms':'Notis Pemadaman Data VPN Share Hotspot - Tethering',
+        'pt':'Aviso de Exclusão de Dados do VPN Share Hotspot - Tethering',
+        'ru':'Уведомление об удалении данных VPN Share Hotspot - Tethering',
+        'sw':'Taarifa ya Kufuta Data ya VPN Share Hotspot - Tethering',
+        'th':'ประกาศการลบข้อมูล VPN Share Hotspot - Tethering',
+        'tl':'Abiso sa Pagbura ng Datos ng VPN Share Hotspot - Tethering',
+        'tr':'VPN Share Hotspot - Tethering Veri Silme Bildirimi',
+        'ur':'VPN Share Hotspot - Tethering ڈیٹا حذف نوٹس',
+        'vi':'Thông báo Xóa Dữ liệu VPN Share Hotspot - Tethering'
       };
       const intro = {
         'en':'How your data is stored and how you can delete or request deletion.',
@@ -69,7 +69,91 @@
         'vi':'Dữ liệu được lưu ở đâu và cách xóa/yêu cầu xóa.'
       };
       const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
-      const apply = (lang) => {
+      const identityTexts = {
+        "en": {
+          "description": "This document applies to VPN Share Hotspot - Tethering, provided and operated by aiwean, the developer listed on Google Play. The app is also named Network Share within its interface.",
+          "contact": "Contact:"
+        },
+        "zh-CN": {
+          "description": "本文档适用于由 Google Play 开发者 aiwean 提供和运营的 VPN Share Hotspot - Tethering 应用。应用内名称为 Network Share。",
+          "contact": "联系邮箱："
+        },
+        "ar": {
+          "description": "تنطبق هذه الوثيقة على تطبيق VPN Share Hotspot - Tethering، الذي يقدمه ويديره aiwean، المطوّر المدرج على Google Play. يُسمّى التطبيق أيضًا Network Share داخل واجهته.",
+          "contact": "البريد الإلكتروني للتواصل:"
+        },
+        "de": {
+          "description": "Dieses Dokument gilt für VPN Share Hotspot - Tethering, bereitgestellt und betrieben von aiwean, dem bei Google Play aufgeführten Entwickler. In der Benutzeroberfläche heißt die App auch Network Share.",
+          "contact": "Kontakt:"
+        },
+        "es": {
+          "description": "Este documento se aplica a VPN Share Hotspot - Tethering, proporcionada y operada por aiwean, el desarrollador que figura en Google Play. En su interfaz, la aplicación también se llama Network Share.",
+          "contact": "Contacto:"
+        },
+        "fa": {
+          "description": "این سند برای برنامه VPN Share Hotspot - Tethering اعمال می‌شود که توسط aiwean، توسعه‌دهنده درج‌شده در Google Play، ارائه و اداره می‌شود. نام برنامه در رابط کاربری آن نیز Network Share است.",
+          "contact": "ایمیل تماس:"
+        },
+        "fr": {
+          "description": "Ce document s’applique à VPN Share Hotspot - Tethering, fournie et exploitée par aiwean, le développeur indiqué sur Google Play. L’application porte également le nom Network Share dans son interface.",
+          "contact": "Contact :"
+        },
+        "hi": {
+          "description": "यह दस्तावेज़ VPN Share Hotspot - Tethering ऐप पर लागू होता है, जिसे Google Play पर सूचीबद्ध डेवलपर aiwean प्रदान और संचालित करता है। ऐप के इंटरफ़ेस में इसका नाम Network Share भी है।",
+          "contact": "संपर्क ईमेल:"
+        },
+        "id": {
+          "description": "Dokumen ini berlaku untuk VPN Share Hotspot - Tethering, yang disediakan dan dioperasikan oleh aiwean, pengembang yang tercantum di Google Play. Dalam antarmukanya, aplikasi ini juga bernama Network Share.",
+          "contact": "Kontak:"
+        },
+        "ja": {
+          "description": "本文書は、Google Play に掲載されている開発者 aiwean が提供・運営する VPN Share Hotspot - Tethering アプリに適用されます。アプリ内では Network Share という名称も使用されています。",
+          "contact": "連絡先メールアドレス："
+        },
+        "ko": {
+          "description": "이 문서는 Google Play에 등록된 개발자 aiwean이 제공하고 운영하는 VPN Share Hotspot - Tethering 앱에 적용됩니다. 앱 내에서는 Network Share라는 이름도 사용됩니다.",
+          "contact": "문의 이메일:"
+        },
+        "ms": {
+          "description": "Dokumen ini terpakai kepada VPN Share Hotspot - Tethering, yang disediakan dan dikendalikan oleh aiwean, pembangun yang disenaraikan di Google Play. Dalam antara mukanya, aplikasi ini juga dinamakan Network Share.",
+          "contact": "Hubungi:"
+        },
+        "pt": {
+          "description": "Este documento aplica-se ao VPN Share Hotspot - Tethering, fornecido e operado por aiwean, o desenvolvedor listado no Google Play. Na sua interface, o aplicativo também se chama Network Share.",
+          "contact": "Contato:"
+        },
+        "ru": {
+          "description": "Этот документ распространяется на приложение VPN Share Hotspot - Tethering, которое предоставляет и обслуживает aiwean — разработчик, указанный в Google Play. В интерфейсе приложение также называется Network Share.",
+          "contact": "Электронная почта для связи:"
+        },
+        "sw": {
+          "description": "Hati hii inatumika kwa VPN Share Hotspot - Tethering, inayotolewa na kuendeshwa na aiwean, msanidi aliyeorodheshwa kwenye Google Play. Katika kiolesura chake, programu pia inaitwa Network Share.",
+          "contact": "Mawasiliano:"
+        },
+        "th": {
+          "description": "เอกสารนี้ใช้กับแอป VPN Share Hotspot - Tethering ซึ่งให้บริการและดำเนินการโดย aiwean นักพัฒนาที่ระบุไว้ใน Google Play โดยแอปใช้ชื่อ Network Share ภายในอินเทอร์เฟซด้วย",
+          "contact": "อีเมลติดต่อ:"
+        },
+        "tl": {
+          "description": "Nalalapat ang dokumentong ito sa VPN Share Hotspot - Tethering, na ibinibigay at pinapatakbo ng aiwean, ang developer na nakalista sa Google Play. Network Share din ang pangalan ng app sa interface nito.",
+          "contact": "Makipag-ugnayan:"
+        },
+        "tr": {
+          "description": "Bu belge, Google Play’de listelenen geliştirici aiwean tarafından sunulan ve işletilen VPN Share Hotspot - Tethering uygulaması için geçerlidir. Uygulamanın arayüzünde Network Share adı da kullanılmaktadır.",
+          "contact": "İletişim:"
+        },
+        "ur": {
+          "description": "یہ دستاویز VPN Share Hotspot - Tethering ایپ پر لاگو ہوتی ہے، جسے Google Play پر درج ڈویلپر aiwean فراہم اور چلاتا ہے۔ ایپ کے انٹرفیس میں اس کا نام Network Share بھی ہے۔",
+          "contact": "رابطے کا ای میل:"
+        },
+        "vi": {
+          "description": "Tài liệu này áp dụng cho ứng dụng VPN Share Hotspot - Tethering, do aiwean, nhà phát triển được liệt kê trên Google Play, cung cấp và vận hành. Trong giao diện, ứng dụng còn có tên là Network Share.",
+          "contact": "Email liên hệ:"
+        }
+      };
+
+      const apply = (requestedLang) => {
+        const lang = Object.prototype.hasOwnProperty.call(identityTexts, requestedLang) ? requestedLang : 'en';
         document.querySelectorAll('.lang').forEach(el => el.style.display='none');
         const sec=document.querySelector(`[data-lang="${lang}"]`)||document.querySelector('[data-lang="en"]');
         if(sec) sec.style.display='block';
@@ -79,6 +163,15 @@
         if(h1) h1.textContent=t;
         const p=document.getElementById('intro');
         if(p) p.textContent=intro[lang]||intro.en;
+        const identity = document.getElementById('app-identity');
+        if (identity) {
+          identity.lang = lang;
+          identity.dir = ['ar', 'fa', 'ur'].includes(lang) ? 'rtl' : 'ltr';
+        }
+        const description = document.getElementById('identity-description');
+        if (description) description.textContent = identityTexts[lang].description;
+        const contactLabel = document.getElementById('identity-contact-label');
+        if (contactLabel) contactLabel.textContent = identityTexts[lang].contact;
         const sel=document.getElementById('lang-select');
         if(sel) sel.value=lang;
       };
@@ -91,7 +184,11 @@
   </script>
 </head>
 <body>
-  <h1 id="title">Network Share Data Deletion Notice</h1>
+  <h1 id="title">VPN Share Hotspot - Tethering Data Deletion Notice</h1>
+
+  <section aria-labelledby="title">
+    <p id="app-identity" lang="en" dir="ltr"><span id="identity-description">This document applies to VPN Share Hotspot - Tethering, provided and operated by aiwean, the developer listed on Google Play. The app is also named Network Share within its interface.</span> <span id="identity-contact-label">Contact:</span> <a href="mailto:wenyuanshuai@gmail.com" dir="ltr">wenyuanshuai@gmail.com</a>.</p>
+  </section>
   <div class="lang-switch">
     <label for="lang-select">Language / 语言：</label>
     <select id="lang-select">
@@ -128,7 +225,7 @@
     </ul>
     <h2>How to delete</h2>
     <ul>
-      <li>System &gt; Apps &gt; Network Share &gt; Storage &gt; Clear data; or uninstall.</li>
+      <li>System &gt; Apps &gt; VPN Share Hotspot - Tethering &gt; Storage &gt; Clear data; or uninstall.</li>
       <li>Disable crash reporting/ads in-app (if available) to stop further sends.</li>
       <li>Email requests: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a> (include device, OS, time). We’ll forward to third parties if applicable.</li>
     </ul>
@@ -145,7 +242,7 @@
     </ul>
     <h2>如何删除</h2>
     <ul>
-      <li>系统设置 &gt; 应用 &gt; Network Share &gt; 存储 &gt; 清除数据；或卸载。</li>
+      <li>系统设置 &gt; 应用 &gt; VPN Share Hotspot - Tethering &gt; 存储 &gt; 清除数据；或卸载。</li>
       <li>在应用内关闭崩溃上报/广告（如有入口）以停止后续发送。</li>
       <li>邮箱申请：<a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a>（提供设备、系统、时间）。如涉及第三方，我们会转达删除请求。</li>
     </ul>
