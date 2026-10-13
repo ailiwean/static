@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Network Share Privacy Policy</title>
+  <title>VPN Share Hotspot - Tethering Privacy Policy</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 960px; margin: 32px auto; padding: 0 16px; line-height: 1.6; }
     h1, h2 { color: #0a8a4b; }
@@ -29,48 +29,48 @@
         'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'
       };
       const titles = {
-        'en':'Network Share Privacy Policy',
-        'zh-CN':'Network Share 隐私政策',
-        'ar':'سياسة الخصوصية لـ Network Share',
-        'de':'Network Share Datenschutzerklärung',
-        'es':'Política de Privacidad de Network Share',
-        'fa':'سیاست حریم خصوصی Network Share',
-        'fr':'Politique de Confidentialité Network Share',
-        'hi':'Network Share गोपनीयता नीति',
-        'id':'Kebijakan Privasi Network Share',
-        'ja':'Network Share プライバシーポリシー',
-        'ko':'Network Share 개인정보처리방침',
-        'ms':'Dasar Privasi Network Share',
-        'pt':'Política de Privacidade Network Share',
-        'ru':'Политика конфиденциальности Network Share',
-        'sw':'Sera ya Faragha ya Network Share',
-        'th':'นโยบายความเป็นส่วนตัว Network Share',
-        'tl':'Patakaran sa Privacy ng Network Share',
-        'tr':'Network Share Gizlilik Politikası',
-        'ur':'Network Share رازداری پالیسی',
-        'vi':'Chính sách Quyền riêng tư Network Share'
+        'en':'VPN Share Hotspot - Tethering Privacy Policy',
+        'zh-CN':'VPN Share Hotspot - Tethering 隐私政策',
+        'ar':'سياسة الخصوصية لـ VPN Share Hotspot - Tethering',
+        'de':'VPN Share Hotspot - Tethering Datenschutzerklärung',
+        'es':'Política de Privacidad de VPN Share Hotspot - Tethering',
+        'fa':'سیاست حریم خصوصی VPN Share Hotspot - Tethering',
+        'fr':'Politique de Confidentialité VPN Share Hotspot - Tethering',
+        'hi':'VPN Share Hotspot - Tethering गोपनीयता नीति',
+        'id':'Kebijakan Privasi VPN Share Hotspot - Tethering',
+        'ja':'VPN Share Hotspot - Tethering プライバシーポリシー',
+        'ko':'VPN Share Hotspot - Tethering 개인정보처리방침',
+        'ms':'Dasar Privasi VPN Share Hotspot - Tethering',
+        'pt':'Política de Privacidade VPN Share Hotspot - Tethering',
+        'ru':'Политика конфиденциальности VPN Share Hotspot - Tethering',
+        'sw':'Sera ya Faragha ya VPN Share Hotspot - Tethering',
+        'th':'นโยบายความเป็นส่วนตัว VPN Share Hotspot - Tethering',
+        'tl':'Patakaran sa Privacy ng VPN Share Hotspot - Tethering',
+        'tr':'VPN Share Hotspot - Tethering Gizlilik Politikası',
+        'ur':'VPN Share Hotspot - Tethering رازداری پالیسی',
+        'vi':'Chính sách Quyền riêng tư VPN Share Hotspot - Tethering'
       };
       const introTexts = {
-        'en':'This policy is aligned with Google Play requirements. Network Share is a LAN-only proxy gateway; traffic is not relayed via our servers.',
-        'zh-CN':'本政策符合 Google Play 要求。Network Share 仅在局域网内转发流量，不经过我们的服务器。',
-        'ar':'هذه السياسة متوافقة مع متطلبات Google Play. يعمل Network Share كوكيل LAN فقط؛ لا يتم ترحيل الحركة عبر خوادمنا.',
-        'de':'Diese Richtlinie entspricht den Google-Play-Anforderungen. Network Share arbeitet nur im LAN, ohne Weiterleitung über unsere Server.',
-        'es':'Esta política cumple con los requisitos de Google Play. Network Share es solo un proxy LAN; el tráfico no pasa por nuestros servidores.',
-        'fa':'این خط‌مشی مطابق الزامات گوگل‌پلی است. Network Share فقط در شبکه محلی کار می‌کند و ترافیک از سرورهای ما عبور نمی‌کند.',
-        'fr':'Cette politique respecte les exigences de Google Play. Network Share fonctionne uniquement en LAN, sans relais via nos serveurs.',
-        'hi':'यह नीति Google Play आवश्यकताओं के अनुरूप है। Network Share केवल LAN में ट्रैफ़िक अग्रेषित करता है, हमारे सर्वर से नहीं गुजरता।',
-        'id':'Kebijakan ini sesuai persyaratan Google Play. Network Share hanya memproksi dalam LAN; trafik tidak melewati server kami.',
-        'ja':'本ポリシーは Google Play 要件に準拠しています。Network Share は LAN 内のみで転送し、当社サーバー経由ではありません。',
-        'ko':'이 정책은 Google Play 요구사항에 부합합니다. Network Share는 LAN 내에서만 트래픽을 전달하며 서버를 거치지 않습니다.',
-        'ms':'Dasar ini selaras dengan keperluan Google Play. Network Share hanya memproksi dalam LAN; trafik tidak melalui pelayan kami.',
-        'pt':'Esta política atende aos requisitos do Google Play. O Network Share funciona apenas na LAN; o tráfego não passa por nossos servidores.',
-        'ru':'Эта политика соответствует требованиям Google Play. Network Share работает только в LAN, трафик не проходит через наши серверы.',
-        'sw':'Sera hii inakidhi mahitaji ya Google Play. Network Share ni proxy ya LAN pekee; trafiki hupita ndani ya LAN bila seva zetu.',
-        'th':'นโยบายนี้สอดคล้องกับข้อกำหนด Google Play. Network Share ใช้งานภายใน LAN เท่านั้น ไม่ผ่านเซิร์ฟเวอร์ของเรา',
-        'tl':'Ang patakarang ito ay naaayon sa Google Play. Network Share ay LAN-only proxy; hindi dumaraan sa aming servers.',
-        'tr':'Bu politika Google Play gereksinimlerine uygundur. Network Share yalnızca LAN’da çalışır, trafik sunucularımızdan geçmez.',
-        'ur':'یہ پالیسی گوگل پلے تقاضوں کے مطابق ہے۔ Network Share صرف LAN میں ٹریفک فارورڈ کرتا ہے، ہمارے سرور سے نہیں گزرتا۔',
-        'vi':'Chính sách này đáp ứng yêu cầu Google Play. Network Share chỉ chuyển tiếp trong LAN, không qua máy chủ của chúng tôi.'
+        'en':'This policy is aligned with Google Play requirements. VPN Share Hotspot - Tethering is a LAN-only proxy gateway; traffic is not relayed via our servers.',
+        'zh-CN':'本政策符合 Google Play 要求。VPN Share Hotspot - Tethering 仅在局域网内转发流量，不经过我们的服务器。',
+        'ar':'هذه السياسة متوافقة مع متطلبات Google Play. يعمل VPN Share Hotspot - Tethering كوكيل LAN فقط؛ لا يتم ترحيل الحركة عبر خوادمنا.',
+        'de':'Diese Richtlinie entspricht den Google-Play-Anforderungen. VPN Share Hotspot - Tethering arbeitet nur im LAN, ohne Weiterleitung über unsere Server.',
+        'es':'Esta política cumple con los requisitos de Google Play. VPN Share Hotspot - Tethering es solo un proxy LAN; el tráfico no pasa por nuestros servidores.',
+        'fa':'این خط‌مشی مطابق الزامات گوگل‌پلی است. VPN Share Hotspot - Tethering فقط در شبکه محلی کار می‌کند و ترافیک از سرورهای ما عبور نمی‌کند.',
+        'fr':'Cette politique respecte les exigences de Google Play. VPN Share Hotspot - Tethering fonctionne uniquement en LAN, sans relais via nos serveurs.',
+        'hi':'यह नीति Google Play आवश्यकताओं के अनुरूप है। VPN Share Hotspot - Tethering केवल LAN में ट्रैफ़िक अग्रेषित करता है, हमारे सर्वर से नहीं गुजरता।',
+        'id':'Kebijakan ini sesuai persyaratan Google Play. VPN Share Hotspot - Tethering hanya memproksi dalam LAN; trafik tidak melewati server kami.',
+        'ja':'本ポリシーは Google Play 要件に準拠しています。VPN Share Hotspot - Tethering は LAN 内のみで転送し、当社サーバー経由ではありません。',
+        'ko':'이 정책은 Google Play 요구사항에 부합합니다. VPN Share Hotspot - Tethering는 LAN 내에서만 트래픽을 전달하며 서버를 거치지 않습니다.',
+        'ms':'Dasar ini selaras dengan keperluan Google Play. VPN Share Hotspot - Tethering hanya memproksi dalam LAN; trafik tidak melalui pelayan kami.',
+        'pt':'Esta política atende aos requisitos do Google Play. O VPN Share Hotspot - Tethering funciona apenas na LAN; o tráfego não passa por nossos servidores.',
+        'ru':'Эта политика соответствует требованиям Google Play. VPN Share Hotspot - Tethering работает только в LAN, трафик не проходит через наши серверы.',
+        'sw':'Sera hii inakidhi mahitaji ya Google Play. VPN Share Hotspot - Tethering ni proxy ya LAN pekee; trafiki hupita ndani ya LAN bila seva zetu.',
+        'th':'นโยบายนี้สอดคล้องกับข้อกำหนด Google Play. VPN Share Hotspot - Tethering ใช้งานภายใน LAN เท่านั้น ไม่ผ่านเซิร์ฟเวอร์ของเรา',
+        'tl':'Ang patakarang ito ay naaayon sa Google Play. VPN Share Hotspot - Tethering ay LAN-only proxy; hindi dumaraan sa aming servers.',
+        'tr':'Bu politika Google Play gereksinimlerine uygundur. VPN Share Hotspot - Tethering yalnızca LAN’da çalışır, trafik sunucularımızdan geçmez.',
+        'ur':'یہ پالیسی گوگل پلے تقاضوں کے مطابق ہے۔ VPN Share Hotspot - Tethering صرف LAN میں ٹریفک فارورڈ کرتا ہے، ہمارے سرور سے نہیں گزرتا۔',
+        'vi':'Chính sách này đáp ứng yêu cầu Google Play. VPN Share Hotspot - Tethering chỉ chuyển tiếp trong LAN, không qua máy chủ của chúng tôi.'
       };
 
       const applyLang = (lang) => {
@@ -99,8 +99,13 @@
   </script>
 </head>
 <body>
-  <h1 id="title">Network Share Privacy Policy</h1>
-  <p class="meta" id="updated">Last Updated: 2025-11-30</p>
+  <h1 id="title">VPN Share Hotspot - Tethering Privacy Policy</h1>
+  <p class="meta" id="updated">Last Updated: 2026-10-13</p>
+
+  <section aria-label="Application and developer / 应用与开发者">
+    <p lang="en">This privacy policy applies to <strong>VPN Share Hotspot - Tethering</strong>, provided and operated by <strong>aiwean</strong>, the developer listed on Google Play. The app is also named <strong>Network Share</strong> within its interface. Contact: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a>.</p>
+    <p lang="zh-CN">本隐私政策适用于由 Google Play 开发者 <strong>aiwean</strong> 提供和运营的 <strong>VPN Share Hotspot - Tethering</strong> 应用。应用内名称为 <strong>Network Share</strong>。联系邮箱：<a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a>。</p>
+  </section>
 
   <div class="lang-switch">
     <label for="lang-select">Language / 语言：</label>
@@ -128,7 +133,7 @@
     </select>
   </div>
 
-  <p id="intro">This policy is aligned with Google Play requirements. Network Share is a LAN-only proxy gateway; traffic is not relayed via our servers.</p>
+  <p id="intro">This policy is aligned with Google Play requirements. VPN Share Hotspot - Tethering is a LAN-only proxy gateway; traffic is not relayed via our servers.</p>
 
   <div class="lang" data-lang="en">
     <h2>English (en)</h2>
