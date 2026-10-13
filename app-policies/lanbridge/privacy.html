@@ -73,7 +73,91 @@
         'vi':'Chính sách này đáp ứng yêu cầu Google Play. VPN Share Hotspot - Tethering chỉ chuyển tiếp trong LAN, không qua máy chủ của chúng tôi.'
       };
 
-      const applyLang = (lang) => {
+      const identityTexts = {
+        "en": {
+          "description": "This privacy policy applies to VPN Share Hotspot - Tethering, provided and operated by aiwean, the developer listed on Google Play. The app is also named Network Share within its interface.",
+          "contact": "Contact:"
+        },
+        "zh-CN": {
+          "description": "本隐私政策适用于由 Google Play 开发者 aiwean 提供和运营的 VPN Share Hotspot - Tethering 应用。应用内名称为 Network Share。",
+          "contact": "联系邮箱："
+        },
+        "ar": {
+          "description": "تنطبق سياسة الخصوصية هذه على تطبيق VPN Share Hotspot - Tethering، الذي يقدمه ويديره aiwean، المطوّر المدرج على Google Play. يُسمّى التطبيق أيضًا Network Share داخل واجهته.",
+          "contact": "البريد الإلكتروني للتواصل:"
+        },
+        "de": {
+          "description": "Diese Datenschutzerklärung gilt für VPN Share Hotspot - Tethering, bereitgestellt und betrieben von aiwean, dem bei Google Play aufgeführten Entwickler. In der Benutzeroberfläche heißt die App auch Network Share.",
+          "contact": "Kontakt:"
+        },
+        "es": {
+          "description": "Esta política de privacidad se aplica a VPN Share Hotspot - Tethering, proporcionada y operada por aiwean, el desarrollador que figura en Google Play. En su interfaz, la aplicación también se llama Network Share.",
+          "contact": "Contacto:"
+        },
+        "fa": {
+          "description": "این سیاست حفظ حریم خصوصی برای برنامه VPN Share Hotspot - Tethering اعمال می‌شود که توسط aiwean، توسعه‌دهنده درج‌شده در Google Play، ارائه و اداره می‌شود. نام برنامه در رابط کاربری آن نیز Network Share است.",
+          "contact": "ایمیل تماس:"
+        },
+        "fr": {
+          "description": "Cette politique de confidentialité s’applique à VPN Share Hotspot - Tethering, fournie et exploitée par aiwean, le développeur indiqué sur Google Play. L’application porte également le nom Network Share dans son interface.",
+          "contact": "Contact :"
+        },
+        "hi": {
+          "description": "यह गोपनीयता नीति VPN Share Hotspot - Tethering ऐप पर लागू होती है, जिसे Google Play पर सूचीबद्ध डेवलपर aiwean प्रदान और संचालित करता है। ऐप के इंटरफ़ेस में इसका नाम Network Share भी है।",
+          "contact": "संपर्क ईमेल:"
+        },
+        "id": {
+          "description": "Kebijakan privasi ini berlaku untuk VPN Share Hotspot - Tethering, yang disediakan dan dioperasikan oleh aiwean, pengembang yang tercantum di Google Play. Dalam antarmukanya, aplikasi ini juga bernama Network Share.",
+          "contact": "Kontak:"
+        },
+        "ja": {
+          "description": "本プライバシーポリシーは、Google Play に掲載されている開発者 aiwean が提供・運営する VPN Share Hotspot - Tethering アプリに適用されます。アプリ内では Network Share という名称も使用されています。",
+          "contact": "連絡先メールアドレス："
+        },
+        "ko": {
+          "description": "이 개인정보처리방침은 Google Play에 등록된 개발자 aiwean이 제공하고 운영하는 VPN Share Hotspot - Tethering 앱에 적용됩니다. 앱 내에서는 Network Share라는 이름도 사용됩니다.",
+          "contact": "문의 이메일:"
+        },
+        "ms": {
+          "description": "Dasar privasi ini terpakai kepada VPN Share Hotspot - Tethering, yang disediakan dan dikendalikan oleh aiwean, pembangun yang disenaraikan di Google Play. Dalam antara mukanya, aplikasi ini juga dinamakan Network Share.",
+          "contact": "Hubungi:"
+        },
+        "pt": {
+          "description": "Esta política de privacidade aplica-se ao VPN Share Hotspot - Tethering, fornecido e operado por aiwean, o desenvolvedor listado no Google Play. Na sua interface, o aplicativo também se chama Network Share.",
+          "contact": "Contato:"
+        },
+        "ru": {
+          "description": "Эта политика конфиденциальности распространяется на приложение VPN Share Hotspot - Tethering, которое предоставляет и обслуживает aiwean — разработчик, указанный в Google Play. В интерфейсе приложение также называется Network Share.",
+          "contact": "Электронная почта для связи:"
+        },
+        "sw": {
+          "description": "Sera hii ya faragha inatumika kwa VPN Share Hotspot - Tethering, inayotolewa na kuendeshwa na aiwean, msanidi aliyeorodheshwa kwenye Google Play. Katika kiolesura chake, programu pia inaitwa Network Share.",
+          "contact": "Mawasiliano:"
+        },
+        "th": {
+          "description": "นโยบายความเป็นส่วนตัวนี้ใช้กับแอป VPN Share Hotspot - Tethering ซึ่งให้บริการและดำเนินการโดย aiwean นักพัฒนาที่ระบุไว้ใน Google Play โดยแอปใช้ชื่อ Network Share ภายในอินเทอร์เฟซด้วย",
+          "contact": "อีเมลติดต่อ:"
+        },
+        "tl": {
+          "description": "Nalalapat ang patakaran sa privacy na ito sa VPN Share Hotspot - Tethering, na ibinibigay at pinapatakbo ng aiwean, ang developer na nakalista sa Google Play. Network Share din ang pangalan ng app sa interface nito.",
+          "contact": "Makipag-ugnayan:"
+        },
+        "tr": {
+          "description": "Bu gizlilik politikası, Google Play’de listelenen geliştirici aiwean tarafından sunulan ve işletilen VPN Share Hotspot - Tethering uygulaması için geçerlidir. Uygulamanın arayüzünde Network Share adı da kullanılmaktadır.",
+          "contact": "İletişim:"
+        },
+        "ur": {
+          "description": "یہ رازداری کی پالیسی VPN Share Hotspot - Tethering ایپ پر لاگو ہوتی ہے، جسے Google Play پر درج ڈویلپر aiwean فراہم اور چلاتا ہے۔ ایپ کے انٹرفیس میں اس کا نام Network Share بھی ہے۔",
+          "contact": "رابطے کا ای میل:"
+        },
+        "vi": {
+          "description": "Chính sách quyền riêng tư này áp dụng cho ứng dụng VPN Share Hotspot - Tethering, do aiwean, nhà phát triển được liệt kê trên Google Play, cung cấp và vận hành. Trong giao diện, ứng dụng còn có tên là Network Share.",
+          "contact": "Email liên hệ:"
+        }
+      };
+
+      const applyLang = (requestedLang) => {
+        const lang = Object.prototype.hasOwnProperty.call(identityTexts, requestedLang) ? requestedLang : 'en';
         document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
         const sec = document.querySelector(`[data-lang="${lang}"]`) || document.querySelector('[data-lang="en"]');
         if (sec) sec.style.display = 'block';
@@ -83,6 +167,15 @@
         if (h1) h1.textContent = titleText;
         const intro = document.getElementById('intro');
         if (intro) intro.textContent = introTexts[lang] || introTexts['en'];
+        const identity = document.getElementById('app-identity');
+        if (identity) {
+          identity.lang = lang;
+          identity.dir = ['ar', 'fa', 'ur'].includes(lang) ? 'rtl' : 'ltr';
+        }
+        const description = document.getElementById('identity-description');
+        if (description) description.textContent = identityTexts[lang].description;
+        const contactLabel = document.getElementById('identity-contact-label');
+        if (contactLabel) contactLabel.textContent = identityTexts[lang].contact;
         const select = document.getElementById('lang-select');
         if (select) select.value = lang;
       };
@@ -102,9 +195,8 @@
   <h1 id="title">VPN Share Hotspot - Tethering Privacy Policy</h1>
   <p class="meta" id="updated">Last Updated: 2026-10-13</p>
 
-  <section aria-label="Application and developer / 应用与开发者">
-    <p lang="en">This privacy policy applies to <strong>VPN Share Hotspot - Tethering</strong>, provided and operated by <strong>aiwean</strong>, the developer listed on Google Play. The app is also named <strong>Network Share</strong> within its interface. Contact: <a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a>.</p>
-    <p lang="zh-CN">本隐私政策适用于由 Google Play 开发者 <strong>aiwean</strong> 提供和运营的 <strong>VPN Share Hotspot - Tethering</strong> 应用。应用内名称为 <strong>Network Share</strong>。联系邮箱：<a href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a>。</p>
+  <section aria-labelledby="title">
+    <p id="app-identity" lang="en" dir="ltr"><span id="identity-description">This privacy policy applies to VPN Share Hotspot - Tethering, provided and operated by aiwean, the developer listed on Google Play. The app is also named Network Share within its interface.</span> <span id="identity-contact-label">Contact:</span> <a href="mailto:wenyuanshuai@gmail.com" dir="ltr">wenyuanshuai@gmail.com</a>.</p>
   </section>
 
   <div class="lang-switch">
