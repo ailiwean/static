@@ -12,9 +12,9 @@
     .lang-switch { margin: 12px 0 16px; }
     .lang-switch label { margin-right: 8px; font-weight: 600; }
     .lang-switch select { padding: 6px 10px; }
-    .open-browser-row { margin: 12px 0 6px; }
-    .open-browser-btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border-radius: 6px; background: #0a8a4b; color: #fff; text-decoration: none; font-weight: 600; }
-    .open-browser-btn:hover { background: #08733f; }
+    .manual-url-copy-row { margin: 12px 0 6px; }
+    .manual-url-copy-btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border: 0; border-radius: 6px; background: #0a8a4b; color: #fff; cursor: pointer; font: inherit; font-weight: 600; }
+    .manual-url-copy-btn:hover { background: #08733f; }
     .guide-image img { max-width: 100%; width: auto; height: auto; object-fit: contain; margin: 8px 0 12px; border: 1px solid #ddd; border-radius: 8px; }
     .guide-image img[src*="guide_"] { max-width: 500px; max-height: 500px; width: auto; height: auto; object-fit: contain; }
 
@@ -51,8 +51,8 @@
     .yaml-form button { background: #1f8f5a; }
     .yaml-form button:hover { background: #167347; }
     .yaml-output { color: #7ce694; }
-    .open-browser-btn { background: #1f8f5a; }
-    .open-browser-btn:hover { background: #167347; }
+    .manual-url-copy-btn { background: #1f8f5a; }
+    .manual-url-copy-btn:hover { background: #167347; }
     .copy-btn { border-color: #7ce694; color: #7ce694; }
     .copy-btn:hover { background: rgba(124,230,148,0.12); }
     .notice-green { color: #7ce694; }
@@ -64,6 +64,73 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const manualUrlCopyLabels = {
+        'en': { copy: 'Copy current manual URL', copied: 'Address copied', failed: 'Copy failed' },
+        'zh-CN': { copy: '复制当前手册地址', copied: '地址已复制', failed: '复制失败' },
+        'ar': { copy: 'انسخ رابط الدليل الحالي', copied: 'تم نسخ العنوان', failed: 'فشل النسخ' },
+        'de': { copy: 'Aktuelle Anleitung kopieren', copied: 'Adresse kopiert', failed: 'Kopieren fehlgeschlagen' },
+        'es': { copy: 'Copiar la dirección de esta guía', copied: 'Dirección copiada', failed: 'Error al copiar' },
+        'fa': { copy: 'نشانی راهنمای فعلی را کپی کنید', copied: 'نشانی کپی شد', failed: 'کپی نشد' },
+        'fr': { copy: 'Copier l’adresse de ce guide', copied: 'Adresse copiée', failed: 'Échec de la copie' },
+        'hi': { copy: 'इस गाइड का पता कॉपी करें', copied: 'पता कॉपी हो गया', failed: 'कॉपी नहीं हो सका' },
+        'id': { copy: 'Salin alamat panduan ini', copied: 'Alamat disalin', failed: 'Gagal menyalin' },
+        'ja': { copy: 'このガイドのURLをコピー', copied: 'URLをコピーしました', failed: 'コピーできませんでした' },
+        'ko': { copy: '현재 안내서 주소 복사', copied: '주소를 복사했습니다', failed: '복사하지 못했습니다' },
+        'ms': { copy: 'Salin alamat panduan ini', copied: 'Alamat disalin', failed: 'Gagal menyalin' },
+        'pt': { copy: 'Copiar o endereço deste guia', copied: 'Endereço copiado', failed: 'Falha ao copiar' },
+        'ru': { copy: 'Скопировать адрес этой инструкции', copied: 'Адрес скопирован', failed: 'Не удалось скопировать' },
+        'sw': { copy: 'Nakili anwani ya mwongozo huu', copied: 'Anwani imenakiliwa', failed: 'Imeshindwa kunakili' },
+        'th': { copy: 'คัดลอกที่อยู่คู่มือนี้', copied: 'คัดลอกที่อยู่แล้ว', failed: 'คัดลอกไม่สำเร็จ' },
+        'tl': { copy: 'Kopyahin ang address ng gabay na ito', copied: 'Nakopya ang address', failed: 'Hindi nakopya' },
+        'tr': { copy: 'Bu kılavuzun adresini kopyala', copied: 'Adres kopyalandı', failed: 'Kopyalanamadı' },
+        'ur': { copy: 'اس رہنما کا پتہ کاپی کریں', copied: 'پتہ کاپی ہو گیا', failed: 'کاپی نہیں ہو سکا' },
+        'vi': { copy: 'Sao chép địa chỉ hướng dẫn này', copied: 'Đã sao chép địa chỉ', failed: 'Không thể sao chép' }
+      };
+      const yamlActionLabels = {
+        'en': { button: 'Copy address to download in browser', copied: 'Address copied. Paste it in your browser to download YAML:', failed: 'Could not copy. Open this address in your browser to download YAML:' },
+        'zh-CN': { button: '复制地址，用浏览器下载', copied: '地址已复制，请粘贴到浏览器下载 YAML：', failed: '复制失败，请在浏览器中打开此地址下载 YAML：' },
+        'ar': { button: 'انسخ العنوان للتنزيل في المتصفح', copied: 'تم نسخ العنوان. الصقه في المتصفح لتنزيل YAML:', failed: 'تعذر النسخ. افتح هذا العنوان في المتصفح لتنزيل YAML:' },
+        'de': { button: 'Adresse kopieren und im Browser herunterladen', copied: 'Adresse kopiert. Fügen Sie sie im Browser ein, um YAML herunterzuladen:', failed: 'Kopieren fehlgeschlagen. Öffnen Sie diese Adresse im Browser, um YAML herunterzuladen:' },
+        'es': { button: 'Copiar dirección y descargar en el navegador', copied: 'Dirección copiada. Pégala en el navegador para descargar el YAML:', failed: 'No se pudo copiar. Abre esta dirección en el navegador para descargar el YAML:' },
+        'fa': { button: 'نشانی را کپی کنید و در مرورگر دانلود کنید', copied: 'نشانی کپی شد. برای دانلود YAML آن را در مرورگر جای‌گذاری کنید:', failed: 'کپی نشد. برای دانلود YAML این نشانی را در مرورگر باز کنید:' },
+        'fr': { button: 'Copier l’adresse pour télécharger dans le navigateur', copied: 'Adresse copiée. Collez-la dans le navigateur pour télécharger le YAML :', failed: 'Copie impossible. Ouvrez cette adresse dans le navigateur pour télécharger le YAML :' },
+        'hi': { button: 'पता कॉपी करें और ब्राउज़र में डाउनलोड करें', copied: 'पता कॉपी हो गया। YAML डाउनलोड करने के लिए इसे ब्राउज़र में पेस्ट करें:', failed: 'कॉपी नहीं हो सका। YAML डाउनलोड करने के लिए यह पता ब्राउज़र में खोलें:' },
+        'id': { button: 'Salin alamat untuk mengunduh di browser', copied: 'Alamat disalin. Tempel di browser untuk mengunduh YAML:', failed: 'Gagal menyalin. Buka alamat ini di browser untuk mengunduh YAML:' },
+        'ja': { button: 'アドレスをコピーしてブラウザでダウンロード', copied: 'アドレスをコピーしました。ブラウザに貼り付けて YAML をダウンロードしてください:', failed: 'コピーできませんでした。ブラウザでこのアドレスを開いて YAML をダウンロードしてください:' },
+        'ko': { button: '주소를 복사해 브라우저에서 다운로드', copied: '주소를 복사했습니다. 브라우저에 붙여넣어 YAML을 다운로드하세요:', failed: '복사하지 못했습니다. 브라우저에서 이 주소를 열어 YAML을 다운로드하세요:' },
+        'ms': { button: 'Salin alamat untuk muat turun dalam pelayar', copied: 'Alamat disalin. Tampal dalam pelayar untuk memuat turun YAML:', failed: 'Gagal menyalin. Buka alamat ini dalam pelayar untuk memuat turun YAML:' },
+        'pt': { button: 'Copiar endereço e baixar no navegador', copied: 'Endereço copiado. Cole-o no navegador para baixar o YAML:', failed: 'Não foi possível copiar. Abra este endereço no navegador para baixar o YAML:' },
+        'ru': { button: 'Скопировать адрес и скачать в браузере', copied: 'Адрес скопирован. Вставьте его в браузер, чтобы скачать YAML:', failed: 'Не удалось скопировать. Откройте этот адрес в браузере, чтобы скачать YAML:' },
+        'sw': { button: 'Nakili anwani ili upakue kwenye kivinjari', copied: 'Anwani imenakiliwa. Ibandike kwenye kivinjari ili kupakua YAML:', failed: 'Imeshindwa kunakili. Fungua anwani hii kwenye kivinjari ili kupakua YAML:' },
+        'th': { button: 'คัดลอกที่อยู่เพื่อดาวน์โหลดในเบราว์เซอร์', copied: 'คัดลอกที่อยู่แล้ว วางในเบราว์เซอร์เพื่อดาวน์โหลด YAML:', failed: 'คัดลอกไม่สำเร็จ เปิดที่อยู่นี้ในเบราว์เซอร์เพื่อดาวน์โหลด YAML:' },
+        'tl': { button: 'Kopyahin ang address para mag-download sa browser', copied: 'Nakopya ang address. I-paste ito sa browser para i-download ang YAML:', failed: 'Hindi nakopya. Buksan ang address na ito sa browser para i-download ang YAML:' },
+        'tr': { button: 'Adresi kopyalayıp tarayıcıda indirin', copied: 'Adres kopyalandı. YAML dosyasını indirmek için tarayıcıya yapıştırın:', failed: 'Kopyalanamadı. YAML dosyasını indirmek için bu adresi tarayıcıda açın:' },
+        'ur': { button: 'پتہ کاپی کریں اور براؤزر میں ڈاؤن لوڈ کریں', copied: 'پتہ کاپی ہو گیا۔ YAML ڈاؤن لوڈ کرنے کے لیے اسے براؤزر میں پیسٹ کریں:', failed: 'کاپی نہیں ہو سکا۔ YAML ڈاؤن لوڈ کرنے کے لیے یہ پتہ براؤزر میں کھولیں:' },
+        'vi': { button: 'Sao chép địa chỉ để tải xuống bằng trình duyệt', copied: 'Đã sao chép địa chỉ. Dán vào trình duyệt để tải YAML:', failed: 'Không thể sao chép. Mở địa chỉ này trong trình duyệt để tải YAML:' }
+      };
+      const currentLanguage = () => document.getElementById('lang-select')?.value || 'en';
+      const writeClipboard = async (value) => {
+        if (navigator.clipboard?.writeText) {
+          try {
+            await navigator.clipboard.writeText(value);
+            return true;
+          } catch (err) {}
+        }
+        const textarea = document.createElement('textarea');
+        textarea.value = value;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+          return document.execCommand('copy');
+        } catch (err) {
+          return false;
+        } finally {
+          document.body.removeChild(textarea);
+        }
+      };
 
       const setupYamlGenerators = () => {
         const isValidIp = (value) => {
@@ -84,19 +151,24 @@
           const output = wrapper.querySelector('.yaml-output');
           const invalidIp = wrapper.dataset.invalidIp || 'Invalid IP.';
           const invalidPort = wrapper.dataset.invalidPort || 'Invalid port.';
-          const prefix = wrapper.dataset.outputPrefix || '';
 
           const renderError = (message) => {
             output.textContent = message;
             output.classList.add('error');
           };
 
-          const renderLink = (link) => {
+          const renderLink = (link, message) => {
             output.classList.remove('error');
-            output.innerHTML = `${prefix}<a href="${link}" target="_blank" rel="noopener noreferrer">${link}</a>`;
+            output.replaceChildren(document.createTextNode(`${message} `));
+            const anchor = document.createElement('a');
+            anchor.href = link;
+            anchor.target = '_blank';
+            anchor.rel = 'noopener noreferrer';
+            anchor.textContent = link;
+            output.appendChild(anchor);
           };
 
-          const handleGenerate = () => {
+          const handleGenerate = async () => {
             const ip = ipInput.value.trim();
             const port = portInput.value.trim();
             if (!isValidIp(ip)) {
@@ -110,7 +182,10 @@
             const url = new URL('port-yaml.html', window.location.href);
             url.searchParams.set('ip', ip);
             url.searchParams.set('port', port);
-            renderLink(url.toString());
+            const link = url.toString();
+            const labels = yamlActionLabels[currentLanguage()] || yamlActionLabels.en;
+            const copied = await writeClipboard(link);
+            renderLink(link, copied ? labels.copied : labels.failed);
           };
 
           button.addEventListener('click', handleGenerate);
@@ -258,28 +333,6 @@
         'ur':'اگر سیٹ اَپ کے دوران کوئی سوال ہو تو مجھے <a class="contact-email" href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a> پر رابطہ کریں۔ میں 24 گھنٹوں کے اندر جواب دوں گا۔',
         'vi':'Nếu có thắc mắc trong quá trình cấu hình, hãy liên hệ tôi qua <a class="contact-email" href="mailto:wenyuanshuai@gmail.com">wenyuanshuai@gmail.com</a>. Tôi sẽ phản hồi trong vòng 24 giờ.'
       };
-      const openBrowserLabels = {
-        'en':'Open in browser',
-        'zh-CN':'用浏览器打开',
-        'ar':'افتح في المتصفح',
-        'de':'Im Browser öffnen',
-        'es':'Abrir en el navegador',
-        'fa':'باز کردن در مرورگر',
-        'fr':'Ouvrir dans le navigateur',
-        'hi':'ब्राउज़र में खोलें',
-        'id':'Buka di browser',
-        'ja':'ブラウザで開く',
-        'ko':'브라우저에서 열기',
-        'ms':'Buka di pelayar',
-        'pt':'Abrir no navegador',
-        'ru':'Открыть в браузере',
-        'sw':'Fungua kwenye kivinjari',
-        'th':'เปิดในเบราว์เซอร์',
-        'tl':'Buksan sa browser',
-        'tr':'Tarayıcıda aç',
-        'ur':'براؤزر میں کھولیں',
-        'vi':'Mở trong trình duyệt'
-      };
       const map = {'en':'en','zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','ar':'ar','de':'de','es':'es','fa':'fa','fr':'fr','hi':'hi','id':'id','in':'id','ja':'ja','ko':'ko','ms':'ms','pt':'pt','pt-BR':'pt','ru':'ru','sw':'sw','th':'th','tl':'tl','tr':'tr','ur':'ur','vi':'vi'};
       const identityTexts = {
         "en": {
@@ -366,6 +419,7 @@
 
       const apply = (requestedLang) => {
         const lang = Object.prototype.hasOwnProperty.call(identityTexts, requestedLang) ? requestedLang : 'en';
+        document.documentElement.lang = lang;
         document.querySelectorAll('.lang').forEach(el => el.style.display='none');
         const sec=document.querySelector(`[data-lang="${lang}"]`)||document.querySelector('[data-lang="en"]');
         if(sec) sec.style.display='block';
@@ -386,8 +440,11 @@
         if (contactLabel) contactLabel.textContent = identityTexts[lang].contact;
         const note=document.getElementById('host-ip-note');
         if(note) note.innerHTML=hostIpNotes[lang]||hostIpNotes.en;
-        const openLink=document.getElementById('open-browser-link');
-        if(openLink) openLink.textContent=openBrowserLabels[lang]||openBrowserLabels.en;
+        const manualCopyButton=document.getElementById('manual-url-copy-button');
+        if(manualCopyButton) manualCopyButton.textContent=(manualUrlCopyLabels[lang]||manualUrlCopyLabels.en).copy;
+        document.querySelectorAll('.yaml-generator button').forEach(button => {
+          button.textContent = (yamlActionLabels[lang]||yamlActionLabels.en).button;
+        });
         const sel=document.getElementById('lang-select');
         if(sel) sel.value=lang;
       };
@@ -396,6 +453,18 @@
       apply(target);
       const sel=document.getElementById('lang-select');
       if(sel) sel.addEventListener('change',e=>apply(e.target.value));
+      const manualCopyButton=document.getElementById('manual-url-copy-button');
+      if(manualCopyButton) {
+        manualCopyButton.addEventListener('click', async () => {
+          const labels = manualUrlCopyLabels[currentLanguage()] || manualUrlCopyLabels.en;
+          const copied = await writeClipboard(window.location.href);
+          manualCopyButton.textContent = copied ? labels.copied : labels.failed;
+          window.setTimeout(() => {
+            const currentLabels = manualUrlCopyLabels[currentLanguage()] || manualUrlCopyLabels.en;
+            manualCopyButton.textContent = currentLabels.copy;
+          }, 1600);
+        });
+      }
       setupYamlGenerators();
       setupCopyButtons();
     });
@@ -407,8 +476,8 @@
   <section aria-labelledby="title">
     <p id="app-identity" lang="en" dir="ltr"><span id="identity-description">This document applies to VPN Share Hotspot - Tethering, provided and operated by aiwean, the developer listed on Google Play. The app is also named Network Share within its interface.</span> <span id="identity-contact-label">Contact:</span> <a href="mailto:wenyuanshuai@gmail.com" dir="ltr">wenyuanshuai@gmail.com</a>.</p>
   </section>
-  <div class="open-browser-row">
-    <a id="open-browser-link" class="open-browser-btn" href="https://ailiwean.github.io/static/app-policies/lanbridge/user-guide.html" target="_blank" rel="noopener noreferrer">用浏览器打开</a>
+  <div class="manual-url-copy-row">
+    <button id="manual-url-copy-button" class="manual-url-copy-btn" type="button">复制当前手册地址</button>
   </div>
   <div class="lang-switch">
     <label for="lang-select">Language / 语言：</label>
