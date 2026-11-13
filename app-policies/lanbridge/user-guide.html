@@ -86,27 +86,27 @@
         'ur': { copy: 'اس رہنما کا پتہ کاپی کریں', copied: 'پتہ کاپی ہو گیا', failed: 'کاپی نہیں ہو سکا' },
         'vi': { copy: 'Sao chép địa chỉ hướng dẫn này', copied: 'Đã sao chép địa chỉ', failed: 'Không thể sao chép' }
       };
-      const yamlActionLabels = {
-        'en': { button: 'Copy address to download in browser', copied: 'Address copied. Paste it in your browser to download YAML:', failed: 'Could not copy. Open this address in your browser to download YAML:' },
-        'zh-CN': { button: '复制地址，用浏览器下载', copied: '地址已复制，请粘贴到浏览器下载 YAML：', failed: '复制失败，请在浏览器中打开此地址下载 YAML：' },
-        'ar': { button: 'انسخ العنوان للتنزيل في المتصفح', copied: 'تم نسخ العنوان. الصقه في المتصفح لتنزيل YAML:', failed: 'تعذر النسخ. افتح هذا العنوان في المتصفح لتنزيل YAML:' },
-        'de': { button: 'Adresse kopieren und im Browser herunterladen', copied: 'Adresse kopiert. Fügen Sie sie im Browser ein, um YAML herunterzuladen:', failed: 'Kopieren fehlgeschlagen. Öffnen Sie diese Adresse im Browser, um YAML herunterzuladen:' },
-        'es': { button: 'Copiar dirección y descargar en el navegador', copied: 'Dirección copiada. Pégala en el navegador para descargar el YAML:', failed: 'No se pudo copiar. Abre esta dirección en el navegador para descargar el YAML:' },
-        'fa': { button: 'نشانی را کپی کنید و در مرورگر دانلود کنید', copied: 'نشانی کپی شد. برای دانلود YAML آن را در مرورگر جای‌گذاری کنید:', failed: 'کپی نشد. برای دانلود YAML این نشانی را در مرورگر باز کنید:' },
-        'fr': { button: 'Copier l’adresse pour télécharger dans le navigateur', copied: 'Adresse copiée. Collez-la dans le navigateur pour télécharger le YAML :', failed: 'Copie impossible. Ouvrez cette adresse dans le navigateur pour télécharger le YAML :' },
-        'hi': { button: 'पता कॉपी करें और ब्राउज़र में डाउनलोड करें', copied: 'पता कॉपी हो गया। YAML डाउनलोड करने के लिए इसे ब्राउज़र में पेस्ट करें:', failed: 'कॉपी नहीं हो सका। YAML डाउनलोड करने के लिए यह पता ब्राउज़र में खोलें:' },
-        'id': { button: 'Salin alamat untuk mengunduh di browser', copied: 'Alamat disalin. Tempel di browser untuk mengunduh YAML:', failed: 'Gagal menyalin. Buka alamat ini di browser untuk mengunduh YAML:' },
-        'ja': { button: 'アドレスをコピーしてブラウザでダウンロード', copied: 'アドレスをコピーしました。ブラウザに貼り付けて YAML をダウンロードしてください:', failed: 'コピーできませんでした。ブラウザでこのアドレスを開いて YAML をダウンロードしてください:' },
-        'ko': { button: '주소를 복사해 브라우저에서 다운로드', copied: '주소를 복사했습니다. 브라우저에 붙여넣어 YAML을 다운로드하세요:', failed: '복사하지 못했습니다. 브라우저에서 이 주소를 열어 YAML을 다운로드하세요:' },
-        'ms': { button: 'Salin alamat untuk muat turun dalam pelayar', copied: 'Alamat disalin. Tampal dalam pelayar untuk memuat turun YAML:', failed: 'Gagal menyalin. Buka alamat ini dalam pelayar untuk memuat turun YAML:' },
-        'pt': { button: 'Copiar endereço e baixar no navegador', copied: 'Endereço copiado. Cole-o no navegador para baixar o YAML:', failed: 'Não foi possível copiar. Abra este endereço no navegador para baixar o YAML:' },
-        'ru': { button: 'Скопировать адрес и скачать в браузере', copied: 'Адрес скопирован. Вставьте его в браузер, чтобы скачать YAML:', failed: 'Не удалось скопировать. Откройте этот адрес в браузере, чтобы скачать YAML:' },
-        'sw': { button: 'Nakili anwani ili upakue kwenye kivinjari', copied: 'Anwani imenakiliwa. Ibandike kwenye kivinjari ili kupakua YAML:', failed: 'Imeshindwa kunakili. Fungua anwani hii kwenye kivinjari ili kupakua YAML:' },
-        'th': { button: 'คัดลอกที่อยู่เพื่อดาวน์โหลดในเบราว์เซอร์', copied: 'คัดลอกที่อยู่แล้ว วางในเบราว์เซอร์เพื่อดาวน์โหลด YAML:', failed: 'คัดลอกไม่สำเร็จ เปิดที่อยู่นี้ในเบราว์เซอร์เพื่อดาวน์โหลด YAML:' },
-        'tl': { button: 'Kopyahin ang address para mag-download sa browser', copied: 'Nakopya ang address. I-paste ito sa browser para i-download ang YAML:', failed: 'Hindi nakopya. Buksan ang address na ito sa browser para i-download ang YAML:' },
-        'tr': { button: 'Adresi kopyalayıp tarayıcıda indirin', copied: 'Adres kopyalandı. YAML dosyasını indirmek için tarayıcıya yapıştırın:', failed: 'Kopyalanamadı. YAML dosyasını indirmek için bu adresi tarayıcıda açın:' },
-        'ur': { button: 'پتہ کاپی کریں اور براؤزر میں ڈاؤن لوڈ کریں', copied: 'پتہ کاپی ہو گیا۔ YAML ڈاؤن لوڈ کرنے کے لیے اسے براؤزر میں پیسٹ کریں:', failed: 'کاپی نہیں ہو سکا۔ YAML ڈاؤن لوڈ کرنے کے لیے یہ پتہ براؤزر میں کھولیں:' },
-        'vi': { button: 'Sao chép địa chỉ để tải xuống bằng trình duyệt', copied: 'Đã sao chép địa chỉ. Dán vào trình duyệt để tải YAML:', failed: 'Không thể sao chép. Mở địa chỉ này trong trình duyệt để tải YAML:' }
+      const yamlLinkLabels = {
+        'en': { hint: 'Copy this address and paste it in your browser to download YAML:', copied: 'Address copied. Paste it in your browser to download YAML.', failed: 'Copy failed. Please copy the address manually:' },
+        'zh-CN': { hint: '复制地址，用浏览器下载：', copied: '地址已复制，请粘贴到浏览器下载 YAML。', failed: '复制失败，请手动复制下方地址：' },
+        'ar': { hint: 'انسخ هذا العنوان والصقه في المتصفح لتنزيل YAML:', copied: 'تم نسخ العنوان. الصقه في المتصفح لتنزيل YAML.', failed: 'فشل النسخ. يُرجى نسخ العنوان يدويًا:' },
+        'de': { hint: 'Kopieren Sie diese Adresse und fügen Sie sie im Browser ein, um YAML herunterzuladen:', copied: 'Adresse kopiert. Fügen Sie sie im Browser ein, um YAML herunterzuladen.', failed: 'Kopieren fehlgeschlagen. Bitte kopieren Sie die Adresse manuell:' },
+        'es': { hint: 'Copia esta dirección y pégala en el navegador para descargar el YAML:', copied: 'Dirección copiada. Pégala en el navegador para descargar el YAML.', failed: 'No se pudo copiar. Copia la dirección manualmente:' },
+        'fa': { hint: 'این نشانی را کپی کنید و برای دانلود YAML در مرورگر جای‌گذاری کنید:', copied: 'نشانی کپی شد. برای دانلود YAML آن را در مرورگر جای‌گذاری کنید.', failed: 'کپی نشد. لطفاً نشانی را به‌صورت دستی کپی کنید:' },
+        'fr': { hint: 'Copiez cette adresse et collez-la dans le navigateur pour télécharger le YAML :', copied: 'Adresse copiée. Collez-la dans le navigateur pour télécharger le YAML.', failed: 'Copie impossible. Veuillez copier l’adresse manuellement :' },
+        'hi': { hint: 'YAML डाउनलोड करने के लिए इस पते को कॉपी करके ब्राउज़र में पेस्ट करें:', copied: 'पता कॉपी हो गया। YAML डाउनलोड करने के लिए इसे ब्राउज़र में पेस्ट करें।', failed: 'कॉपी नहीं हो सका। कृपया पता मैन्युअल रूप से कॉपी करें:' },
+        'id': { hint: 'Salin alamat ini dan tempel di browser untuk mengunduh YAML:', copied: 'Alamat disalin. Tempel di browser untuk mengunduh YAML.', failed: 'Gagal menyalin. Silakan salin alamat secara manual:' },
+        'ja': { hint: 'このアドレスをコピーしてブラウザに貼り付け、YAML をダウンロードしてください:', copied: 'アドレスをコピーしました。ブラウザに貼り付けて YAML をダウンロードしてください。', failed: 'コピーできませんでした。アドレスを手動でコピーしてください:' },
+        'ko': { hint: '이 주소를 복사해 브라우저에 붙여넣어 YAML을 다운로드하세요:', copied: '주소를 복사했습니다. 브라우저에 붙여넣어 YAML을 다운로드하세요.', failed: '복사하지 못했습니다. 주소를 직접 복사해 주세요:' },
+        'ms': { hint: 'Salin alamat ini dan tampal dalam pelayar untuk memuat turun YAML:', copied: 'Alamat disalin. Tampal dalam pelayar untuk memuat turun YAML.', failed: 'Gagal menyalin. Sila salin alamat secara manual:' },
+        'pt': { hint: 'Copie este endereço e cole no navegador para baixar o YAML:', copied: 'Endereço copiado. Cole-o no navegador para baixar o YAML.', failed: 'Não foi possível copiar. Copie o endereço manualmente:' },
+        'ru': { hint: 'Скопируйте этот адрес и вставьте его в браузер, чтобы скачать YAML:', copied: 'Адрес скопирован. Вставьте его в браузер, чтобы скачать YAML.', failed: 'Не удалось скопировать. Скопируйте адрес вручную:' },
+        'sw': { hint: 'Nakili anwani hii na uibandike kwenye kivinjari ili kupakua YAML:', copied: 'Anwani imenakiliwa. Ibandike kwenye kivinjari ili kupakua YAML.', failed: 'Imeshindwa kunakili. Nakili anwani wewe mwenyewe:' },
+        'th': { hint: 'คัดลอกที่อยู่นี้แล้ววางในเบราว์เซอร์เพื่อดาวน์โหลด YAML:', copied: 'คัดลอกที่อยู่แล้ว วางในเบราว์เซอร์เพื่อดาวน์โหลด YAML', failed: 'คัดลอกไม่สำเร็จ โปรดคัดลอกที่อยู่ด้วยตนเอง:' },
+        'tl': { hint: 'Kopyahin ang address na ito at i-paste sa browser para i-download ang YAML:', copied: 'Nakopya ang address. I-paste ito sa browser para i-download ang YAML.', failed: 'Hindi nakopya. Kopyahin nang mano-mano ang address:' },
+        'tr': { hint: 'YAML dosyasını indirmek için bu adresi kopyalayıp tarayıcıya yapıştırın:', copied: 'Adres kopyalandı. YAML dosyasını indirmek için tarayıcıya yapıştırın.', failed: 'Kopyalanamadı. Lütfen adresi elle kopyalayın:' },
+        'ur': { hint: 'YAML ڈاؤن لوڈ کرنے کے لیے اس پتے کو کاپی کرکے براؤزر میں پیسٹ کریں:', copied: 'پتہ کاپی ہو گیا۔ YAML ڈاؤن لوڈ کرنے کے لیے اسے براؤزر میں پیسٹ کریں۔', failed: 'کاپی نہیں ہو سکا۔ براہ کرم پتہ دستی طور پر کاپی کریں:' },
+        'vi': { hint: 'Sao chép địa chỉ này và dán vào trình duyệt để tải YAML:', copied: 'Đã sao chép địa chỉ. Dán vào trình duyệt để tải YAML.', failed: 'Không thể sao chép. Vui lòng sao chép địa chỉ theo cách thủ công:' }
       };
       const currentLanguage = () => document.getElementById('lang-select')?.value || 'en';
       const writeClipboard = async (value) => {
@@ -162,9 +162,13 @@
             output.replaceChildren(document.createTextNode(`${message} `));
             const anchor = document.createElement('a');
             anchor.href = link;
-            anchor.target = '_blank';
-            anchor.rel = 'noopener noreferrer';
             anchor.textContent = link;
+            anchor.addEventListener('click', async (event) => {
+              event.preventDefault();
+              const labels = yamlLinkLabels[currentLanguage()] || yamlLinkLabels.en;
+              const copied = await writeClipboard(link);
+              renderLink(link, copied ? labels.copied : labels.failed);
+            });
             output.appendChild(anchor);
           };
 
@@ -183,9 +187,8 @@
             url.searchParams.set('ip', ip);
             url.searchParams.set('port', port);
             const link = url.toString();
-            const labels = yamlActionLabels[currentLanguage()] || yamlActionLabels.en;
-            const copied = await writeClipboard(link);
-            renderLink(link, copied ? labels.copied : labels.failed);
+            const labels = yamlLinkLabels[currentLanguage()] || yamlLinkLabels.en;
+            renderLink(link, labels.hint);
           };
 
           button.addEventListener('click', handleGenerate);
@@ -442,9 +445,6 @@
         if(note) note.innerHTML=hostIpNotes[lang]||hostIpNotes.en;
         const manualCopyButton=document.getElementById('manual-url-copy-button');
         if(manualCopyButton) manualCopyButton.textContent=(manualUrlCopyLabels[lang]||manualUrlCopyLabels.en).copy;
-        document.querySelectorAll('.yaml-generator button').forEach(button => {
-          button.textContent = (yamlActionLabels[lang]||yamlActionLabels.en).button;
-        });
         const sel=document.getElementById('lang-select');
         if(sel) sel.value=lang;
       };
